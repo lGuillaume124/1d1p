@@ -38,7 +38,7 @@
                 <div class="col-xs-2 text-right album-controls">
                     <?= $this->Html->link(
                         '<i class="glyphicon glyphicon-picture"></i>',
-                        array('controller' => 'posts', 'action' => 'add', '?' => array('album' => $album['Album']['id'])),
+                        array('controller' => 'posts', 'action' => 'add', '?' => array('a' => $album['Album']['id'])),
                         array(
                             'class' => 'btn btn-sm btn-success admin-tooltip',
                             'data-toggle' => 'tooltip',

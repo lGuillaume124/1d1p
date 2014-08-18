@@ -12,7 +12,7 @@
         echo $this->fetch('css');
     ?>
 </head>
-<body>
+<body style="margin-top: -70px;">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -48,7 +48,7 @@
             </div>
         </div>
     </nav>
-<div class="container" style="margin-top: 70px; margin-bottom: -70px;">
+<div class="container" style="margin-top: 140px; margin-bottom: -70px;">
     <?= $this->Session->flash(); ?>
 </div>
 

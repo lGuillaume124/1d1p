@@ -13,7 +13,6 @@ class PagesController extends AppController {
 	public function index(){
         $this->loadModel('Album');
         $album = null;
-debug(AuthComponent::user());
         if(!isset($this->request->query['a']) || empty($this->request->query['a']) || $this->request->query['a'] == 'latest'){
             $album = $this->Album->find('first', array(
                 'order' => 'Album.created DESC'

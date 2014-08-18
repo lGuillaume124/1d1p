@@ -18,17 +18,18 @@ class PostsController extends AppController {
         }
 
         # ----- GET ----- #
-        if(!isset($this->request->query['album']) || !preg_match('/\d+/', $this->request->query['album'])){
+
+        if(!isset($this->request->query['a']) || !preg_match('/\d+/', $this->request->query['a'])){
             $this->Session->setFlash(__('Undefined album'), 'flash_error');
-            $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
+            //$this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
         }
 
         $this->loadModel('Album');
-        $album = $this->Album->findById($this->request->query['album']);
+        $album = $this->Album->findById($this->request->query['a']);
 
         if(empty($album)){
             $this->Session->setFlash(__('Undefined album'), 'flash_error');
-            $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
+            //$this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
         }else{
             $this->set('album', $album);
         }
@@ -80,6 +81,10 @@ class PostsController extends AppController {
         if($this->request->is('POST')){
             if(!empty($this->request->data['Post']['file'])){
                 if(!$this->request->data['Post']['file']['error']){
+                    if(!file_exists(IMAGES.'photos')){
+                        App::uses('Folder', 'Utility');
+                        new Folder(IMAGES.'photos', true, 0775);
+                    }
                     if(@move_uploaded_file($this->request->data['Post']['file']['tmp_name'], IMAGES.'photos'.DS.$this->request->data['Post']['file']['name'])){
                         if(@exif_read_data(IMAGES.'photos'.DS.$this->request->data['Post']['file']['name'])){
                             App::uses('CakeTime', 'Utility');
