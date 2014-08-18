@@ -8,6 +8,8 @@ class UsersController extends AppController {
         if($this->request->is('post')){
             if($this->Auth->login()){
                 $this->redirect($this->Auth->redirectUrl());
+            }else{
+                $this->Session->setFlash(__('Wrong credentials.'), 'flash_error');
             }
         }
     }

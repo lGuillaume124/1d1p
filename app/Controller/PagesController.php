@@ -3,16 +3,17 @@
 App::uses('AppController', 'Controller');
 
 class PagesController extends AppController {
+    public $uses = array('');
 
     public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('index', 'password');
+        $this->Auth->allow('index', 'hash');
     }
 
 	public function index(){
         $this->loadModel('Album');
         $album = null;
-
+debug(AuthComponent::user());
         if(!isset($this->request->query['a']) || empty($this->request->query['a']) || $this->request->query['a'] == 'latest'){
             $album = $this->Album->find('first', array(
                 'order' => 'Album.created DESC'
@@ -26,12 +27,12 @@ class PagesController extends AppController {
         $this->set('album', $album);
 	}
 
-    public function password(){
+    public function hash(){
         if($this->request->is('post')){
             $user['username'] = $this->request->data['Page']['username'];
             if(isset($this->request->data['Page']['password'])){
-                App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
-                $passwordHasher = new SimplePasswordHasher();
+                App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
+                $passwordHasher = new BlowfishPasswordHasher();
                 $user['password'] = $passwordHasher->hash($this->request->data['Page']['password']);
             }
             $this->set('user', $user);

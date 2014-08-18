@@ -42,7 +42,7 @@ class AppController extends Controller {
         'Session',
         'Image',
         'Auth' => array(
-            'authenticate' => 'Form',
+            'authenticate' => array('Form' => array('passwordHasher' => 'Blowfish')),
             'loginRedirect' => array('controller' => 'pages', 'action' => 'index', 'admin' => true),
             'logoutRedirect' => array('controller' => 'pages', 'action' => 'index', 'admin' => false),
             'loginAction' => array('controller' => 'users', 'action' => 'login', 'admin' => false)
@@ -52,7 +52,7 @@ class AppController extends Controller {
     function beforeFilter() {
         if(isset($this->params['prefix']) && $this->params['prefix'] == 'admin'){
             $this->layout = 'admin';
-        }elseif(CakeSession::check('Auth.User.username')){
+        }elseif(null !== AuthComponent::user()){
             $this->layout = 'admin';
         }
     }

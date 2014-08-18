@@ -25,7 +25,9 @@
             </div>
         </div>
     </nav>
-
+        <div class="col-xs-12" style="margin-top: 20px;">
+            <?= $this->Session->flash(); ?>
+        </div>
         <?= $this->fetch('content'); ?>
 
         <!-- Login form -->
