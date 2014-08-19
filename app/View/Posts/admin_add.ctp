@@ -1,66 +1,11 @@
 <?= $this->start('script'); ?>
-<?= $this->Html->script('maputils'); ?>
+<?= $this->Html->script('maputils', 'upload'); ?>
 <script type="text/javascript">
     var map = L.map('map').setView([-37.37015, -61.98486], 5);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'OpenStreetMap',
         maxZoom: 18
     }).addTo(map);
-
-    $(document).ready(function(){
-        $('#PostFile').change(function(){
-            $('#map').css('min-height', '274px');
-            $('#upload-progress').fadeIn(500);
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/posts/upload');
-            xhr.onload = function(){
-                console.log(xhr.responseText);
-                var response = JSON.parse(xhr.responseText);
-
-                if(response.error != null){
-                    $('#upload-progress-bar').addClass('progress-bar-danger');
-                    alert(response.error);
-                }
-
-                if(response.photo != null){
-                    $('#upload-progress-bar').addClass('progress-bar-success');
-                    $('#upload-progress').delay(1500).fadeOut(1000);
-                    $('#map').delay(3000).queue(function(next){
-                        $(this).css('min-height', '314px');
-                        next();
-                    });
-                    $('#PostPostDt').val(response.datetime_original);
-                    if(response.coordinates != null){
-                        $('#latitude').val(response.coordinates.latitude);
-                        $('#longitude').val(response.coordinates.longitude);
-                        placeMarker(response.coordinates, response.photo);
-
-                    }else{
-                        navigator.geolocation.getCurrentPosition(function(position){
-                            $('#latitude').val(position.coords.latitude);
-                            $('#longitude').val(position.coords.longitude);
-                            placeMarker(position.coords, response.photo);
-                        }, function(error){
-                            console.log(error);
-                        });
-                    }
-                    $('#PostPicture').val(response.photo);
-                }else{
-                    $('#upload-progress-bar').addClass('progress-bar-danger');
-                }
-            };
-            xhr.upload.onprogress = function(e){
-                $('#upload-progress-bar').css('width', (e.loaded/e.total)*100+"%");
-            };
-            var form = new FormData();
-            form.append('data[Post][file]', $(this)[0].files[0]);
-            xhr.send(form);
-        });
-
-        $('#PostAddForm').submit(function(){
-            ('#Post.File').remove();
-        });
-    });
 </script>
 <?= $this->end(); ?>
 <div class="container dashboard-container">
@@ -84,9 +29,7 @@
                         <div class="progress-bar" id="upload-progress-bar">
                         </div>
                     </div>
-                    <div class="col-xs-12" id="map">
-
-                    </div>
+                    <div class="col-xs-12" id="map"></div>
                 </div>
             </div>
         </div>

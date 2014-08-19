@@ -15,6 +15,16 @@ class Post extends AppModel {
         return $results;
     }
 
+    public function beforeDelete($cascade = false){
+        $post = $this->findById($this->id);
+        $picture = IMAGES.'photos'.DS.$post['Post']['picture'];
+
+        if(file_exists($picture)){
+            unlink($picture);
+        }
+        return true;
+    }
+
     public function beforeSave($options = array()){
         if(!empty($this->data['Post']['post_dt'])){
             $this->data['Post']['post_dt'] = $this->dateFormatBeforeSave($this->data['Post']['post_dt']);
