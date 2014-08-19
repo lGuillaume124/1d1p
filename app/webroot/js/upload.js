@@ -41,7 +41,7 @@ $(document).ready(function(){
                         console.log(error);
                     });
                 }
-                marker.addEventListener('dragend', function(event){
+                marker.addEventListener('dragend', function(){
                     $('#latitude').val(marker.getLatLng().lat);
                     $('#longitude').val(marker.getLatLng().lng);
                 });

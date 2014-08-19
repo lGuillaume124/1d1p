@@ -1,19 +1,20 @@
 <?= $this->start('script'); ?>
 <?= $this->Html->script('maputils'); ?>
 <script type="text/javascript">
-    var map = L.map('map').setView([-37.37015, -61.98486], 5);
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'OpenStreetMap',
-        maxZoom: 18
-    }).addTo(map);
-
     $(document).ready(function(){
-        var coordinates = [];
         var title = $('#PostTitle').val()
-        coordinates['latitude'] = $('#latitude').val();
-        coordinates['longitude'] = $('#longitude').val();
+        var coordinates = L.latLng($('#latitude').val(), $('#longitude').val());
         console.log(coordinates);
-        placeMarker(coordinates, title);
+        var map = L.map('map').setView(coordinates, 5);
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Powered by OpenStreetMap',
+            maxZoom: 18
+        }).addTo(map);
+        var marker = L.marker(coordinates, {draggable: true, title: title}).addTo(map);
+        marker.addEventListener('dragend', function(){
+            $('#latitude').val(marker.getLatLng().lat);
+            $('#longitude').val(marker.getLatLng().lng);
+        });
     });
 </script>
 <?= $this->end(); ?>

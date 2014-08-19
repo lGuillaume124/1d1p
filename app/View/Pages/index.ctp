@@ -2,7 +2,6 @@
 <?= $this->Html->script(array('maputils', 'main')); ?>
 <script type="text/javascript">
     var map = L.map('map').setView([-37.37015, -61.98486], 5);
-
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Powered by OpenStreetMap',
         maxZoom: 18
@@ -47,11 +46,13 @@
                                 <small><?= $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M'); ?></small>
                             </h5>
                             <p><?= $post['content']; ?></p>
+                            <!-- Not yet
                             <span class="timeline-icon">
                                 <?= $this->Html->link('0 <i class="glyphicon glyphicon-comment"></i>',
                                     array(''),
                                     array('escape' => false)); ?>
                             </span>
+                            -->
                             <span class="timeline-icon">
                                 <?= $this->Html->link('<i class="glyphicon glyphicon-map-marker"></i>',
                                     array(''),
