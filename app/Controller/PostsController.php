@@ -81,17 +81,30 @@ class PostsController extends AppController {
         if($this->request->is('POST')){
             if(!empty($this->request->data['Post']['file'])){
                 if(!$this->request->data['Post']['file']['error']){
+                    $extension = pathinfo($this->request->data['Post']['file']['name'], PATHINFO_EXTENSION);
+
+                    if(!in_array($extension, array('jpg', 'jpeg'))){
+                        echo json_encode(array('error' => __('We only accept JPG or JPEG photo!')));
+                        return;
+                    }
+
                     if(!file_exists(IMAGES.'photos')){
                         App::uses('Folder', 'Utility');
                         new Folder(IMAGES.'photos', true, 0775);
                     }
-                    if(@move_uploaded_file($this->request->data['Post']['file']['tmp_name'], IMAGES.'photos'.DS.$this->request->data['Post']['file']['name'])){
-                        if(@exif_read_data(IMAGES.'photos'.DS.$this->request->data['Post']['file']['name'])){
+
+                    $filename = md5(microtime()).'.jpg';
+
+                    if(@move_uploaded_file($this->request->data['Post']['file']['tmp_name'], IMAGES.'photos'.DS.$filename)){
+                        if(@exif_read_data(IMAGES.'photos'.DS.$filename)){
                             App::uses('CakeTime', 'Utility');
-                            $exif = exif_read_data(IMAGES.'photos'.DS.$this->request->data['Post']['file']['name']);
+                            $exif = exif_read_data(IMAGES.'photos'.DS.$filename);
                             $coordinates = $this->_getCoordinates($exif);
                             $datetime_original = (isset($exif['DateTimeOriginal'])) ? CakeTime::nice($exif['DateTimeOriginal']) : CakeTime::nice();
-                            echo json_encode(array('coordinates' => $coordinates, 'photo' => $this->request->data['Post']['file']['name'], 'datetime_original' => $datetime_original));
+                            echo json_encode(array(
+                                'coordinates' => $coordinates,
+                                'photo' => $filename,
+                                'datetime_original' => $datetime_original));
                             return;
                         }else{
                             echo json_encode(array('error' => __('Unable to analyze your photo.')));
@@ -128,7 +141,7 @@ class PostsController extends AppController {
             $longitude = -$longitude;
         }
 
-        return array('latitude' => $latitude, 'longitude' => $longitude);
+        return array('lat' => $latitude, 'lng' => $longitude);
     }
 
     private function _convertCoordinates($coords){

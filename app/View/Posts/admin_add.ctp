@@ -1,5 +1,5 @@
 <?= $this->start('script'); ?>
-<?= $this->Html->script('maputils', 'upload'); ?>
+<?= $this->Html->script(array('maputils', 'upload')); ?>
 <script type="text/javascript">
     var map = L.map('map').setView([-37.37015, -61.98486], 5);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

@@ -67,8 +67,8 @@
                                 <?= $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 510)); ?>
                                 <div class="caption text-justify">
                                     <h4>
-                                        <?= $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M'); ?><br />
-                                        <small><?= $post['title']; ?></small>
+                                        <?= $post['title']; ?><br />
+                                        <small><?= $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M'); ?></small>
                                     </h4>
                                     <p>
                                         <?= $post['content']; ?>
