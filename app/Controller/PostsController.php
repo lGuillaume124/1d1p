@@ -83,7 +83,7 @@ class PostsController extends AppController {
                 if(!$this->request->data['Post']['file']['error']){
                     $extension = pathinfo($this->request->data['Post']['file']['name'], PATHINFO_EXTENSION);
 
-                    if(!in_array($extension, array('jpg', 'jpeg'))){
+                    if(!in_array($extension, array('jpg', 'jpeg', 'JPG', 'JPEG'))){
                         echo json_encode(array('error' => __('We only accept JPG or JPEG photo!')));
                         return;
                     }

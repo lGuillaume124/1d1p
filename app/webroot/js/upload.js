@@ -29,6 +29,8 @@ $(document).ready(function(){
                 }else{
                     // On génère un marqueur au centre de la carte
                     marker = L.marker(map.getCenter(), {draggable: true, title: response.photo}).addTo(map);
+                    $('#latitude').val(marker.getLatLng().lat);
+                    $('#longitude').val(marker.getLatLng().lng);
                     navigator.geolocation.getCurrentPosition(function(position){
                         $('#latitude').val(position.coords.latitude);
                         $('#longitude').val(position.coords.longitude);
