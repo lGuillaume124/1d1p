@@ -16,7 +16,6 @@ hr {
 }
 
 .navbar{
-    box-shadow: 0 3px 3px 1px #333;
     margin-bottom: 0;
     z-index: 15;
 }
