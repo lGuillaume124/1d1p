@@ -13,6 +13,8 @@ class PagesController extends AppController {
 	public function index(){
         $this->loadModel('Album');
         $album = null;
+        $albums = array();
+
         if(!isset($this->request->query['a']) || empty($this->request->query['a']) || $this->request->query['a'] == 'latest'){
             $album = $this->Album->find('first', array(
                 'order' => 'Album.created DESC'
@@ -23,7 +25,16 @@ class PagesController extends AppController {
             $album = $this->Album->findById($this->request->query['a']);
         }
 
-        $this->set('album', $album);
+        $albums_list = $this->Album->find('all', array(
+            'recursive' => false,
+            'conditions' => array('Album.id !=' => $album['Album']['id'])
+        ));
+
+        foreach($albums_list as $v){
+            $albums[$this->request->here.'?a='.$v['Album']['id']] = $v['Album']['title'];
+        }
+
+        $this->set(array('albums' => $albums, 'album' => $album));
 	}
 
     public function hash(){

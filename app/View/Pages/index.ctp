@@ -1,5 +1,6 @@
+<?= $this->Html->css('jquery.fs.selecter', 'stylesheet', array('inline' => false)); ?>
 <?= $this->start('script'); ?>
-<?= $this->Html->script(array('maputils', 'main')); ?>
+<?= $this->Html->script(array('jquery.fs.selecter', 'maputils', 'main')); ?>
 <script type="text/javascript">
     var map = L.map('map').setView([-37.37015, -61.98486], 5);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -8,8 +9,12 @@
     }).addTo(map);
 </script>
 <script type="text/javascript">
-    $(function(){
+    $(document).ready(function(){
         $('.timeline-tooltip').tooltip();
+        $("#aSelecter").selecter({
+            links: true,
+            label: "<?= __('Select another album'); ?>"
+        });
     });
 </script>
 <?= $this->end(); ?>
@@ -26,14 +31,21 @@
             <div class="col-xs-12">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <?= $album['Album']['title']; ?>
+                        <?= $album['Album']['title'].' ('.__n("%s photo", "%s photos", count($album['Post']), count($album['Post'])).') - '.__('Created on ').$this->Time->format($album['Album']['created'], '%d/%m/%Y'); ?>
                     </div>
-                    <div class="panel-body text-left">
-                        <p>
-                            <?= __('This album has been created on ').$this->Time->format($album['Album']['created'], '%d/%m/%Y').' and contains '; ?>
-                            <?= __n("%s picture", "%s pictures", count($album['Post']), count($album['Post'])).'.'; ?>
-                        </p>
-                    </div>
+                    <?php if(count($albums) >= 1): ?>
+                        <div class="panel-body">
+                            <div class="col-xs-12">
+                                <?= $this->Form->create(); ?>
+                                <?= $this->Form->input('fields', array(
+                                    'id' => 'aSelecter',
+                                    'label' => false,
+                                    'options' => $albums
+                                )); ?>
+                                <?= $this->Form->end(); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <?php foreach($album['Post'] as $post): ?>
                     <div class="jumbotron">
