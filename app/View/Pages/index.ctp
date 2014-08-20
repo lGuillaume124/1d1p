@@ -55,7 +55,7 @@
                         <div class="jumbotron-contents">
                             <h5>
                                 <?= $post['title']; ?><br />
-                                <small><?= $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M'); ?></small>
+                                <small><?= $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M').' '.$post['post_dt_offset']; ?></small>
                             </h5>
                             <p><?= $post['content']; ?></p>
                             <!-- Not yet

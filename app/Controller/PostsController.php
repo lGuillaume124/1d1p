@@ -50,7 +50,7 @@ class PostsController extends AppController {
         $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
     }
 
-    public function admin_edit($id = null){
+    public function admin_edit($id){
         if(!$id){
             throw new NotFoundException(__('Invalid post ID'));
         }

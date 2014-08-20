@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Dim 17 Août 2014 à 22:33
--- Version du serveur: 5.5.37-MariaDB-0ubuntu0.14.04.1
+-- Généré le: Mer 20 Août 2014 à 21:46
+-- Version du serveur: 5.5.38-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `albums` (
   `title` varchar(100) NOT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 -- --------------------------------------------------------
 
@@ -44,13 +44,14 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `title` varchar(30) NOT NULL,
   `content` text NOT NULL,
   `post_dt` datetime NOT NULL,
+  `post_dt_offset` varchar(7) NOT NULL,
   `picture` varchar(255) NOT NULL,
   `longitude` float NOT NULL,
   `latitude` float NOT NULL,
   `created` datetime NOT NULL,
   `album_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
 
 -- --------------------------------------------------------
 
@@ -60,11 +61,11 @@ CREATE TABLE IF NOT EXISTS `posts` (
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(36) NOT NULL,
-  `password` varchar(120) NOT NULL,
-  `created` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

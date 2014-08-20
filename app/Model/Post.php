@@ -29,6 +29,19 @@ class Post extends AppModel {
         if(!empty($this->data['Post']['post_dt'])){
             $this->data['Post']['post_dt'] = $this->dateFormatBeforeSave($this->data['Post']['post_dt']);
         }
+
+        App::uses('Xml', 'Utility');
+        App::uses('HttpSocket', 'Network/Http');
+        $http = new HttpSocket();
+        $response = $http->get('http://www.earthtools.org/timezone/-36.1734/-58.9307');
+        if($response->code == '200'){
+            $response = Xml::toArray(Xml::build($response->body()));
+            $response = 'GMT'.$response['timezone']['offset'];
+        }else{
+            $response = '';
+        }
+        $this->data[$this->alias]['post_dt_offset'] = $response;
+
         return true;
     }
 
