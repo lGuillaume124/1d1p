@@ -1,12 +1,41 @@
 <?= $this->Html->css('jquery.fs.selecter', 'stylesheet', array('inline' => false)); ?>
 <?= $this->start('script'); ?>
-<?= $this->Html->script(array('jquery.fs.selecter', 'maputils', 'main')); ?>
+<?= $this->Html->script(array('jquery.fs.selecter', 'maputils')); ?>
 <script type="text/javascript">
-    var map = L.map('map').setView([-37.37015, -61.98486], 5);
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'Powered by OpenStreetMap',
-        maxZoom: 18
-    }).addTo(map);
+    <?php
+        $photos = '';
+        foreach($album['Post'] as $p){
+            $photos .= '{id: '.$p['id'].', lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "'.$p['title'].'"}, ';
+        }
+        $photos = substr($photos, 0, -2);
+    ?>
+
+    var map;
+    var posts = [<?= $photos; ?>];
+    var markers = [];
+    var latLngs = [];
+
+    $(document).ready(function(){
+        console.log(posts);
+        // Génération de la carte
+        map = L.map('map').setView([-37.37015, -61.98486], 5);
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Powered by OpenStreetMap',
+            maxZoom: 18
+        }).addTo(map);
+
+        // Génération d'un rectangle sur la carte
+        var bounds = L.latLngBounds([-37.37015, -61.98486]);
+
+        // Génération des marqueurs
+        for(var i = 0 ; i < posts.length ; i++){
+            latLngs[i] = new L.latLng(posts[i].lat, posts[i].lng);
+            bounds.extend(latLngs[i]);
+            markers[i] = L.marker(latLngs[i], {title: posts[i].title}).addTo(map).bindPopup(posts[i].title);
+        }
+        map.fitBounds(bounds);
+    });
+
 </script>
 <script type="text/javascript">
     $(document).ready(function(){

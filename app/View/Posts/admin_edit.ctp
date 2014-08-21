@@ -4,7 +4,6 @@
     $(document).ready(function(){
         var title = $('#PostTitle').val()
         var coordinates = L.latLng($('#latitude').val(), $('#longitude').val());
-        console.log(coordinates);
         var map = L.map('map').setView(coordinates, 5);
         L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Powered by OpenStreetMap',
