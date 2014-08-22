@@ -52,7 +52,7 @@ hr {
 }
 
 .timeline {
-    box-shadow: -3px 0 3px 1px #333 ;
+    box-shadow: -1px 0 3px 1px #333 ;
     overflow-y: scroll;
     padding: 15px 8px;
     right: 0;
