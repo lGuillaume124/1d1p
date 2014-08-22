@@ -16,6 +16,13 @@
     var latLngs = [];
 
     $(document).ready(function(){
+        // Animations de l'interface
+        $('.timeline-tooltip').tooltip();
+        $("#aSelecter").selecter({
+            links: true,
+            label: "<?= __('Select another album'); ?>"
+        });
+
         // Génération de la carte
         map = L.map('map').setView([-37.37015, -61.98486], 5);
         L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -34,48 +41,33 @@
         }
         map.fitBounds(bounds);
     });
-
-</script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('.timeline-tooltip').tooltip();
-        $("#aSelecter").selecter({
-            links: true,
-            label: "<?= __('Select another album'); ?>"
-        });
-    });
 </script>
 <?= $this->end(); ?>
 
-
-
-<!-- div globale -->
 <div class="row map-container">
-
-    <!-- div contenant la map -->
+    <!-- Map -->
     <div class="main-block map" id="map"></div>
 
 
-    <!-- div contenant la timeline -->
+    <!-- Timeline -->
     <div class="main-block timeline" id="timeline">
-
-        
         <script>
             var lazy = lazyload({
                 container: document.getElementById('timeline')
             });
         </script>
 
-
-
-        <?php if(empty($album)): ?>
+        <?php if(empty($album)){ ?>
             <div class="alert alert-info">
                 <h4><?= __('Welcome !'); ?></h4>
                 <p><?= __('Unfortunately there is nothing to see here.'); ?></p>
             </div>
-        <?php endif; ?>
-        <?php if(!empty($album)): ?>
+
+        <?php }else{
+        $modals = true;
+        ?>
             <div class="col-xs-12">
+                <!-- Albums selecter -->
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <?= $album['Album']['title'].' ('.__n("%s photo", "%s photos", count($album['Post']), count($album['Post'])).') - '.__('Created on ').$this->Time->format($album['Album']['created'], '%d/%m/%Y'); ?>
@@ -94,11 +86,12 @@
                         </div>
                     <?php endif; ?>
                 </div>
+
                 <?php foreach($album['Post'] as $post): ?>
                     <div class="jumbotron">
-                        <dv class="jumbotron-photo">
+                        <div class="jumbotron-photo">
                             <?= $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 540)); ?>
-                        </dv>
+                        </div>
                         <div class="jumbotron-contents">
                             <h5>
                                 <?= $post['title']; ?><br />
@@ -137,6 +130,6 @@
                     </div>
                 <?php endforeach; ?>
             </div>
-        <?php endif; ?>
+        <?php } ?>
     </div>
 </div>

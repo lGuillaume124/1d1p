@@ -12,9 +12,6 @@
 		echo $this->fetch('css');
 		echo $this->Html->script('lazyload.min');
 	?>
-	<script type="text/javascript">
-        var lazy = lazyload();
-	</script>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-default" role="navigation" style="margin-bottom: -50px;">
@@ -63,4 +60,4 @@
     <?= $this->Html->script(array('jquery-2.1.0.min', 'bootstrap.min', 'leaflet')) ?>
     <?= $this->fetch('script'); ?>
 </body>
-</html>
+</html>
