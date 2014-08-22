@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-    <?= $this->Html->script(array('jquery-2.1.0.min', 'bootstrap.min', 'leaflet', 'lazyload.min')) ?>
+    <?= $this->Html->script(array('jquery-2.1.0.min', 'bootstrap.min', 'leaflet')) ?>
     <?= $this->fetch('script'); ?>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?= $this->Html->css('jquery.fs.selecter', 'stylesheet', array('inline' => false)); ?>
 <?= $this->start('script'); ?>
-<?= $this->Html->script(array('jquery.fs.selecter', 'maputils')); ?>
+<?= $this->Html->script(array('jquery.fs.selecter')); ?>
 <script type="text/javascript">
     <?php
         $photos = '';
@@ -16,7 +16,6 @@
     var latLngs = [];
 
     $(document).ready(function(){
-        console.log(posts);
         // Génération de la carte
         map = L.map('map').setView([-37.37015, -61.98486], 5);
         L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -47,9 +46,33 @@
     });
 </script>
 <?= $this->end(); ?>
+
+
+
+<?= $this->Html->script('lazyload', array('block' => 'lazyload')); ?>
+<?= $this->fetch('lazyload'); ?>
+
+
+
+<!-- div globale -->
 <div class="row map-container">
+
+    <!-- div contenant la map -->
     <div class="main-block map" id="map"></div>
-    <div class="main-block timeline">
+
+
+    <!-- div contenant la timeline -->
+    <div class="main-block timeline" id="timeline">
+
+        
+        <script>
+            var lazy = lazyload({
+                container: document.getElementById('timeline')
+            });
+        </script>
+
+
+
         <?php if(empty($album)): ?>
             <div class="alert alert-info">
                 <h4><?= __('Welcome !'); ?></h4>
