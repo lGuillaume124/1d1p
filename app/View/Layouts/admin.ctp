@@ -10,7 +10,11 @@
         echo $this->Html->css(array('bootstrap.min.css', 'bootflat.min', 'style', 'leaflet'));
         echo $this->fetch('meta');
         echo $this->fetch('css');
+		echo $this->Html->script('lazyload.min');
     ?>
+    <script type="text/javascript">
+	    var lazy = lazyload();
+	</script>
 </head>
 <body style="margin-top: -70px;">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -57,4 +61,4 @@
 <?= $this->Html->script(array('jquery-2.1.0.min', 'bootstrap.min', 'leaflet', 'lazyload.min')) ?>
 <?= $this->fetch('script'); ?>
 </body>
-</html>
+</html>

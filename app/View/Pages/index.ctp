@@ -49,11 +49,6 @@
 
 
 
-<?= $this->Html->script('lazyload', array('block' => 'lazyload')); ?>
-<?= $this->fetch('lazyload'); ?>
-
-
-
 <!-- div globale -->
 <div class="row map-container">
 
