@@ -29,7 +29,12 @@
  * ...and connect the rest of 'Pages' controller's URLs.
  */
     Router::connect('/img/**', array('controller' => 'img', 'action' => 'index'));
-    Router::connect('/cockpit', array('controller' => 'pages', 'action' => 'index', 'admin' => true));
+    Router::connect('/dashboard', array('controller' => 'pages', 'action' => 'index', 'admin' => true));
+    Router::connect('/dashboard/add', array('controller' => 'posts', 'action' => 'add', 'admin' => true));
+    Router::connect('/dashboard/edit/*', array('controller' => 'posts', 'action' => 'edit', 'admin' => true));
+    Router::connect('/dashboard/delete/*', array('controller' => 'posts', 'action' => 'delete', 'admin' => true));
+    Router::connect('/dashboard/logout', array('controller' => 'users', 'action' => 'logout', 'admin' => false));
+    Router::connect('/login', array('controller' => 'users', 'action' => 'login', 'admin' => false));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

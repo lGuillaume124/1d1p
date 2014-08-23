@@ -18,18 +18,19 @@ class PostsController extends AppController {
         }
 
         # ----- GET ----- #
-
-        if(!isset($this->request->query['a']) || !preg_match('/\d+/', $this->request->query['a'])){
-            $this->Session->setFlash(__('Undefined album'), 'flash_error');
-            //$this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
-        }
-
         $this->loadModel('Album');
-        $album = $this->Album->findById($this->request->query['a']);
+
+        if(isset($this->request->query['a']) || preg_match('/\d+/', $this->request->query['a'])){
+            $album = $this->Album->findById($this->request->query['a']);
+        }else{
+            $album = $this->Album->find('first', array(
+                'order' => 'Album.created DESC'
+            ));
+        }
 
         if(empty($album)){
             $this->Session->setFlash(__('Undefined album'), 'flash_error');
-            //$this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
+            $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
         }else{
             $this->set('album', $album);
         }
