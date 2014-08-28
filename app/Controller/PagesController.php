@@ -25,10 +25,14 @@ class PagesController extends AppController {
             $album = $this->Album->findById($this->request->query['a']);
         }
 
-        $albums_list = $this->Album->find('all', array(
-            'recursive' => false,
-            'conditions' => array('Album.id !=' => $album['Album']['id'])
-        ));
+        if(!empty($album)){
+            $albums_list = $this->Album->find('all', array(
+                'recursive' => false,
+                'conditions' => array('Album.id !=' => $album['Album']['id'])
+            ));
+        }else{
+            $albums_list = array();
+        }
 
         foreach($albums_list as $v){
             $albums[$this->request->here.'?a='.$v['Album']['id']] = $v['Album']['title'];
