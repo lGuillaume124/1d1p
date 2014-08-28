@@ -6,7 +6,7 @@ $(document).ready(function(){
     // Génération de la carte
     map = L.map('map').setView([-37.37015, -61.98486], 5);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'Powered by OpenStreetMap',
+        attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 18
     }).addTo(map);
 

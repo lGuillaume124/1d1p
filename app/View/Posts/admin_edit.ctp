@@ -6,7 +6,7 @@
         var coordinates = L.latLng($('#latitude').val(), $('#longitude').val());
         var map = L.map('map').setView(coordinates, 5);
         L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Powered by OpenStreetMap',
+            attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
             maxZoom: 18
         }).addTo(map);
         var marker = L.marker(coordinates, {draggable: true, title: title}).addTo(map);
