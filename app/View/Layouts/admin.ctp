@@ -57,11 +57,16 @@
         </div>
     </nav>
 
-    <div class="container">
-        <?= $this->Session->flash(); ?>
-    </div>
-
-    <?= $this->fetch('content'); ?>
+    <?php if(isset($this->request->params['pass'][0]) && $this->request->params['pass'][0] == 'home'){
+        echo $this->fetch('content');
+    }else{ ?>
+        <div class="container" style="margin-top: 60px;">
+            <div class="col-xs-12" style="margin-top: 10px">
+                <?= $this->Session->flash(); ?>
+            </div>
+            <?= $this->fetch('content'); ?>
+        </div>
+    <?php } ?>
 
     <?= $this->Html->script(array('jquery-2.1.0.min', 'bootstrap.min', 'leaflet', 'lazyload.min')) ?>
     <?= $this->fetch('script'); ?>
