@@ -63,6 +63,14 @@ class PagesController extends AppController {
             'order' => array('Album.created DESC')
         ));
 
+        foreach($albums as $k1 => $album){
+            foreach($album['Post'] as $k2 => $post){
+                if(strlen($post['content']) > 61){
+                    $albums[$k1]['Post'][$k2]['content'] = substr($post['content'], 0, 60).'...';
+                }
+            }
+        }
+
         $stats['acount'] = $this->Album->find('count');
         $stats['pcount'] = $this->Post->find('count');
 
