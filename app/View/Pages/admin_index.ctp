@@ -5,34 +5,36 @@
     });
 </script>
 <?= $this->end(); ?>
-<div class="container dashboard-container">
-    <?php if(empty($albums)): ?>
-        <div class="alert alert-info">
-            <h4><?= __('Welcome ').AuthComponent::user('username').'!'; ?></h4>
-            <p><?= __('Unfortunately you do not have any albums yet.'); ?></p>
-            <p><?= $this->Html->link(__('Add Your First Album'), '#', array('class' => 'btn btn-primary', 'data-toggle' => 'modal', 'data-target' => '#newAlbumModal')); ?></p>
-        </div>
-    <?php endif; ?>
+<div class="container" style="margin-top: 70px;">
+    <div class="col-xs-12">
+        <?php if(empty($albums)): ?>
+            <div class="alert alert-info">
+                <h4><?= __('Welcome ').AuthComponent::user('username').'!'; ?></h4>
+                <p><?= __('Unfortunately you do not have any albums yet.'); ?></p>
+                <p><?= $this->Html->link(__('Add Your First Album'), '#', array('class' => 'btn btn-primary', 'data-toggle' => 'modal', 'data-target' => '#newAlbumModal')); ?></p>
+            </div>
+        <?php endif; ?>
 
-    <!-- Album creation form -->
-    <div class="modal fade" id="newAlbumModal" tabindex="-1" role="dialog" aria-labelledby="newAlbumModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <?= $this->Form->create('Album', array('action' => 'add')); ?>
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?= __('Close'); ?></span></button>
-                    <h4 class="modal-title"><?= __('New Album'); ?></h4>
+        <!-- Album creation form -->
+        <div class="modal fade" id="newAlbumModal" tabindex="-1" role="dialog" aria-labelledby="newAlbumModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <?= $this->Form->create('Album', array('action' => 'add')); ?>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?= __('Close'); ?></span></button>
+                        <h4 class="modal-title"><?= __('New Album'); ?></h4>
+                    </div>
+                    <div class="modal-body">
+                        <?= $this->Form->input('title', array(
+                            'div' => array('class' => 'form-group input-group'),
+                            'before' => '<span class="input-group-addon"><i class="glyphicon glyphicon-folder-open"></i></span>',
+                            'placeholder' => __('Album title'))); ?>
+                    </div>
+                    <div class="modal-footer">
+                        <?= $this->Form->submit(__('Create'), array('class' => 'btn btn-success')); ?>
+                    </div>
+                    <?= $this->Form->end(); ?>
                 </div>
-                <div class="modal-body">
-                    <?= $this->Form->input('title', array(
-                        'div' => array('class' => 'form-group input-group'),
-                        'before' => '<span class="input-group-addon"><i class="glyphicon glyphicon-folder-open"></i></span>',
-                        'placeholder' => __('Album title'))); ?>
-                </div>
-                <div class="modal-footer">
-                    <?= $this->Form->submit(__('Create'), array('class' => 'btn btn-success')); ?>
-                </div>
-                <?= $this->Form->end(); ?>
             </div>
         </div>
     </div>

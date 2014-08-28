@@ -17,8 +17,7 @@
     });
 </script>
 <?= $this->end(); ?>
-<div class="container dashboard-container">
-
+<div class="container" style="margin-top: 50px;">
     <div class="col-xs-12">
         <h3><?= __('Edit a photo'); ?></h3>
         <hr />

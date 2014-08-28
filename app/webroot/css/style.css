@@ -15,7 +15,7 @@ hr {
     border-color: #434A54 -moz-use-text-color -moz-use-text-color;
 }
 
-.navbar{
+.nav-default{
     margin-bottom: 0;
     z-index: 15;
     border-radius: 0;
@@ -29,17 +29,22 @@ hr {
     padding: 10px;
 }
 
+.flash-default {
+    margin-top: 20px;
+    z-index: 50
+}
+
 .selecter .selecter-selected:after {
     border: none;
 }
 
-.map-container {
-    margin: 50px 0 0 0;
+.main-wrap {
+    margin: 0;
     position: relative;
     height: calc(100% - 52px);
 }
 
-.main-block {
+.default-block {
     position: absolute;
     top: 0;
     height: 100%;
@@ -74,8 +79,8 @@ hr {
     color: #434A54;
 }
 
-.dashboard-container {
-    margin-top: 70px;
+.credentials-panel {
+    word-break: break-all;
 }
 
 .album-controls {

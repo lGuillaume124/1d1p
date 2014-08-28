@@ -12,6 +12,7 @@ class Post extends AppModel {
                 $results[$key]['Post']['post_dt'] = $this->dateFormatAfterFind($val['Post']['post_dt']);
             }
         }
+
         return $results;
     }
 
@@ -22,6 +23,7 @@ class Post extends AppModel {
         if(file_exists($picture)){
             unlink($picture);
         }
+
         return true;
     }
 
@@ -34,12 +36,14 @@ class Post extends AppModel {
         App::uses('HttpSocket', 'Network/Http');
         $http = new HttpSocket();
         $response = $http->get('http://www.earthtools.org/timezone/-36.1734/-58.9307');
+
         if($response->code == '200'){
             $response = Xml::toArray(Xml::build($response->body()));
             $response = 'GMT'.$response['timezone']['offset'];
         }else{
             $response = '';
         }
+
         $this->data[$this->alias]['post_dt_offset'] = $response;
 
         return true;

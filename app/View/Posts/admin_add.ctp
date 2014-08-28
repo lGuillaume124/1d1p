@@ -8,8 +8,7 @@
     }).addTo(map);
 </script>
 <?= $this->end(); ?>
-<div class="container dashboard-container">
-
+<div class="container" style="margin-top: 50px;">
     <div class="col-xs-12">
         <h3><?= __('Add a photo in : ').$album['Album']['title']; ?></h3>
         <hr />

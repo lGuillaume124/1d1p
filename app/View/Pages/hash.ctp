@@ -1,7 +1,7 @@
-<div class="container" style="margin-top: 70px;">
+<div class="container">
     <div class="col-xs-12">
         <p>
-            <?= __('This page allows you to generate credentials for new users.'); ?>
+            <?= __('This page allows you to generate credentials for new users. Then you need to manually copy these credentials into your MySQL database.'); ?>
         </p>
         <hr />
             <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
@@ -18,7 +18,7 @@
                     <div class="panel-heading">
                         <?= __('Credentials successfully generated!'); ?>
                     </div>
-                    <div class="panel-body text-left">
+                    <div class="panel-body credentials-panel">
                         <?= __('Username'); ?> : <?= $user['username']; ?><br />
                         <?= __('Password'); ?> : <?= $user['password']; ?>
                     </div>

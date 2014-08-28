@@ -40,11 +40,13 @@ class PagesController extends AppController {
     public function hash(){
         if($this->request->is('post')){
             $user['username'] = $this->request->data['Page']['username'];
+
             if(isset($this->request->data['Page']['password'])){
                 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
                 $passwordHasher = new BlowfishPasswordHasher();
                 $user['password'] = $passwordHasher->hash($this->request->data['Page']['password']);
             }
+
             $this->set('user', $user);
         }
     }
