@@ -35,7 +35,7 @@ class Post extends AppModel {
         App::uses('Xml', 'Utility');
         App::uses('HttpSocket', 'Network/Http');
         $http = new HttpSocket();
-        $response = $http->get('http://www.earthtools.org/timezone/-36.1734/-58.9307');
+        $response = $http->get('http://www.earthtools.org/timezone/'.$this->data['Post']['latitude'].'/'.$this->data['Post']['longitude']);
 
         if($response->code == '200'){
             $response = Xml::toArray(Xml::build($response->body()));
