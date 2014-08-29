@@ -25,10 +25,14 @@ class PagesController extends AppController {
             $album = $this->Album->findById($this->request->query['a']);
         }
 
-        $albums_list = $this->Album->find('all', array(
-            'recursive' => false,
-            'conditions' => array('Album.id !=' => $album['Album']['id'])
-        ));
+        if(!empty($album)){
+            $albums_list = $this->Album->find('all', array(
+                'recursive' => false,
+                'conditions' => array('Album.id !=' => $album['Album']['id'])
+            ));
+        }else{
+            $albums_list = array();
+        }
 
         foreach($albums_list as $v){
             $albums[$this->request->here.'?a='.$v['Album']['id']] = $v['Album']['title'];
@@ -40,11 +44,13 @@ class PagesController extends AppController {
     public function hash(){
         if($this->request->is('post')){
             $user['username'] = $this->request->data['Page']['username'];
+
             if(isset($this->request->data['Page']['password'])){
                 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
                 $passwordHasher = new BlowfishPasswordHasher();
                 $user['password'] = $passwordHasher->hash($this->request->data['Page']['password']);
             }
+
             $this->set('user', $user);
         }
     }
@@ -56,6 +62,14 @@ class PagesController extends AppController {
         $albums = $this->Album->find('all', array(
             'order' => array('Album.created DESC')
         ));
+
+        foreach($albums as $k1 => $album){
+            foreach($album['Post'] as $k2 => $post){
+                if(strlen($post['content']) > 61){
+                    $albums[$k1]['Post'][$k2]['content'] = substr($post['content'], 0, 60).'...';
+                }
+            }
+        }
 
         $stats['acount'] = $this->Album->find('count');
         $stats['pcount'] = $this->Post->find('count');

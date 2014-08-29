@@ -1,56 +1,33 @@
 <?= $this->Html->css('jquery.fs.selecter', 'stylesheet', array('inline' => false)); ?>
 <?= $this->start('script'); ?>
-<?= $this->Html->script(array('jquery.fs.selecter')); ?>
+<?= $this->Html->script(array('jquery.fs.selecter', 'main')); ?>
 <script type="text/javascript">
     <?php
         $photos = '';
-        foreach($album['Post'] as $p){
-            $photos .= '{id: '.$p['id'].', lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "'.$p['title'].'"}, ';
+        if(!empty($album['Post'])){
+            foreach($album['Post'] as $p){
+                $photos .= '{id: '.$p['id'].', lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "'.$p['title'].'"}, ';
+            }
+            $photos = substr($photos, 0, -2);
         }
-        $photos = substr($photos, 0, -2);
     ?>
-
-    var map;
     var posts = [<?= $photos; ?>];
-    var markers = [];
-    var latLngs = [];
 
-    $(document).ready(function(){
-        // Animations de l'interface
-        $('.timeline-tooltip').tooltip();
-        $("#aSelecter").selecter({
-            links: true,
-            label: "<?= __('Select another album'); ?>"
-        });
-
-        // Génération de la carte
-        map = L.map('map').setView([-37.37015, -61.98486], 5);
-        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Powered by OpenStreetMap',
-            maxZoom: 18
-        }).addTo(map);
-
-        // Génération d'un rectangle sur la carte
-        var bounds = L.latLngBounds([-37.37015, -61.98486]);
-
-        // Génération des marqueurs
-        for(var i = 0 ; i < posts.length ; i++){
-            latLngs[i] = new L.latLng(posts[i].lat, posts[i].lng);
-            bounds.extend(latLngs[i]);
-            markers[i] = L.marker(latLngs[i], {title: posts[i].title}).addTo(map).bindPopup(posts[i].title);
-        }
-        map.fitBounds(bounds);
+    // Animations de l'interface
+    $('.timeline-tooltip').tooltip();
+    $("#aSelecter").selecter({
+        links: true,
+        label: "<?= __('Select another album'); ?>"
     });
 </script>
 <?= $this->end(); ?>
 
-<div class="row map-container">
+<div class="row main-wrap">
     <!-- Map -->
-    <div class="main-block map" id="map"></div>
-
+    <div class="default-block map" id="map"></div>
 
     <!-- Timeline -->
-    <div class="main-block timeline" id="timeline">
+    <div class="default-block timeline" id="timeline">
         <script>
             var lazy = lazyload({
                 container: document.getElementById('timeline')
@@ -62,10 +39,7 @@
                 <h4><?= __('Welcome !'); ?></h4>
                 <p><?= __('Unfortunately there is nothing to see here.'); ?></p>
             </div>
-
-        <?php }else{
-        $modals = true;
-        ?>
+        <?php }else{ ?>
             <div class="col-xs-12">
                 <!-- Albums selecter -->
                 <div class="panel panel-primary">
@@ -98,7 +72,7 @@
                                 <small><?= $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M').' '.$post['post_dt_offset']; ?></small>
                             </h5>
                             <p><?= $post['content']; ?></p>
-                            <!-- Not yet
+                            <!-- Not yet implemented
                             <span class="timeline-icon">
                                 <?= $this->Html->link('0 <i class="glyphicon glyphicon-comment"></i>',
                                     array(''),

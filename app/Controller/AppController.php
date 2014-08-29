@@ -42,10 +42,10 @@ class AppController extends Controller {
         'Session',
         'Image',
         'Auth' => array(
-            'authenticate' => array('Form' => array('passwordHasher' => 'Blowfish')),
-            'loginRedirect' => array('controller' => 'pages', 'action' => 'index', 'admin' => true),
-            'logoutRedirect' => array('controller' => 'pages', 'action' => 'index', 'admin' => false),
-            'loginAction' => array('controller' => 'users', 'action' => 'login', 'admin' => false)
+            'authenticate'      => array('Form' => array('passwordHasher' => 'Blowfish')),
+            'loginRedirect'     => array('controller' => 'pages', 'action' => 'index', 'admin' => true),
+            'logoutRedirect'    => array('controller' => 'pages', 'action' => 'index', 'admin' => false),
+            'loginAction'       => array('controller' => 'users', 'action' => 'login', 'admin' => false)
         )
     );
 

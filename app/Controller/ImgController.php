@@ -27,6 +27,7 @@ class ImgController extends AppController{
                 App::uses('Folder', 'Utility');
                 new Folder(THUMBS_DIR, true, 0775);
             }
+
             $this->Image->resize($path, $thumb, $dimensions[0], $dimensions[1]);
         }
 

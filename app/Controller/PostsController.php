@@ -6,7 +6,6 @@ class PostsController extends AppController {
 
     public function admin_add() {
 
-        # ----- POST ----- #
         if($this->request->is('post')){
             $this->Post->create();
             if($this->Post->save($this->request->data)){
@@ -26,6 +25,11 @@ class PostsController extends AppController {
             $album = $this->Album->find('first', array(
                 'order' => 'Album.created DESC'
             ));
+		}
+
+		if(!isset($this->request->query['a']) || !preg_match('/\d+/', $this->request->query['a'])){
+            $this->Session->setFlash(__('Undefined album'), 'flash_error');
+            $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
         }
 
         if(empty($album)){
@@ -48,6 +52,7 @@ class PostsController extends AppController {
         }else{
             $this->Session->setFlash(__('Unable to delete this post'), 'flash_error');
         }
+
         $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
     }
 
@@ -57,17 +62,20 @@ class PostsController extends AppController {
         }
 
         $post = $this->Post->findById($id);
+
         if(!$post){
             throw new NotFoundException(__('Invalid post ID'));
         }
 
         if($this->request->is(array('post', 'put'))){
             $this->Post->id = $id;
+
             if($this->Post->save($this->request->data)){
                 $this->Session->setFlash(__('Your post has been successfully updated.'), 'flash_success');
             }else{
                 $this->Session->setFlash(__('Unable to save your post.'), 'flash_error');
             }
+
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
         }
 
@@ -79,6 +87,7 @@ class PostsController extends AppController {
     public function upload(){
         $this->layout = 'ajax';
         $this->render(false);
+
         if($this->request->is('POST')){
             if(!empty($this->request->data['Post']['file'])){
                 if(!$this->request->data['Post']['file']['error']){
@@ -132,12 +141,14 @@ class PostsController extends AppController {
         if(!isset($exif['GPSLatitude']) || !isset($exif['GPSLongitude'])){
             return null;
         }
+
         $latitude = $this->_convertCoordinates($exif['GPSLatitude']);
         $longitude = $this->_convertCoordinates($exif['GPSLongitude']);
 
         if($exif['GPSLatitudeRef'] == 'S'){
             $latitude = -$latitude;
         }
+
         if($exif['GPSLongitudeRef'] == 'W'){
             $longitude = -$longitude;
         }
@@ -150,6 +161,7 @@ class PostsController extends AppController {
             $tmp = explode('/', $coord);
             $coord = floatval($tmp[0]/$tmp[1]);
         }
+
         return $coords[0]+floatval($coords[1]/60)+floatval($coords[2]/3600);
     }
 }

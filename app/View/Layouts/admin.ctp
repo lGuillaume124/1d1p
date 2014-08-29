@@ -7,7 +7,7 @@
     </title>
     <?php
         echo $this->Html->meta('icon');
-        echo $this->Html->css(array('bootstrap.min.css', 'bootflat.min', 'style', 'leaflet'));
+        echo $this->Html->css(array('bootstrap.min', 'bootflat.min', 'style', 'leaflet'));
         echo $this->fetch('meta');
         echo $this->fetch('css');
 		echo $this->Html->script('lazyload.min');
@@ -16,8 +16,12 @@
 	    var lazy = lazyload();
 	</script>
 </head>
-<body style="margin-top: -70px;">
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<body>
+    <?php if(isset($this->request->params['pass'][0]) && $this->request->params['pass'][0] == 'home') { ?>
+        <nav class="navbar navbar-inverse navbar-default nav-default" role="navigation">
+    <?php }else{ ?>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <?php }  ?>
         <div class="container-fluid">
             <div class="navbar-header">
                 <?= $this->Html->link(
@@ -37,7 +41,7 @@
                     <li>
                         <?= $this->Html->link(
                             __('Map'),
-                            array('controller' => 'pages', 'action' => 'index', 'admin' => false)
+                            array('controller' => 'pages', 'action' => 'index', 'home', 'admin' => false)
                         ); ?>
                     </li>
                 </ul>
@@ -52,13 +56,19 @@
             </div>
         </div>
     </nav>
-<div class="container" style="margin-top: 140px; margin-bottom: -70px;">
-    <?= $this->Session->flash(); ?>
-</div>
 
-<?= $this->fetch('content'); ?>
+    <?php if(isset($this->request->params['pass'][0]) && $this->request->params['pass'][0] == 'home'){
+        echo $this->fetch('content');
+    }else{ ?>
+        <div class="container" style="margin-top: 60px;">
+            <div class="col-xs-12" style="margin-top: 10px">
+                <?= $this->Session->flash(); ?>
+            </div>
+            <?= $this->fetch('content'); ?>
+        </div>
+    <?php } ?>
 
-<?= $this->Html->script(array('jquery-2.1.0.min', 'bootstrap.min', 'leaflet', 'lazyload.min')) ?>
-<?= $this->fetch('script'); ?>
+    <?= $this->Html->script(array('jquery-2.1.0.min', 'bootstrap.min', 'leaflet', 'lazyload.min')) ?>
+    <?= $this->fetch('script'); ?>
 </body>
-</html>
+</html>
