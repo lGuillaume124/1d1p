@@ -1,8 +1,11 @@
 var map;
 var markers = [];
 var latLngs = [];
+var itinerary = [];
+var j = 0; // Compteur pour le tableau contenant l'itinéraire
 
 $(document).ready(function(){
+    console.log(posts);
     // Génération de la carte
     map = L.map('map').setView([-37.37015, -61.98486], 5);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -15,9 +18,18 @@ $(document).ready(function(){
 
     // Génération des marqueurs
     for(var i = 0 ; i < posts.length ; i++){
+        if(posts[i].itinerary == true){
+            itinerary[j] = [posts[i].lat, posts[i].lng];
+            j++;
+        }
+
         latLngs[i] = new L.latLng(posts[i].lat, posts[i].lng);
         bounds.extend(latLngs[i]);
         markers[i] = L.marker(latLngs[i], {title: posts[i].title}).addTo(map).bindPopup(posts[i].title);
     }
+
+    // Génération de l'itinéraire
+    var flightPath = L.polyline(itinerary).addTo(map);
+
     map.fitBounds(bounds);
 });

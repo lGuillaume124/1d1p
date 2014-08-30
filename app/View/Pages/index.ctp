@@ -6,7 +6,11 @@
         $photos = '';
         if(!empty($album['Post'])){
             foreach($album['Post'] as $p){
-                $photos .= '{id: '.$p['id'].', lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "'.$p['title'].'"}, ';
+                if($p['itinerary']){
+                    $photos .= '{id: '.$p['id'].', lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "'.$p['title'].'", itinerary: true}, ';
+                }else{
+                    $photos .= '{id: '.$p['id'].', lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "'.$p['title'].'"}, ';
+                }
             }
             $photos = substr($photos, 0, -2);
         }

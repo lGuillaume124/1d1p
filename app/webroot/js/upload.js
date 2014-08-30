@@ -1,7 +1,7 @@
 var marker = null;
 $(document).ready(function(){
     $('#PostFile').change(function(){
-        $('#map').css('min-height', '274px');
+        $('#map').css('min-height', '305px');
         $('#upload-progress').fadeIn(500);
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/posts/upload');
@@ -16,7 +16,7 @@ $(document).ready(function(){
                 $('#upload-progress-bar').addClass('progress-bar-success');
                 $('#upload-progress').delay(1500).fadeOut(1000);
                 $('#map').delay(3000).queue(function(next){
-                    $(this).css('min-height', '314px');
+                    $(this).css('min-height', '345px');
                     next();
                 });
                 $('#PostPostDt').val(response.datetime_original);
@@ -61,4 +61,4 @@ $(document).ready(function(){
         ('#Post.File').remove();
     });
 });
-
+

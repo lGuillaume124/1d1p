@@ -16,7 +16,6 @@ class PostsController extends AppController {
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
         }
 
-        # ----- GET ----- #
         $this->loadModel('Album');
 
         if(isset($this->request->query['a']) || preg_match('/\d+/', $this->request->query['a'])){

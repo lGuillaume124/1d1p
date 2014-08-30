@@ -1,6 +1,9 @@
 <?= $this->start('script'); ?>
-<?= $this->Html->script(array('maputils', 'upload')); ?>
+<?= $this->Html->script(array('maputils', 'upload', 'icheck.min')); ?>
 <script type="text/javascript">
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_flat-blue'
+    });
     var map = L.map('map').setView([-37.37015, -61.98486], 5);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -74,8 +77,12 @@
                         )); ?>
                     </div>
                 </div>
-                <div class="col-xs-12">
-
+                <div class="col-xs-12" style="padding-left: 0;">
+                    <?= $this->Form->input('itinerary', array(
+                        'div' =>  array('style' => 'position: relative;'),
+                        'label' => __('Add to itinerary'),
+                        'type' => 'checkbox'
+                    )); ?>
                 </div>
                 <?= $this->Form->submit(__('Save'), array('class' => 'btn btn-lg btn-success pull-right')); ?>
             </div>

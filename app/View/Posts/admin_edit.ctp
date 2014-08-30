@@ -1,7 +1,11 @@
 <?= $this->start('script'); ?>
-<?= $this->Html->script('maputils'); ?>
+<?= $this->Html->script('icheck.min'); ?>
 <script type="text/javascript">
     $(document).ready(function(){
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_flat-blue'
+        });
+
         var title = $('#PostTitle').val()
         var coordinates = L.latLng($('#latitude').val(), $('#longitude').val());
         var map = L.map('map').setView(coordinates, 5);
@@ -28,7 +32,7 @@
                 <?= __('Location'); ?>
             </div>
             <div class="panel-body text-left">
-                <div class="col-xs-12" id="map" style="min-height: 356px;">
+                <div class="col-xs-12" id="map" style="min-height: 386px;">
 
                 </div>
             </div>
@@ -73,6 +77,13 @@
                             'type' => 'text',
                             'placeholder' => __('Longitude'),
                             'disabled' => false,
+                        )); ?>
+                    </div>
+                    <div class="col-xs-12">
+                        <?= $this->Form->input('itinerary', array(
+                            'div' =>  array('style' => 'position: relative;'),
+                            'label' => __('Add to itinerary'),
+                            'type' => 'checkbox'
                         )); ?>
                     </div>
                 </div>

@@ -7,7 +7,7 @@
     </title>
     <?php
         echo $this->Html->meta('icon');
-        echo $this->Html->css(array('bootstrap.min', 'bootflat.min', 'style', 'leaflet'));
+        echo $this->Html->css(array('bootstrap.min', 'bootflat.min', 'style', 'leaflet', 'blue'));
         echo $this->fetch('meta');
         echo $this->fetch('css');
 		echo $this->Html->script('lazyload.min');
