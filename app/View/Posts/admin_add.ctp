@@ -74,6 +74,9 @@
                         )); ?>
                     </div>
                 </div>
+                <div class="col-xs-12">
+
+                </div>
                 <?= $this->Form->submit(__('Save'), array('class' => 'btn btn-lg btn-success pull-right')); ?>
             </div>
         </div>
