@@ -7,9 +7,9 @@
         if(!empty($album['Post'])){
             foreach($album['Post'] as $p){
                 if($p['itinerary']){
-                    $photos .= '{id: '.$p['id'].', lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "'.$p['title'].'", itinerary: true}, ';
+                    $photos .= '{id: "post'.$p['id'].'", lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "<h6>'.$p['title'].'</h6>", itinerary: true}, ';
                 }else{
-                    $photos .= '{id: '.$p['id'].', lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "'.$p['title'].'"}, ';
+                    $photos .= '{id: "post'.$p['id'].'", lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "<h6>'.$p['title'].'</h6>"}, ';
                 }
             }
             $photos = substr($photos, 0, -2);
@@ -66,6 +66,7 @@
                 </div>
 
                 <?php foreach($album['Post'] as $post): ?>
+                    <!-- Timeline -->
                     <div class="jumbotron">
                         <div class="jumbotron-photo">
                             <?= $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 540)); ?>
@@ -76,33 +77,49 @@
                                 <small><?= $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M').' '.$post['post_dt_offset']; ?></small>
                             </h5>
                             <p><?= $post['content']; ?></p>
-                            <!-- Not yet implemented
-                            <span class="timeline-icon">
-                                <?= $this->Html->link('0 <i class="glyphicon glyphicon-comment"></i>',
-                                    array(''),
-                                    array('escape' => false)); ?>
+                            <span class="timeline-icon" style="margin-left: 0;">
+                                <a href="<?= '#postModal'.$post['id']; ?>" data-toggle="modal">
+                                    0 <i class="glyphicon glyphicon-comment"></i>
+                                </a>
                             </span>
-                            -->
                             <span class="timeline-icon">
                                 <?= $this->Html->link('<i class="glyphicon glyphicon-map-marker"></i>',
-                                    array(''),
+                                    'javascript:void(0)',
                                     array(
-                                        'class' => 'timeline-tooltip',
+                                        'class' => 'timeline-tooltip icon-marker',
+                                        'id' => 'post'.$post['id'],
                                         'data-toggle' => 'tooltip',
                                         'data-placement' => 'top',
-                                        'data-original-title' => __('Show on the map'),
-                                        'title' => __('Show on the map'),
-                                        'escape' => false)); ?>
+                                        'data-original-title' => __('Show'),
+                                        'title' => __('Show'),
+                                        'escape' => false
+                                    )
+                                ); ?>
                             </span>
                             <span class="timeline-icon">
                                 <?= $this->Html->link('<i class="glyphicon glyphicon-globe"></i>',
-                                    array(''),
+                                    'javascript:void(0)',
                                     array(
                                         'class' => 'timeline-tooltip',
                                         'data-toggle' => 'tooltip',
                                         'data-placement' => 'right',
                                         'title' => $post['latitude'].' '.$post['longitude'],
-                                        'escape' => false)); ?>
+                                        'style' => 'cursor: default;',
+                                        'escape' => false
+                                    )
+                                ); ?>
+                            </span>
+                            <span class="timeline-icon pull-right">
+                                <?= $this->Html->link('<i class="glyphicon glyphicon-zoom-in"></i>',
+                                    array('controller' => 'img', 'action' => 'photos/'.$post['picture']),
+                                    array(
+                                        'class' => 'timeline-tooltip',
+                                        'data-toggle' => 'tooltip',
+                                        'data-placement' => 'top',
+                                        'title' => __('Full size'),
+                                        'escape' => false
+                                    )
+                                ); ?>
                             </span>
                         </div>
                     </div>
