@@ -106,12 +106,15 @@ hr {
 }
 
 .post-thumbnail:hover .btn-post-delete {
-    right: 15px;
-    z-index: 10;
+    right: 10px;
 }
 
 .post-thumbnail:hover .btn-post-edit {
     top: 10px;
+}
+
+.post-thumbnail:hover .btn-post-comments {
+    left: 10px;
 }
 
 .btn-post-delete {
@@ -126,8 +129,58 @@ hr {
     display: block;
     position: absolute;
     top: -35px;
-    right: 57px;
+    right: 52px;
     transition: top .5s ease 0s;
+}
+
+.btn-new-comments {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.btn-post-comments {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: -35px;
+    transition: left .5s ease 0s;
+}
+
+.panel-comment {
+    overflow: hidden;
+}
+
+.panel-comment:hover .btn-comment-remove {
+    top: 10px;
+    right: 10px;
+}
+
+.panel-comment:hover .btn-comment-approve {
+    top: 10px;
+    right: 54px;
+}
+
+.btn-comment-approve {
+    display: block;
+    position: absolute;
+    top: -31px;
+    right: 54px;
+    transition: top .5s ease 0s;
+}
+
+.btn-comment-remove {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: -35px;
+    transition: right .5s ease 0s;
+}
+
+.panel-comment-heading {
+    position: relative;
+    line-height: 29px;
 }
 
 #map {

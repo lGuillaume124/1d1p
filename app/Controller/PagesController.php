@@ -58,15 +58,38 @@ class PagesController extends AppController {
     public function admin_index(){
         $this->loadModel('Album');
         $this->loadModel('Post');
+        $this->loadModel('Comment');
 
         $albums = $this->Album->find('all', array(
+            'recursive' => 1,
             'order' => array('Album.created DESC')
         ));
 
-        foreach($albums as $k1 => $album){
-            foreach($album['Post'] as $k2 => $post){
+        $comments = $this->Comment->find('all', array(
+            'fields' => array('Comment.post_id', 'Comment.approved'),
+            'recursive' => -1
+        ));
+
+        foreach($albums as $ka => $album){
+            foreach($album['Post'] as $kp => $post){
+                $unapproved_comments = 0;
+                $approved_comments = 0;
+
+                foreach($comments as $kc => $comment){
+                    if($comment['Comment']['post_id'] == $post['id']){
+                        if($comment['Comment']['approved'] == true){
+                            $approved_comments++;
+                        }else{
+                            $unapproved_comments++;
+                        }
+                    }
+                }
+
+                $albums[$ka]['Post'][$kp]['unapproved_comments'] = $unapproved_comments;
+                $albums[$ka]['Post'][$kp]['approved_comments'] = $approved_comments;
+
                 if(strlen($post['content']) > 61){
-                    $albums[$k1]['Post'][$k2]['content'] = substr($post['content'], 0, 60).'...';
+                    $albums[$ka]['Post'][$kp]['content'] = substr($post['content'], 0, 60).'...';
                 }
             }
         }

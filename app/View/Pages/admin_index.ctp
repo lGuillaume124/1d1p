@@ -152,6 +152,20 @@
                                 array('class' => 'btn btn-sm btn-danger btn-post-delete', 'escape' => false),
                                 __('Are you sure ?')
                             ); ?>
+
+                            <?php if($post['unapproved_comments'] > 0){
+                                echo $this->Html->link(
+                                    $post['unapproved_comments'].' <i class="glyphicon glyphicon-comment"></i>',
+                                    array('controller' => 'comments', 'action' => 'manage', $post['id']),
+                                    array('class' => 'btn btn-sm btn-warning btn-new-comments', 'escape' => false)
+                                );
+                            }elseif($post['unapproved_comments'] == 0 && $post['approved_comments'] > 0){
+                                echo $this->Html->link(
+                                    '<i class="glyphicon glyphicon-comment"></i>',
+                                    array('controller' => 'comments', 'action' => 'manage', $post['id']),
+                                    array('class' => 'btn btn-sm btn-info btn-post-comments', 'escape' => false)
+                                );
+                            }  ?>
                         </div>
                     </div>
                     <?php
