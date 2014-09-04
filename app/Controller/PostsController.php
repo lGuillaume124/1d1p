@@ -5,7 +5,6 @@ App::uses('AppController', 'Controller');
 class PostsController extends AppController {
 
     public function admin_add() {
-
         if($this->request->is('post')){
             $this->Post->create();
             if($this->Post->save($this->request->data)){

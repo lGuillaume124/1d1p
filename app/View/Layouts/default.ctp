@@ -60,6 +60,10 @@
         </div>
     </div>
 
+    <script>
+        var baseurl = "<?php echo $this->request->base; ?>"
+    </script>
+
     <?= $this->Html->script(array('jquery-2.1.0.min', 'bootstrap.min', 'leaflet')) ?>
     <?= $this->fetch('script'); ?>
 </body>

@@ -7,9 +7,9 @@
         if(!empty($album['Post'])){
             foreach($album['Post'] as $p){
                 if($p['itinerary']){
-                    $photos .= '{id: "post'.$p['id'].'", lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "<h6>'.$p['title'].'</h6>", itinerary: true}, ';
+                    $photos .= '{id: "postMarker'.$p['id'].'", lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "<h6>'.$p['title'].'</h6>", itinerary: true}, ';
                 }else{
-                    $photos .= '{id: "post'.$p['id'].'", lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "<h6>'.$p['title'].'</h6>"}, ';
+                    $photos .= '{id: "postMarker'.$p['id'].'", lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "<h6>'.$p['title'].'</h6>"}, ';
                 }
             }
             $photos = substr($photos, 0, -2);
@@ -37,6 +37,8 @@
                 container: document.getElementById('timeline')
             });
         </script>
+
+        <?= $this->Session->flash(); ?>
 
         <?php if(empty($album)){ ?>
             <div class="alert alert-info">
@@ -77,17 +79,15 @@
                                 <small><?= $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M').' '.$post['post_dt_offset']; ?></small>
                             </h5>
                             <p><?= $post['content']; ?></p>
-                            <span class="timeline-icon" style="margin-left: 0;">
-                                <a href="<?= '#postModal'.$post['id']; ?>" data-toggle="modal">
-                                    0 <i class="glyphicon glyphicon-comment"></i>
-                                </a>
+                             <span class="timeline-icon show-comments" post-id="<?php echo$post['id']; ?>" style="margin-left: 0;">
+                                0 <i class="glyphicon glyphicon-comment"></i>
                             </span>
                             <span class="timeline-icon">
                                 <?= $this->Html->link('<i class="glyphicon glyphicon-map-marker"></i>',
                                     'javascript:void(0)',
                                     array(
                                         'class' => 'timeline-tooltip icon-marker',
-                                        'id' => 'post'.$post['id'],
+                                        'id' => 'postMarker'.$post['id'],
                                         'data-toggle' => 'tooltip',
                                         'data-placement' => 'top',
                                         'data-original-title' => __('Show'),
@@ -121,6 +121,43 @@
                                     )
                                 ); ?>
                             </span>
+                        </div>
+                    </div>
+
+                    <!-- Comments wrapper -->
+                    <div class="well comments-well" id="<?php echo 'comments-container-'.$post['id']; ?>">
+                        <a href="<?= '#comModal'.$post['id']; ?>" data-toggle="modal">Ajouter un commentaire</a>
+                    </div>
+
+                    <!-- Comment form -->
+                    <div class="modal fade" id="<?= 'comModal'.$post['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="<?= 'comModal'.$post['id']; ?>" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <?= $this->Form->create('Comment', array('action' => 'add')); ?>
+                                <?= $this->Form->input('post_id', array('type' => 'hidden', 'value' => $post['id'])); ?>
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?= __('Close'); ?></span></button>
+                                    <h4 class="modal-title"><?= __('Add a comment for: ').$post['title']; ?></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <?= $this->Form->input('author', array(
+                                        'div' => array('class' => 'form-group input-group'),
+                                        'before' => '<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>',
+                                        'placeholder' => __('Your name'),
+                                        'required' => true
+                                    )); ?>
+                                    <?= $this->Form->input('content', array(
+                                        'type' => 'textarea',
+                                        'div' => array('class' => 'form-group'),
+                                        'placeholder' => __('Here your comment'),
+                                        'required' => true
+                                    )); ?>
+                                </div>
+                                <div class="modal-footer">
+                                    <?= $this->Form->submit(__('Send '), array('class' => 'btn btn-success', 'escape' => false)); ?>
+                                </div>
+                                <?= $this->Form->end(); ?>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>

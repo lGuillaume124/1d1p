@@ -83,6 +83,19 @@ hr {
     word-break: break-all;
 }
 
+.comments-well {
+    display: none;
+    font-size: 13px;
+}
+
+.comments-well h5 {
+    font-size: 16px;
+}
+
+.comments-well hr {
+    border-color: #DFE0E4 -moz-use-text-color -moz-use-text-color;
+}
+
 .album-controls {
     margin-top: 30px;
 }

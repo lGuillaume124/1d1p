@@ -22,7 +22,6 @@ $(document).ready(function(){
             j++;
         }
 
-        console.log(posts[i].id);
         document.getElementById(posts[i].id).id = i.toString();
         latLngs[i] = new L.latLng(posts[i].lat, posts[i].lng);
         bounds.extend(latLngs[i]);
@@ -35,7 +34,30 @@ $(document).ready(function(){
     // Gestion de l'altitude
     map.fitBounds(bounds);
 
+    // Print marker (on the map) on icon-marker click
     $('.icon-marker').click(function(){
         markers[this.id].openPopup();
+    });
+
+    // Display comments
+    $('#timeline').on('click', '.show-comments', function(){
+        var container = $('#comments-container-' + $(this).attr('post-id'));
+
+        if(container.hasClass('active')){
+            container.fadeOut(500);
+            container.removeClass('active');
+            $('#comments-from-' + $(this).attr('post-id')).remove();
+            return;
+        }
+
+        container.fadeIn(500);
+        container.addClass('active');
+
+        $.ajax({
+            url: baseurl + '/comments/post/' + encodeURIComponent($(this).attr('post-id')),
+            success: function(response){
+                container.append(response);
+            }
+        });
     });
 });
