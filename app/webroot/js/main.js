@@ -11,6 +11,7 @@ $(document).ready(function(){
         attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 18
     }).addTo(map);
+    L.control.scale().addTo(map);
 
     // Génération d'un rectangle sur la carte
     var bounds = L.latLngBounds([-37.37015, -61.98486]);

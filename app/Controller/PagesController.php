@@ -12,6 +12,7 @@ class PagesController extends AppController {
 
 	public function index(){
         $this->loadModel('Album');
+        $this->loadModel('Comment');
         $album = null;
         $albums = array();
 

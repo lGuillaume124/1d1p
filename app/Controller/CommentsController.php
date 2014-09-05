@@ -118,7 +118,7 @@ class CommentsController extends AppController {
         $this->layout = 'ajax';
         $this->Comment->recursive = -1;
         $comments = $this->Comment->find('all', array(
-            'conditions' => array('Comment.post_id' => $id),
+            'conditions' => array('Comment.post_id' => $id, 'Comment.approved' => true),
             'order' => array('Comment.created' => 'DESC')
         ));
 
