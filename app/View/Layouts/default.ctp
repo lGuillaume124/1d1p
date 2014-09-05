@@ -34,33 +34,6 @@
     -->
     <?= $this->fetch('content'); ?>
 
-    <!-- Login form -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <?= $this->Form->create('User', array('action' => 'login')); ?>
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?= __('Close'); ?></span></button>
-                    <h4 class="modal-title"><?= __('Login'); ?></h4>
-                </div>
-                <div class="modal-body">
-                    <?= $this->Form->input('username', array(
-                        'div' => array('class' => 'form-group input-group'),
-                        'before' => '<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>',
-                        'placeholder' => __('Username'))); ?>
-                    <?= $this->Form->input('password', array(
-                        'div' => array('class' => 'form-group input-group'),
-                        'before' => '<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>',
-                        'placeholder' => __('Password'))); ?>
-                </div>
-                <div class="modal-footer">
-                    <?= $this->Form->submit(__('Login'), array('class' => 'btn btn-success')); ?>
-                </div>
-                <?= $this->Form->end(); ?>
-            </div>
-        </div>
-    </div>
-
     <script>
         var baseurl = "<?php echo $this->request->base; ?>"
     </script>

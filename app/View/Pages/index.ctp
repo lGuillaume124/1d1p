@@ -43,7 +43,8 @@
         <?php if(empty($album)){ ?>
             <div class="alert alert-info">
                 <h4><?= __('Welcome !'); ?></h4>
-                <p><?= __('Unfortunately there is nothing to see here.'); ?></p>
+                <p><?= __('Unfortunately there is nothing to see here. You might want to ').'<strong>'.$this->Html->link(__('login'), array('controller' => 'users', 'action' => 'login'), array('style' => 'color: #31708F;')).'</strong> ?'; ?>
+                </p>
             </div>
         <?php }else{ ?>
             <div class="col-xs-12">
@@ -51,6 +52,20 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <?= $album['Album']['title'].' ('.__n("%s photo", "%s photos", count($album['Post']), count($album['Post'])).') - '.__('Created on ').$this->Time->format($album['Album']['created'], '%d/%m/%Y'); ?>
+                        <?php echo $this->Html->link(
+                                '<i class="glyphicon glyphicon-log-in"></i>',
+                                array('controller' => 'users', 'action' => 'login'),
+                                array(
+                                    'class' => 'timeline-tooltip pull-right',
+                                    'style' => 'color: #FFFFFF;',
+                                    'data-toggle' => 'tooltip',
+                                    'data-placement' => 'bottom',
+                                    'data-original-title' => __('Login'),
+                                    'title' => __('Login'),
+                                    'escape' => false
+                                )
+                            );
+                        ?>
                     </div>
                     <?php if(count($albums) >= 1): ?>
                         <div class="panel-body">
