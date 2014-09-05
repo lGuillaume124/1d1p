@@ -1,13 +1,19 @@
-<?= $this->start('script'); ?>
+<?php echo $this->Html->css('jquery.fs.selecter', array('inline' => false)); ?>
+<?php echo $this->start('script'); ?>
+<?php echo $this->Html->script(array('jquery.fs.selecter')); ?>
 <script type="text/javascript">
     $(function(){
         $('.admin-tooltip').tooltip();
+        $('#album-selecter').selecter({
+            links: true,
+            label: "<?php echo __('Select another album'); ?>"
+        })
     });
 </script>
 <?= $this->end(); ?>
 
 <div class="col-xs-12" style="margin-top: 10px;">
-    <?php if(empty($albums)): ?>
+    <?php if(empty($album)): ?>
         <div class="alert alert-info">
             <h4><?= __('Welcome ').AuthComponent::user('username').'!'; ?></h4>
             <p><?= __('Unfortunately you do not have any albums yet.'); ?></p>
@@ -40,147 +46,163 @@
 </div>
 
 <!-- Albums edition form -->
-<?php if(!empty($albums)): ?>
-    <?php foreach($albums as $v): ?>
-        <div class="modal fade" id="<?= 'eModal'.$v['Album']['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?= 'eModal'.$v['Album']['id'].'label'; ?>" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <?= $this->Form->create('Album', array('controller' => 'albums', 'action' => 'edit/'.$v['Album']['id'])); ?>
-                    <?= $this->Form->input('id', array('type' => 'hidden', 'value' => $v['Album']['id'])); ?>
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?= __('Close'); ?></span></button>
-                        <h4 class="modal-title"><?= __('Rename'); ?></h4>
-                    </div>
-                    <div class="modal-body">
-                        <?= $this->Form->input('title', array(
-                            'div' => array('class' => 'form-group input-group'),
-                            'before' => '<span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>',
-                            'placeholder' => __('Album title'))); ?>
-                    </div>
-                    <div class="modal-footer">
-                        <?= $this->Form->submit(__('Save'), array('class' => 'btn btn-success')); ?>
-                    </div>
-                    <?= $this->Form->end(); ?>
+<?php if(!empty($album)): ?>
+
+    <div class="modal fade" id="<?= 'eModal'.$album['Album']['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?= 'eModal'.$v['Album']['id'].'label'; ?>" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?= $this->Form->create('Album', array('controller' => 'albums', 'action' => 'edit/'.$album['Album']['id'])); ?>
+                <?= $this->Form->input('id', array('type' => 'hidden', 'value' => $album['Album']['id'])); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?= __('Close'); ?></span></button>
+                    <h4 class="modal-title"><?= __('Rename'); ?></h4>
                 </div>
+                <div class="modal-body">
+                    <?= $this->Form->input('title', array(
+                        'div' => array('class' => 'form-group input-group'),
+                        'before' => '<span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>',
+                        'placeholder' => __('Album title'))); ?>
+                </div>
+                <div class="modal-footer">
+                    <?= $this->Form->submit(__('Save'), array('class' => 'btn btn-success')); ?>
+                </div>
+                <?= $this->Form->end(); ?>
             </div>
         </div>
-    <?php endforeach; ?>
+    </div>
+
 <?php endif; ?>
 
-<?php if(!empty($albums)): ?>
+<?php if(!empty($album)): ?>
+
     <div class="col-xs-12">
         <div class="panel panel-primary">
-            <div class="panel-heading">
-                <?= __('Hi ').AuthComponent::user('username').'!'.' '.__('Want to share some photos?'); ?>
+            <div class="panel-heading lg-panel-heading">
+                <strong><?= __('Hi ').AuthComponent::user('username').'!'.' '.__('Want to share some photos?'); ?></strong>
+                <?= $this->Html->link(__('New Album'), '#', array('class' => 'btn btn-success pull-right', 'data-toggle' => 'modal', 'data-target' => '#newAlbumModal')); ?>
             </div>
             <div class="panel-body text-left">
-                <?= __('Currently, you have ') ?>
-                <span class="label label-default"><?= __n("%s post", "%s posts", $stats['pcount'], $stats['pcount']); ?></span> in
-                <span class="label label-default"><?= __n("%s album", "%s albums", $stats['acount'], $stats['acount']); ?></span>
-                <?= $this->Html->link(__('New Album'), '#', array('class' => 'btn btn-info pull-right', 'data-toggle' => 'modal', 'data-target' => '#newAlbumModal')); ?>
+                <p>
+                    <?php echo __('You currently have '); ?>
+                    <span class="label label-default">
+                        <?= __n("%s post", "%s posts", $stats['pcount'], $stats['pcount']); ?>
+                    </span>&nbsp;in&nbsp;
+                    <span class="label label-default">
+                        <?= __n("%s album", "%s albums", $stats['acount'], $stats['acount']); ?>
+                    </span>
+                </p>
+
+
+                <?php if(count($albums) >= 1){
+                    echo $this->Form->input('fields', array(
+                        'id' => 'album-selecter',
+                        'label' => false,
+                        'options' => $albums
+                    ));
+                } ?>
             </div>
         </div>
     </div>
     <div class="col-xs-12">
-        <?php foreach($albums as $album): ?>
-            <div class="col-xs-9">
-                <h3>
-                    <?= $album['Album']['title']; ?>
-                    <small><?= __('Created on ').$this->Time->format($album['Album']['created'], '%d/%m/%Y'); ?></small>
-                </h3>
-            </div>
-            <div class="col-xs-3 text-right album-controls">
-                <?= $this->Html->link(
-                    '<i class="glyphicon glyphicon-picture"></i>',
-                    array('controller' => 'posts', 'action' => 'add', '?' => array('a' => $album['Album']['id'])),
-                    array(
-                        'class' => 'btn btn-sm btn-success admin-tooltip',
-                        'data-toggle' => 'tooltip',
-                        'data-placement' => 'top',
-                        'title' => __('Add Photo'),
-                        'escape' => false)
-                ); ?>
-                <?= $this->Html->link(
-                    '<i class="glyphicon glyphicon-edit"></i>',
-                    '#',
-                    array(
-                        'class' => 'btn btn-sm btn-primary',
-                        'data-toggle' => 'modal',
-                        'data-target' => '#eModal'.$album['Album']['id'],
-                        //'data-placement' => 'top',
-                        'title' => __('Rename'),
-                        'escape' => false
-                    )
-                ); ?>
-                <?= $this->Form->postLink(
-                    '<i class="glyphicon glyphicon-trash"></i>',
-                    array('controller' => 'albums', 'action' => 'delete', $album['Album']['id']),
-                    array(
-                        'class' => 'btn btn-sm btn-danger admin-tooltip',
-                        'data-toggle' => 'tooltip',
-                        'data-placement' => 'top',
-                        'title' => __('Delete'),
-                        'escape' => false),
-                    __('Are you sure? All your photos in this album will be removed.')
-                ); ?>
-            </div>
-            <div class="clearfix"></div>
-            <hr style="margin-top: 0"/>
-            <?php if(!empty($album['Post'])): ?>
-                <?php $i = 1; ?>
-                <?php foreach($album['Post'] as $post): ?>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="thumbnail post-thumbnail">
-                            <?= $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 510)); ?>
-                            <div class="caption">
-                                <h4>
-                                    <?= $post['title']; ?><br />
-                                    <small><?= $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M').' '.$post['post_dt_offset']; ?></small>
-                                </h4>
-                                <p>
-                                    <?= $post['content']; ?>
-                                </p>
-                            </div>
-                            <?= $this->Html->link(
-                                '<i class="glyphicon glyphicon-edit"></i>',
-                                array('controller' => 'posts', 'action' => 'edit', $post['id']),
-                                array('class' => 'btn btn-sm btn-primary btn-post-edit', 'escape' => false)
-                            ); ?>
-                            <?= $this->Form->postLink(
-                                '<i class="glyphicon glyphicon-trash"></i>',
-                                array('controller' => 'posts', 'action' => 'delete', $post['id']),
-                                array('class' => 'btn btn-sm btn-danger btn-post-delete', 'escape' => false),
-                                __('Are you sure ?')
-                            ); ?>
 
-                            <?php if($post['unapproved_comments'] > 0){
-                                echo $this->Html->link(
-                                    $post['unapproved_comments'].' <i class="glyphicon glyphicon-comment"></i>',
-                                    array('controller' => 'comments', 'action' => 'manage', $post['id']),
-                                    array('class' => 'btn btn-sm btn-warning btn-new-comments', 'escape' => false)
-                                );
-                            }elseif($post['unapproved_comments'] == 0 && $post['approved_comments'] > 0){
-                                echo $this->Html->link(
-                                    '<i class="glyphicon glyphicon-comment"></i>',
-                                    array('controller' => 'comments', 'action' => 'manage', $post['id']),
-                                    array('class' => 'btn btn-sm btn-info btn-post-comments', 'escape' => false)
-                                );
-                            }  ?>
+        <div class="col-xs-9">
+            <h3>
+                <?= $album['Album']['title']; ?>
+                <small><?= __('Created on ').$this->Time->format($album['Album']['created'], '%d/%m/%Y'); ?></small>
+            </h3>
+        </div>
+        <div class="col-xs-3 text-right album-controls">
+            <?= $this->Html->link(
+                '<i class="glyphicon glyphicon-picture"></i>',
+                array('controller' => 'posts', 'action' => 'add', '?' => array('a' => $album['Album']['id'])),
+                array(
+                    'class' => 'btn btn-sm btn-success admin-tooltip',
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'top',
+                    'title' => __('Add Photo'),
+                    'escape' => false)
+            ); ?>
+            <?= $this->Html->link(
+                '<i class="glyphicon glyphicon-edit"></i>',
+                '#',
+                array(
+                    'class' => 'btn btn-sm btn-primary',
+                    'data-toggle' => 'modal',
+                    'data-target' => '#eModal'.$album['Album']['id'],
+                    //'data-placement' => 'top',
+                    'title' => __('Rename'),
+                    'escape' => false
+                )
+            ); ?>
+            <?= $this->Form->postLink(
+                '<i class="glyphicon glyphicon-trash"></i>',
+                array('controller' => 'albums', 'action' => 'delete', $album['Album']['id']),
+                array(
+                    'class' => 'btn btn-sm btn-danger admin-tooltip',
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'top',
+                    'title' => __('Delete'),
+                    'escape' => false),
+                __('Are you sure? All your photos in this album will be removed.')
+            ); ?>
+        </div>
+        <div class="clearfix"></div>
+        <hr style="margin-top: 0"/>
+        <?php if(!empty($album['Post'])): ?>
+            <?php $i = 1; ?>
+            <?php foreach($album['Post'] as $post): ?>
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="thumbnail post-thumbnail">
+                        <?= $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 510)); ?>
+                        <div class="caption">
+                            <h4>
+                                <?= $post['title']; ?><br />
+                                <small><?= $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M').' '.$post['post_dt_offset']; ?></small>
+                            </h4>
+                            <p>
+                                <?= $post['content']; ?>
+                            </p>
                         </div>
+                        <?= $this->Html->link(
+                            '<i class="glyphicon glyphicon-edit"></i>',
+                            array('controller' => 'posts', 'action' => 'edit', $post['id']),
+                            array('class' => 'btn btn-sm btn-primary btn-post-edit', 'escape' => false)
+                        ); ?>
+                        <?= $this->Form->postLink(
+                            '<i class="glyphicon glyphicon-trash"></i>',
+                            array('controller' => 'posts', 'action' => 'delete', $post['id']),
+                            array('class' => 'btn btn-sm btn-danger btn-post-delete', 'escape' => false),
+                            __('Are you sure ?')
+                        ); ?>
+
+                        <?php if($post['unapproved_comments'] > 0){
+                            echo $this->Html->link(
+                                $post['unapproved_comments'].' <i class="glyphicon glyphicon-comment"></i>',
+                                array('controller' => 'comments', 'action' => 'manage', $post['id']),
+                                array('class' => 'btn btn-sm btn-warning btn-new-comments', 'escape' => false)
+                            );
+                        }elseif($post['unapproved_comments'] == 0 && $post['approved_comments'] > 0){
+                            echo $this->Html->link(
+                                '<i class="glyphicon glyphicon-comment"></i>',
+                                array('controller' => 'comments', 'action' => 'manage', $post['id']),
+                                array('class' => 'btn btn-sm btn-info btn-post-comments', 'escape' => false)
+                            );
+                        }  ?>
                     </div>
-                    <?php
-                    $clear = false;
-                    if($i%4 == 0){
-                        $clear = 'visible-lg visible-md';
-                    }
-                    if($clear !== false){
-                        echo '<div class="clearfix <?= $clear;?>" data-scroll-content="true"></div>';
-                    }
-                    $i++;
-                    ?>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        <?php endforeach; ?>
+                </div>
+                <?php
+                $clear = false;
+                if($i%4 == 0){
+                    $clear = 'visible-lg visible-md';
+                }
+                if($clear !== false){
+                    echo '<div class="clearfix <?= $clear;?>" data-scroll-content="true"></div>';
+                }
+                $i++;
+                ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
+
 <?php endif; ?>
 

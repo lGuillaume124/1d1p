@@ -61,17 +61,30 @@ class PagesController extends AppController {
         $this->loadModel('Post');
         $this->loadModel('Comment');
 
-        $albums = $this->Album->find('all', array(
-            'recursive' => 1,
-            'order' => array('Album.created DESC')
-        ));
+        $albums = array();
 
-        $comments = $this->Comment->find('all', array(
-            'fields' => array('Comment.post_id', 'Comment.approved'),
-            'recursive' => -1
-        ));
+        if(!isset($this->request->query['a']) || empty($this->request->query['a']) || $this->request->query['a'] == 'latest'){
+            $album = $this->Album->find('first', array(
+                'order' => 'Album.created DESC'
+            ));
+        }
 
-        foreach($albums as $ka => $album){
+        if(isset($this->request->query['a']) && preg_match('/\d+/', $this->request->query['a'])){
+            $album = $this->Album->findById($this->request->query['a']);
+        }
+
+        if(!empty($album)){
+            $albums_list = $this->Album->find('all', array(
+                'recursive' => false,
+                'conditions' => array('Album.id !=' => $album['Album']['id'])
+            ));
+
+            $comments = $this->Comment->find('all', array(
+                'fields' => array('Comment.post_id', 'Comment.approved'),
+                'conditions' => array('Comment.album_id' => $album['Album']['id']),
+                'recursive' => -1
+            ));
+
             foreach($album['Post'] as $kp => $post){
                 $unapproved_comments = 0;
                 $approved_comments = 0;
@@ -86,19 +99,25 @@ class PagesController extends AppController {
                     }
                 }
 
-                $albums[$ka]['Post'][$kp]['unapproved_comments'] = $unapproved_comments;
-                $albums[$ka]['Post'][$kp]['approved_comments'] = $approved_comments;
+                $album['Post'][$kp]['unapproved_comments'] = $unapproved_comments;
+                $album['Post'][$kp]['approved_comments'] = $approved_comments;
 
                 if(strlen($post['content']) > 61){
-                    $albums[$ka]['Post'][$kp]['content'] = substr($post['content'], 0, 60).'...';
+                    $album['Post'][$kp]['content'] = substr($post['content'], 0, 60).'...';
                 }
             }
+        }else{
+            $albums_list = array();
+        }
+
+        foreach($albums_list as $v){
+            $albums[$this->request->here.'?a='.$v['Album']['id']] = $v['Album']['title'];
         }
 
         $stats['acount'] = $this->Album->find('count');
         $stats['pcount'] = $this->Post->find('count');
 
-        $this->set('albums', $albums);
-        $this->set('stats', $stats);
+        $this->set(array('album' => $album, 'albums' => $albums, 'stats' => $stats));
+
     }
 }

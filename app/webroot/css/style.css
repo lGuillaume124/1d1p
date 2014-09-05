@@ -179,7 +179,7 @@ hr {
     transition: right .5s ease 0s;
 }
 
-.panel-comment-heading {
+.lg-panel-heading {
     position: relative;
     line-height: 29px;
 }

@@ -52,7 +52,8 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <?= $album['Album']['title'].' ('.__n("%s photo", "%s photos", count($album['Post']), count($album['Post'])).') - '.__('Created on ').$this->Time->format($album['Album']['created'], '%d/%m/%Y'); ?>
-                        <?php echo $this->Html->link(
+                        <?php if(null == AuthComponent::user('id')){
+                            echo $this->Html->link(
                                 '<i class="glyphicon glyphicon-log-in"></i>',
                                 array('controller' => 'users', 'action' => 'login'),
                                 array(
@@ -65,6 +66,7 @@
                                     'escape' => false
                                 )
                             );
+                        }
                         ?>
                     </div>
                     <?php if(count($albums) >= 1): ?>
