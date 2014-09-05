@@ -17,7 +17,7 @@
     <nav class="navbar navbar-inverse navbar-default nav-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <?= $this->Html->link('One Day - One Picture', '/', array('class' => 'navbar-brand')); ?>
+                <?= $this->Html->link('One Day, One Picture', '/', array('class' => 'navbar-brand')); ?>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">

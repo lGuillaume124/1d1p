@@ -25,7 +25,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <?= $this->Html->link(
-                    'One Day - One Picture',
+                    'One Day, One Picture',
                     array('controller' => 'pages', 'action' => 'index', 'admin' => true),
                     array('class' => 'navbar-brand')
                 ); ?>
