@@ -5,6 +5,11 @@ App::uses('AppModel', 'Model');
 class Post extends AppModel {
     public $name = 'Post';
     public $belongsTo = 'Album';
+    public $hasMany = array(
+      'Comment' => array(
+          'dependent' => true
+      )
+    );
 
     public function afterFind($results, $primary = false){
         foreach($results as $key => $value){

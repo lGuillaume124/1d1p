@@ -14,8 +14,19 @@ class CommentsController extends AppController {
             throw new MethodNotAllowedException();
         }
 
+        $this->loadModel('Post');
+
         if($this->request->is('post')){
             $this->Comment->create();
+
+            $album_id = $this->Post->find('first', array(
+                'fields' => 'Post.album_id',
+                'conditions' => array('Post.id' => $this->request->data['Comment']['post_id']),
+                'recursive' => false
+            ));
+
+            $this->request->data['Comment']['album_id'] = $album_id['Post']['album_id'];
+
             if($this->Comment->save($this->request->data)){
                 $this->Session->setFlash(__('Your comment is now awaiting for approval. Thank you!'), 'flash_success');
                 $this->redirect(array('controller' => 'pages', 'action' => 'index', 'home'));

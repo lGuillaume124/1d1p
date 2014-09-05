@@ -96,8 +96,11 @@
                                 <small><?= $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M').' '.$post['post_dt_offset']; ?></small>
                             </h5>
                             <p><?= $post['content']; ?></p>
-                             <span class="timeline-icon show-comments" post-id="<?php echo$post['id']; ?>" style="margin-left: 0;">
-                                0 <i class="glyphicon glyphicon-comment"></i>
+                            <span class="timeline-icon show-comments" post-id="<?php echo$post['id']; ?>" style="margin-left: 0;">
+                                <?php if(isset($post['comments_counter'])){
+                                    echo $post['comments_counter'];
+                                } ?>
+                                <i class="glyphicon glyphicon-comment"></i>
                             </span>
                             <span class="timeline-icon">
                                 <?= $this->Html->link('<i class="glyphicon glyphicon-map-marker"></i>',

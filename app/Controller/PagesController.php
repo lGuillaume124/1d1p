@@ -31,6 +31,24 @@ class PagesController extends AppController {
                 'recursive' => false,
                 'conditions' => array('Album.id !=' => $album['Album']['id'])
             ));
+
+            $comments = $this->Comment->find('all', array(
+                'fields' => array('Comment.post_id'),
+                'conditions' => array('Comment.album_id' => $album['Album']['id'], 'Comment.approved' => true),
+                'recursive' => -1
+            ));
+
+            foreach($album['Post'] as $kp => $post){
+                $comments_counter = 0;
+
+                foreach($comments as $kc => $comment){
+                    if($comment['Comment']['post_id'] == $post['id']){
+                        $comments_counter++;
+                    }
+                }
+
+                $album['Post'][$kp]['comments_counter'] = $comments_counter;
+            }
         }else{
             $albums_list = array();
         }
@@ -61,6 +79,7 @@ class PagesController extends AppController {
         $this->loadModel('Post');
         $this->loadModel('Comment');
 
+        $album = null;
         $albums = array();
 
         if(!isset($this->request->query['a']) || empty($this->request->query['a']) || $this->request->query['a'] == 'latest'){
