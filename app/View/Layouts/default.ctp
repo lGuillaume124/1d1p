@@ -14,6 +14,7 @@
 	?>
 </head>
 <body>
+    <!--
     <nav class="navbar navbar-inverse navbar-default nav-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -30,7 +31,7 @@
     <div class="col-xs-12 flash-default">
         <?= $this->Session->flash(); ?>
     </div>
-
+    -->
     <?= $this->fetch('content'); ?>
 
     <!-- Login form -->

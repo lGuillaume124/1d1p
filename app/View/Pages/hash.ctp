@@ -1,9 +1,10 @@
 <div class="container">
     <div class="col-xs-12">
+        <h3><?php echo __('Generate credentials'); ?></h3>
+        <hr />
         <p>
             <?= __('This page allows you to generate credentials for new users. Then you need to manually copy these credentials into your MySQL database.'); ?>
         </p>
-        <hr />
             <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
                 <?= $this->Form->create('Page'); ?>
                 <?= $this->Form->input('username', array('placeholder' => __('Username'), 'required')); ?>

@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" style="margin-top: 20px;">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-        <div class="panel panel-danger">
+        <div class="panel panel-primary">
             <div class="panel-heading">
-                <?= __('You must login first'); ?>
+                <?= __('One Day, One Picture - Login'); ?>
             </div>
             <div class="panel-body text-left">
                 <?= $this->Form->create('User', array('action' => 'login')); ?>

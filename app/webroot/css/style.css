@@ -41,7 +41,8 @@ hr {
 .main-wrap {
     margin: 0;
     position: relative;
-    height: calc(100% - 52px);
+    height: 100%;
+    /*height: calc(100% - 52px);*/
 }
 
 .default-block {
