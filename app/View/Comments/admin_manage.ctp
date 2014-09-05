@@ -21,7 +21,7 @@
                         '<i class="glyphicon glyphicon-ok"></i>',
                         array('controller' => 'comments', 'action' => 'approve', $unapproved_comment['Comment']['id']),
                         array(
-                            'class' => 'btn btn-sm btn-success btn-comment-approve',
+                            'class' => 'btn btn-sm btn-success btn-mgmt btn-comment-approve',
                             'escape' => false),
                         __('Are you sure? ')
                     ); ?>
@@ -29,7 +29,7 @@
                         '<i class="glyphicon glyphicon-remove"></i>',
                         array('controller' => 'comments', 'action' => 'delete', $unapproved_comment['Comment']['id']),
                         array(
-                            'class' => 'btn btn-sm btn-danger btn-comment-remove',
+                            'class' => 'btn btn-sm btn-danger btn-mgmt btn-comment-remove',
                             'escape' => false),
                         __('Are you sure? ')
                     ); ?>
@@ -50,7 +50,7 @@
                         '<i class="glyphicon glyphicon-ban-circle"></i>',
                         array('controller' => 'comments', 'action' => 'unapprove', $approved_comment['Comment']['id']),
                         array(
-                            'class' => 'btn btn-sm btn-info btn-comment-approve',
+                            'class' => 'btn btn-sm btn-info btn-mgmt btn-comment-approve',
                             'escape' => false),
                         __('Are you sure? ')
                     ); ?>
@@ -58,7 +58,7 @@
                         '<i class="glyphicon glyphicon-remove"></i>',
                         array('controller' => 'comments', 'action' => 'delete', $approved_comment['Comment']['id']),
                         array(
-                            'class' => 'btn btn-sm btn-danger btn-comment-remove',
+                            'class' => 'btn btn-sm btn-danger btn-mgmt btn-comment-remove',
                             'escape' => false),
                         __('Are you sure? ')
                     ); ?>

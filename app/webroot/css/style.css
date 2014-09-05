@@ -118,35 +118,30 @@ hr {
     left: 10px;
 }
 
-.btn-post-delete {
+.btn-mgmt {
     display: block;
     position: absolute;
+    transition: all .5s ease 0s;
+}
+
+.btn-post-delete {
     top: 10px;
     right: -35px;
-    transition: right .5s ease 0s;
 }
 
 .btn-post-edit {
-    display: block;
-    position: absolute;
     top: -35px;
     right: 52px;
-    transition: top .5s ease 0s;
 }
 
 .btn-new-comments {
-    display: block;
-    position: absolute;
     top: 10px;
     left: 10px;
 }
 
 .btn-post-comments {
-    display: block;
-    position: absolute;
     top: 10px;
     left: -35px;
-    transition: left .5s ease 0s;
 }
 
 .panel-comment {
@@ -164,19 +159,13 @@ hr {
 }
 
 .btn-comment-approve {
-    display: block;
-    position: absolute;
     top: -31px;
     right: 54px;
-    transition: top .5s ease 0s;
 }
 
 .btn-comment-remove {
-    display: block;
-    position: absolute;
     top: 10px;
     right: -35px;
-    transition: right .5s ease 0s;
 }
 
 .lg-panel-heading {

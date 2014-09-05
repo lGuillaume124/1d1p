@@ -43,7 +43,11 @@
         <?php if(empty($album)){ ?>
             <div class="alert alert-info">
                 <h4><?= __('Welcome !'); ?></h4>
-                <p><?= __('Unfortunately there is nothing to see here. You might want to ').'<strong>'.$this->Html->link(__('login'), array('controller' => 'users', 'action' => 'login'), array('style' => 'color: #31708F;')).'</strong> ?'; ?>
+                <p>
+                    <?php echo __('Unfortunately there is nothing to see here.'); ?>
+                    <?php if(null == AuthComponent::user('id')): ?>
+                        <?php echo __('You might want to ').'<strong>'.$this->Html->link(__('login'), array('controller' => 'users', 'action' => 'login'), array('style' => 'color: #31708F;')).'</strong> ?'; ?>
+                    <?php endif; ?>
                 </p>
             </div>
         <?php }else{ ?>

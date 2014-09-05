@@ -166,12 +166,12 @@
                         <?= $this->Html->link(
                             '<i class="glyphicon glyphicon-edit"></i>',
                             array('controller' => 'posts', 'action' => 'edit', $post['id']),
-                            array('class' => 'btn btn-sm btn-primary btn-post-edit', 'escape' => false)
+                            array('class' => 'btn btn-sm btn-primary btn-mgmt btn-post-edit', 'escape' => false)
                         ); ?>
                         <?= $this->Form->postLink(
                             '<i class="glyphicon glyphicon-trash"></i>',
                             array('controller' => 'posts', 'action' => 'delete', $post['id']),
-                            array('class' => 'btn btn-sm btn-danger btn-post-delete', 'escape' => false),
+                            array('class' => 'btn btn-sm btn-danger btn-mgmt btn-post-delete', 'escape' => false),
                             __('Are you sure ?')
                         ); ?>
 
@@ -185,7 +185,7 @@
                             echo $this->Html->link(
                                 '<i class="glyphicon glyphicon-comment"></i>',
                                 array('controller' => 'comments', 'action' => 'manage', $post['id']),
-                                array('class' => 'btn btn-sm btn-info btn-post-comments', 'escape' => false)
+                                array('class' => 'btn btn-sm btn-info btn-mgmt btn-post-comments', 'escape' => false)
                             );
                         }  ?>
                     </div>
