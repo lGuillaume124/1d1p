@@ -179,7 +179,7 @@
                             echo $this->Html->link(
                                 $post['unapproved_comments'].' <i class="glyphicon glyphicon-comment"></i>',
                                 array('controller' => 'comments', 'action' => 'manage', $post['id']),
-                                array('class' => 'btn btn-sm btn-warning btn-new-comments', 'escape' => false)
+                                array('class' => 'btn btn-sm btn-warning btn-mgmt btn-new-comments', 'escape' => false)
                             );
                         }elseif($post['unapproved_comments'] == 0 && $post['approved_comments'] > 0){
                             echo $this->Html->link(
