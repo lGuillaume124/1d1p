@@ -150,7 +150,11 @@
 
                     <!-- Comments wrapper -->
                     <div class="well comments-well" id="<?php echo 'comments-container-'.$post['id']; ?>">
-                        <a href="<?= '#comModal'.$post['id']; ?>" data-toggle="modal">Ajouter un commentaire</a>
+                        <div class="add-comment-block">
+                            <a href="<?= '#comModal'.$post['id']; ?>" data-toggle="modal">Ajouter un commentaire</a>
+                            <?php echo $this->Html->image('loader.gif', array('class' => 'pull-right comments-loader', 'id' => 'comments-loader-'.$post['id'])); ?>
+                        </div>
+
                     </div>
 
                     <!-- Comment form -->

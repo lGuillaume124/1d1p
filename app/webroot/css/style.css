@@ -84,6 +84,14 @@ hr {
     word-break: break-all;
 }
 
+.add-comment-block {
+    line-height: 32px;
+}
+
+.comments-loader {
+    display: none;
+}
+
 .comments-well {
     display: none;
     font-size: 13px;
@@ -91,10 +99,12 @@ hr {
 
 .comments-well h5 {
     font-size: 16px;
+    margin: 5px 0;
 }
 
 .comments-well hr {
     border-color: #DFE0E4 -moz-use-text-color -moz-use-text-color;
+    margin: 10px 0;
 }
 
 .album-controls {

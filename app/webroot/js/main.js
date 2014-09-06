@@ -43,11 +43,18 @@ $(document).ready(function(){
     // Display comments
     $('#timeline').on('click', '.show-comments', function(){
         var container = $('#comments-container-' + $(this).attr('post-id'));
+        var post_id = $(this).attr('post-id');
 
         if(container.hasClass('active')){
-            container.fadeOut(500);
             container.removeClass('active');
-            $('#comments-from-' + $(this).attr('post-id')).remove();
+            $(container).animate({
+                height: 0
+            }, 500)
+            setTimeout(function(){
+                $('#comments-from-' + post_id).remove();
+                $(container).hide();
+                $(container).css('height', '');
+            }, 490);
             return;
         }
 
@@ -59,6 +66,14 @@ $(document).ready(function(){
             success: function(response){
                 container.append(response);
             }
+        });
+
+        $(document).ajaxStart(function(){
+           $('#comments-loader-' + post_id).show();
+        });
+
+        $(document).ajaxComplete(function(){
+           $('#comments-loader-' + post_id).hide();
         });
     });
 });
