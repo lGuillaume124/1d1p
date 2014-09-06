@@ -80,6 +80,10 @@ hr {
     color: #434A54;
 }
 
+.show-comments {
+    cursor: pointer;
+}
+
 .credentials-panel {
     word-break: break-all;
 }

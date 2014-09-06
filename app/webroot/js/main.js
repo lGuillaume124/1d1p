@@ -43,30 +43,31 @@ $(document).ready(function(){
     // Display comments
     $('#timeline').on('click', '.show-comments', function(){
         var container = $('#comments-container-' + $(this).attr('post-id'));
+        var counter = $(this).attr('comments-counter');
         var post_id = $(this).attr('post-id');
 
         if(container.hasClass('active')){
             container.removeClass('active');
-            $(container).animate({
-                height: 0
-            }, 500)
+            $(container).fadeOut(500);
             setTimeout(function(){
                 $('#comments-from-' + post_id).remove();
                 $(container).hide();
                 $(container).css('height', '');
-            }, 490);
+            }, 510);
             return;
         }
 
         container.fadeIn(500);
         container.addClass('active');
 
-        $.ajax({
-            url: baseurl + '/comments/post/' + encodeURIComponent($(this).attr('post-id')),
-            success: function(response){
-                container.append(response);
-            }
-        });
+        if(counter > 0){
+            $.ajax({
+                url: baseurl + '/comments/post/' + encodeURIComponent($(this).attr('post-id')),
+                success: function(response){
+                    container.append(response);
+                }
+            });
+        }
 
         $(document).ajaxStart(function(){
            $('#comments-loader-' + post_id).show();
