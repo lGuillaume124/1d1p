@@ -84,8 +84,8 @@ $(document).ready(function(){
         xhr.send(form);
     });
 
-    $('#PostAddForm').submit(function(){
-        ('#Post.File').remove();
+    $('#AddPostForm').submit(function(){
+        $('#PostFile').remove();
     });
 });
 

@@ -15,7 +15,7 @@
 <div class="col-xs-12">
     <h3><?= __('Add a photo in : ').$album['Album']['title']; ?></h3>
     <hr />
-    <?= $this->Form->create('Post', array('action' => 'add', 'enctype' => 'multipart/form-data')); ?>
+    <?= $this->Form->create('Post', array('action' => 'add', 'enctype' => 'multipart/form-data', 'id' => 'AddPostForm')); ?>
     <?= $this->Form->input('album_id', array('type' => 'hidden', 'value' => $album['Album']['id'])); ?>
     <div class="col-xs-12 col-md-6">
         <div class="panel panel-primary">
