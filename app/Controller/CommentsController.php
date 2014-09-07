@@ -92,9 +92,7 @@ class CommentsController extends AppController {
             }
         }
 
-        $this->set('unapproved_comments', $unapproved_comments);
-        $this->set('approved_comments', $approved_comments);
-        $this->set('post', $post);
+        $this->set(array('title_for_layout' => __('Manage comments').' - One Day, One Picture', 'unapproved_comments' => $unapproved_comments, 'approved_comments' => $approved_comments, 'post' => $post));
     }
 
     public function admin_unapprove($id){

@@ -15,6 +15,7 @@ class PagesController extends AppController {
         $this->loadModel('Comment');
         $album = null;
         $albums = array();
+        $title = 'One, One Picture';
 
         if(!isset($this->request->query['a']) || empty($this->request->query['a']) || $this->request->query['a'] == 'latest'){
             $album = $this->Album->find('first', array(
@@ -49,6 +50,8 @@ class PagesController extends AppController {
 
                 $album['Post'][$kp]['comments_counter'] = $comments_counter;
             }
+
+            $title = $album['Album']['title'].' - One Day, One Picture';
         }else{
             $albums_list = array();
         }
@@ -57,7 +60,7 @@ class PagesController extends AppController {
             $albums[$this->request->here.'?a='.$v['Album']['id']] = $v['Album']['title'];
         }
 
-        $this->set(array('albums' => $albums, 'album' => $album));
+        $this->set(array('title_for_layout' => $title, 'albums' => $albums, 'album' => $album));
 	}
 
     public function hash(){
@@ -72,6 +75,7 @@ class PagesController extends AppController {
 
             $this->set('user', $user);
         }
+        $this->set(array('title_for_layout' => __('Generate Hash').' - One Day, One Picture'));
     }
 
     public function admin_index(){
@@ -136,7 +140,7 @@ class PagesController extends AppController {
         $stats['acount'] = $this->Album->find('count');
         $stats['pcount'] = $this->Post->find('count');
 
-        $this->set(array('album' => $album, 'albums' => $albums, 'stats' => $stats));
+        $this->set(array('title_for_layout' => __('Dashboard').' - One Day, One Picture', 'album' => $album, 'albums' => $albums, 'stats' => $stats));
 
     }
 }

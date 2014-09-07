@@ -34,7 +34,7 @@ class PostsController extends AppController {
             $this->Session->setFlash(__('Undefined album'), 'flash_error');
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
         }else{
-            $this->set('album', $album);
+            $this->set(array('title_for_layout' => __('Add a new post').' - One Day, One Picture', 'album' => $album));
         }
     }
 
@@ -80,6 +80,8 @@ class PostsController extends AppController {
         if(!$this->request->data){
             $this->request->data = $post;
         }
+
+        $this->set('title_for_layout', __('Edit a post').' - One Day, One Picture');
     }
 
     public function upload(){
