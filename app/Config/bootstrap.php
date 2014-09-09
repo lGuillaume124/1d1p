@@ -94,6 +94,8 @@ Configure::write('Dispatcher.filters', array(
 	'CacheDispatcher'
 ));
 
+Configure::write('Config.language', 'fra');
+
 /**
  * Configures default file logging options
  */

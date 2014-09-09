@@ -1,0 +1,383 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: One Day, One Picture\n"
+"POT-Creation-Date: 2014-09-09 20:30+0200\n"
+"PO-Revision-Date: 2014-09-09 20:54+0100\n"
+"Last-Translator: \n"
+"Language-Team:  <admin@guillaume-leduc.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: FR\n"
+
+#: Controller/AlbumsController.php:12
+msgid "New album successfully created!"
+msgstr "Nouvel album créé avec succès !"
+
+#: Controller/AlbumsController.php:14
+msgid "Unable to create album."
+msgstr "Impossible de créer l'album."
+
+#: Controller/AlbumsController.php:26;32
+msgid "Invalid album ID"
+msgstr "Identifiant d'album invalide."
+
+#: Controller/AlbumsController.php:39
+msgid "Your album has been successfully renamed."
+msgstr "Album renommé avec succès !"
+
+#: Controller/AlbumsController.php:41 Controller/PostsController.php:13;74
+msgid "Unable to save your post."
+msgstr "Impossible de sauvegarder ce billet."
+
+#: Controller/AlbumsController.php:59
+msgid "Album "
+msgstr "Album"
+
+#: Controller/AlbumsController.php:61
+msgid "Unable to delete this album"
+msgstr "Impossible de supprimer cet album."
+
+#: Controller/CommentsController.php:31
+msgid "Your comment is now awaiting for approval. Thank you!"
+msgstr ""
+"Votre commentaire est en attente de validation. Merci de votre "
+"participation !"
+
+#: Controller/CommentsController.php:49;110
+msgid "Invalid Comment ID"
+msgstr "Identifiant de commentaire invalide."
+
+#: Controller/CommentsController.php:55
+msgid "Unable to validate this comment."
+msgstr "Impossible de valider ce commentaire."
+
+#: Controller/CommentsController.php:58
+msgid "This comment is already approved!"
+msgstr "Ce commentaire a déjà été approuvé !"
+
+#: Controller/CommentsController.php:67;77
+msgid "Invalid Post ID"
+msgstr "Identifiant de billet invalide."
+
+#: Controller/CommentsController.php:95
+msgid "Manage comments"
+msgstr "Gérer les commentaires"
+
+#: Controller/CommentsController.php:116
+msgid "Unable to unapproved this comment."
+msgstr "Impossible de désapprouver ce commentaire."
+
+#: Controller/CommentsController.php:119
+msgid "This comment is already unapproved!"
+msgstr "Ce commentaire est déjà désapprouvé !"
+
+#: Controller/PagesController.php:78
+msgid "Generate Hash"
+msgstr "Générer un hash"
+
+#: Controller/PagesController.php:143 View/Layouts/admin.ctp:37
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: Controller/PostsController.php:11
+msgid "Your post has been successfully created!"
+msgstr "Nouveau billet créé avec succès !"
+
+#: Controller/PostsController.php:29;34
+msgid "Undefined album"
+msgstr "Album non spécifié"
+
+#: Controller/PostsController.php:37
+msgid "Add a new post"
+msgstr "Ajouter un billet"
+
+#: Controller/PostsController.php:49
+msgid "Post "
+msgstr "Billet"
+
+#: Controller/PostsController.php:51
+msgid "Unable to delete this post"
+msgstr "Impossible de supprimer ce billet."
+
+#: Controller/PostsController.php:59;65
+msgid "Invalid post ID"
+msgstr "Identifiant de billet invalide."
+
+#: Controller/PostsController.php:72
+msgid "Your post has been successfully updated."
+msgstr "Billet mis à jour avec succès."
+
+#: Controller/PostsController.php:84
+msgid "Edit a post"
+msgstr "Modifier un billet"
+
+#: Controller/PostsController.php:97
+msgid "We only accept JPG or JPEG photo!"
+msgstr "Photos au format JPG / JPEG uniquement !"
+
+#: Controller/PostsController.php:120
+msgid "Unable to analyze your photo."
+msgstr "Impossible d'analyser cette photo."
+
+#: Controller/PostsController.php:124
+msgid "Unable to upload your photo."
+msgstr "Impossible d'envoyer votre photo."
+
+#: Controller/UsersController.php:12
+msgid "Wrong credentials."
+msgstr "Identifiants invalides."
+
+#: View/Comments/admin_manage.ctp:3
+msgid "Manage comments - "
+msgstr "Gérer les commentaires - "
+
+#: View/Comments/admin_manage.ctp:10
+msgid "Unfortunately there is no comments for this post."
+msgstr "Malheureusement ce billet n'a pas encore été commenté."
+
+#: View/Comments/admin_manage.ctp:19;48
+msgid "Author:"
+msgstr "Auteur :"
+
+#: View/Comments/admin_manage.ctp:19;48
+msgid "Submitted on "
+msgstr "Envoyé le "
+
+#: View/Comments/admin_manage.ctp:26;34;55;63
+msgid "Are you sure? "
+msgstr "Êtes-vous sûr ?"
+
+#: View/Layouts/admin.ctp:43
+msgid "Map"
+msgstr "Carte"
+
+#: View/Layouts/admin.ctp:53
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: View/Layouts/default.ctp:25 View/Pages/index.ctp:68;69
+#: View/Users/login.ctp:17
+msgid "Login"
+msgstr "Connexion"
+
+#: View/Pages/admin_index.ctp:9 View/Pages/index.ctp:24
+msgid "Select another album"
+msgstr "Changer d'album"
+
+#: View/Pages/admin_index.ctp:18
+msgid "Welcome "
+msgstr "Bienvenue "
+
+#: View/Pages/admin_index.ctp:19
+msgid "Unfortunately you do not have any albums yet."
+msgstr "Malheureusement vous n'avez pas encore créé d'album."
+
+#: View/Pages/admin_index.ctp:20
+msgid "Add Your First Album"
+msgstr "Ajouter votre premier album"
+
+#: View/Pages/admin_index.ctp:30;57 View/Pages/index.ctp:167
+msgid "Close"
+msgstr "Fermer"
+
+#: View/Pages/admin_index.ctp:31;82
+msgid "New Album"
+msgstr "Nouvel album"
+
+#: View/Pages/admin_index.ctp:37;64
+msgid "Album title"
+msgstr "Titre de l'album"
+
+#: View/Pages/admin_index.ctp:40
+msgid "Create"
+msgstr "Ajouter"
+
+#: View/Pages/admin_index.ctp:58;133
+msgid "Rename"
+msgstr "Renommer"
+
+#: View/Pages/admin_index.ctp:67 View/Posts/admin_add.ctp:87
+#: View/Posts/admin_edit.ctp:104
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: View/Pages/admin_index.ctp:81
+msgid "Hi "
+msgstr "Salut "
+
+#: View/Pages/admin_index.ctp:81
+msgid "Want to share some photos?"
+msgstr "Envie de partager quelques photos ?"
+
+#: View/Pages/admin_index.ctp:86
+msgid "You currently have "
+msgstr "Actuellement vous avez "
+
+#: View/Pages/admin_index.ctp:111 View/Pages/index.ctp:58
+msgid "Created on "
+msgstr "Créé le "
+
+#: View/Pages/admin_index.ctp:122
+msgid "Add Photo"
+msgstr "Ajouter un billet"
+
+#: View/Pages/admin_index.ctp:144
+msgid "Delete"
+msgstr "Supprimer"
+
+#: View/Pages/admin_index.ctp:146
+msgid "Are you sure? All your photos in this album will be removed."
+msgstr "Êtes-vous sûr ? Toutes les photos liées à cet album seront supprimées."
+
+#: View/Pages/admin_index.ctp:175
+msgid "Are you sure ?"
+msgstr "Êtes-vous sûr ?"
+
+#: View/Pages/admin_index.ctp:88
+msgid "%s post"
+msgid_plural "%s posts"
+msgstr[0] ""
+msgstr[1] ""
+
+#: View/Pages/admin_index.ctp:91
+msgid "%s album"
+msgid_plural "%s albums"
+msgstr[0] ""
+msgstr[1] ""
+
+#: View/Pages/hash.ctp:3;12
+msgid "Generate credentials"
+msgstr "Générer des identifiants"
+
+#: View/Pages/hash.ctp:6
+msgid ""
+"This page allows you to generate credentials for new users. Then you need to "
+"manually copy these credentials into your MySQL database."
+msgstr ""
+"Cette page vous permet de générer des identifiants pour les nouveaux "
+"utilisateurs. Une fois générés, vous devez copier manuellement ces "
+"identifiants dans la base de données MySQL."
+
+#: View/Pages/hash.ctp:10;23 View/Users/login.ctp:12
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: View/Pages/hash.ctp:11;24 View/Users/login.ctp:16
+msgid "Password"
+msgstr "Mot de passe"
+
+#: View/Pages/hash.ctp:20
+msgid "Credentials successfully generated!"
+msgstr "Identifiants générés avec succès !"
+
+#: View/Pages/index.ctp:45
+msgid "Welcome !"
+msgstr "Bienvenue !"
+
+#: View/Pages/index.ctp:47
+msgid "Unfortunately there is nothing to see here."
+msgstr "Malheureusement il n'y a rien à voir ici, pour le moment."
+
+#: View/Pages/index.ctp:49
+msgid "You might want to "
+msgstr ""
+
+#: View/Pages/index.ctp:49
+msgid "login"
+msgstr "connecter"
+
+#: View/Pages/index.ctp:117;118
+msgid "Show"
+msgstr "Afficher"
+
+#: View/Pages/index.ctp:143
+msgid "Full size"
+msgstr "Format original"
+
+#: View/Pages/index.ctp:168
+msgid "Add a comment for: "
+msgstr "Ajouter un commentaire à : "
+
+#: View/Pages/index.ctp:174
+msgid "Your name"
+msgstr "Votre nom"
+
+#: View/Pages/index.ctp:180
+msgid "Here your comment"
+msgstr "Votre commentaire"
+
+#: View/Pages/index.ctp:185
+msgid "Send "
+msgstr "Envoyer"
+
+#: View/Pages/index.ctp:58
+msgid "%s photo"
+msgid_plural "%s photos"
+msgstr[0] ""
+msgstr[1] ""
+
+#: View/Posts/admin_add.ctp:16
+msgid "Add a photo in : "
+msgstr ""
+
+#: View/Posts/admin_add.ctp:23
+msgid "Upload your photo"
+msgstr "Envoyer votre photo"
+
+#: View/Posts/admin_add.ctp:41
+msgid "Add a short description"
+msgstr "Ajouter une courte description"
+
+#: View/Posts/admin_add.ctp:47 View/Posts/admin_edit.ctp:64
+msgid "Location of the photo"
+msgstr "Localisation de la photo"
+
+#: View/Posts/admin_add.ctp:52 View/Posts/admin_edit.ctp:69
+msgid "Datetime"
+msgstr "Date et heure"
+
+#: View/Posts/admin_add.ctp:57 View/Posts/admin_edit.ctp:74
+msgid "Here a short description"
+msgstr "Description"
+
+#: View/Posts/admin_add.ctp:65 View/Posts/admin_edit.ctp:82
+msgid "Latitude"
+msgstr "Latitude"
+
+#: View/Posts/admin_add.ctp:75 View/Posts/admin_edit.ctp:92
+msgid "Longitude"
+msgstr "Longitude"
+
+#: View/Posts/admin_add.ctp:83 View/Posts/admin_edit.ctp:99
+msgid "Add to itinerary"
+msgstr "Ajouter à l'itinéraire"
+
+#: View/Posts/admin_edit.ctp:40
+msgid "Edit a photo"
+msgstr "Modifier un billet"
+
+#: View/Posts/admin_edit.ctp:46
+msgid "Location"
+msgstr "Localisation"
+
+#: View/Posts/admin_edit.ctp:58
+msgid "Description"
+msgstr "Description"
+
+#: View/Users/login.ctp:5
+msgid "One Day, One Picture - Login"
+msgstr "One Day, One Picture - Connexion"
+
+#: Model/Album.php:validation for field title
+msgid "rule2"
+msgstr ""
+
+#: Model/Album.php:validation for field title
+msgid "rule3"
+msgstr ""

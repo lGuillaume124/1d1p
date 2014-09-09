@@ -1,0 +1,391 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2014-09-09 20:30+0200\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Controller/AlbumsController.php:12
+msgid "New album successfully created!"
+msgstr ""
+
+#: Controller/AlbumsController.php:14
+msgid "Unable to create album."
+msgstr ""
+
+#: Controller/AlbumsController.php:26;32
+msgid "Invalid album ID"
+msgstr ""
+
+#: Controller/AlbumsController.php:39
+msgid "Your album has been successfully renamed."
+msgstr ""
+
+#: Controller/AlbumsController.php:41
+#: Controller/PostsController.php:13;74
+msgid "Unable to save your post."
+msgstr ""
+
+#: Controller/AlbumsController.php:59
+msgid "Album "
+msgstr ""
+
+#: Controller/AlbumsController.php:61
+msgid "Unable to delete this album"
+msgstr ""
+
+#: Controller/CommentsController.php:31
+msgid "Your comment is now awaiting for approval. Thank you!"
+msgstr ""
+
+#: Controller/CommentsController.php:49;110
+msgid "Invalid Comment ID"
+msgstr ""
+
+#: Controller/CommentsController.php:55
+msgid "Unable to validate this comment."
+msgstr ""
+
+#: Controller/CommentsController.php:58
+msgid "This comment is already approved!"
+msgstr ""
+
+#: Controller/CommentsController.php:67;77
+msgid "Invalid Post ID"
+msgstr ""
+
+#: Controller/CommentsController.php:95
+msgid "Manage comments"
+msgstr ""
+
+#: Controller/CommentsController.php:116
+msgid "Unable to unapproved this comment."
+msgstr ""
+
+#: Controller/CommentsController.php:119
+msgid "This comment is already unapproved!"
+msgstr ""
+
+#: Controller/PagesController.php:78
+msgid "Generate Hash"
+msgstr ""
+
+#: Controller/PagesController.php:143
+#: View/Layouts/admin.ctp:37
+msgid "Dashboard"
+msgstr ""
+
+#: Controller/PostsController.php:11
+msgid "Your post has been successfully created!"
+msgstr ""
+
+#: Controller/PostsController.php:29;34
+msgid "Undefined album"
+msgstr ""
+
+#: Controller/PostsController.php:37
+msgid "Add a new post"
+msgstr ""
+
+#: Controller/PostsController.php:49
+msgid "Post "
+msgstr ""
+
+#: Controller/PostsController.php:51
+msgid "Unable to delete this post"
+msgstr ""
+
+#: Controller/PostsController.php:59;65
+msgid "Invalid post ID"
+msgstr ""
+
+#: Controller/PostsController.php:72
+msgid "Your post has been successfully updated."
+msgstr ""
+
+#: Controller/PostsController.php:84
+msgid "Edit a post"
+msgstr ""
+
+#: Controller/PostsController.php:97
+msgid "We only accept JPG or JPEG photo!"
+msgstr ""
+
+#: Controller/PostsController.php:120
+msgid "Unable to analyze your photo."
+msgstr ""
+
+#: Controller/PostsController.php:124
+msgid "Unable to upload your photo."
+msgstr ""
+
+#: Controller/UsersController.php:12
+msgid "Wrong credentials."
+msgstr ""
+
+#: View/Comments/admin_manage.ctp:3
+msgid "Manage comments - "
+msgstr ""
+
+#: View/Comments/admin_manage.ctp:10
+msgid "Unfortunately there is no comments for this post."
+msgstr ""
+
+#: View/Comments/admin_manage.ctp:19;48
+msgid "Author:"
+msgstr ""
+
+#: View/Comments/admin_manage.ctp:19;48
+msgid "Submitted on "
+msgstr ""
+
+#: View/Comments/admin_manage.ctp:26;34;55;63
+msgid "Are you sure? "
+msgstr ""
+
+#: View/Layouts/admin.ctp:43
+msgid "Map"
+msgstr ""
+
+#: View/Layouts/admin.ctp:53
+msgid "Logout"
+msgstr ""
+
+#: View/Layouts/default.ctp:25
+#: View/Pages/index.ctp:68;69
+#: View/Users/login.ctp:17
+msgid "Login"
+msgstr ""
+
+#: View/Pages/admin_index.ctp:9
+#: View/Pages/index.ctp:24
+msgid "Select another album"
+msgstr ""
+
+#: View/Pages/admin_index.ctp:18
+msgid "Welcome "
+msgstr ""
+
+#: View/Pages/admin_index.ctp:19
+msgid "Unfortunately you do not have any albums yet."
+msgstr ""
+
+#: View/Pages/admin_index.ctp:20
+msgid "Add Your First Album"
+msgstr ""
+
+#: View/Pages/admin_index.ctp:30;57
+#: View/Pages/index.ctp:167
+msgid "Close"
+msgstr ""
+
+#: View/Pages/admin_index.ctp:31;82
+msgid "New Album"
+msgstr ""
+
+#: View/Pages/admin_index.ctp:37;64
+msgid "Album title"
+msgstr ""
+
+#: View/Pages/admin_index.ctp:40
+msgid "Create"
+msgstr ""
+
+#: View/Pages/admin_index.ctp:58;133
+msgid "Rename"
+msgstr ""
+
+#: View/Pages/admin_index.ctp:67
+#: View/Posts/admin_add.ctp:87
+#: View/Posts/admin_edit.ctp:104
+msgid "Save"
+msgstr ""
+
+#: View/Pages/admin_index.ctp:81
+msgid "Hi "
+msgstr ""
+
+#: View/Pages/admin_index.ctp:81
+msgid "Want to share some photos?"
+msgstr ""
+
+#: View/Pages/admin_index.ctp:86
+msgid "You currently have "
+msgstr ""
+
+#: View/Pages/admin_index.ctp:111
+#: View/Pages/index.ctp:58
+msgid "Created on "
+msgstr ""
+
+#: View/Pages/admin_index.ctp:122
+msgid "Add Photo"
+msgstr ""
+
+#: View/Pages/admin_index.ctp:144
+msgid "Delete"
+msgstr ""
+
+#: View/Pages/admin_index.ctp:146
+msgid "Are you sure? All your photos in this album will be removed."
+msgstr ""
+
+#: View/Pages/admin_index.ctp:175
+msgid "Are you sure ?"
+msgstr ""
+
+#: View/Pages/admin_index.ctp:88
+msgid "%s post"
+msgid_plural "%s posts"
+msgstr[0] ""
+msgstr[1] ""
+
+#: View/Pages/admin_index.ctp:91
+msgid "%s album"
+msgid_plural "%s albums"
+msgstr[0] ""
+msgstr[1] ""
+
+#: View/Pages/hash.ctp:3;12
+msgid "Generate credentials"
+msgstr ""
+
+#: View/Pages/hash.ctp:6
+msgid "This page allows you to generate credentials for new users. Then you need to manually copy these credentials into your MySQL database."
+msgstr ""
+
+#: View/Pages/hash.ctp:10;23
+#: View/Users/login.ctp:12
+msgid "Username"
+msgstr ""
+
+#: View/Pages/hash.ctp:11;24
+#: View/Users/login.ctp:16
+msgid "Password"
+msgstr ""
+
+#: View/Pages/hash.ctp:20
+msgid "Credentials successfully generated!"
+msgstr ""
+
+#: View/Pages/index.ctp:45
+msgid "Welcome !"
+msgstr ""
+
+#: View/Pages/index.ctp:47
+msgid "Unfortunately there is nothing to see here."
+msgstr ""
+
+#: View/Pages/index.ctp:49
+msgid "You might want to "
+msgstr ""
+
+#: View/Pages/index.ctp:49
+msgid "login"
+msgstr ""
+
+#: View/Pages/index.ctp:117;118
+msgid "Show"
+msgstr ""
+
+#: View/Pages/index.ctp:143
+msgid "Full size"
+msgstr ""
+
+#: View/Pages/index.ctp:168
+msgid "Add a comment for: "
+msgstr ""
+
+#: View/Pages/index.ctp:174
+msgid "Your name"
+msgstr ""
+
+#: View/Pages/index.ctp:180
+msgid "Here your comment"
+msgstr ""
+
+#: View/Pages/index.ctp:185
+msgid "Send "
+msgstr ""
+
+#: View/Pages/index.ctp:58
+msgid "%s photo"
+msgid_plural "%s photos"
+msgstr[0] ""
+msgstr[1] ""
+
+#: View/Posts/admin_add.ctp:16
+msgid "Add a photo in : "
+msgstr ""
+
+#: View/Posts/admin_add.ctp:23
+msgid "Upload your photo"
+msgstr ""
+
+#: View/Posts/admin_add.ctp:41
+msgid "Add a short description"
+msgstr ""
+
+#: View/Posts/admin_add.ctp:47
+#: View/Posts/admin_edit.ctp:64
+msgid "Location of the photo"
+msgstr ""
+
+#: View/Posts/admin_add.ctp:52
+#: View/Posts/admin_edit.ctp:69
+msgid "Datetime"
+msgstr ""
+
+#: View/Posts/admin_add.ctp:57
+#: View/Posts/admin_edit.ctp:74
+msgid "Here a short description"
+msgstr ""
+
+#: View/Posts/admin_add.ctp:65
+#: View/Posts/admin_edit.ctp:82
+msgid "Latitude"
+msgstr ""
+
+#: View/Posts/admin_add.ctp:75
+#: View/Posts/admin_edit.ctp:92
+msgid "Longitude"
+msgstr ""
+
+#: View/Posts/admin_add.ctp:83
+#: View/Posts/admin_edit.ctp:99
+msgid "Add to itinerary"
+msgstr ""
+
+#: View/Posts/admin_edit.ctp:40
+msgid "Edit a photo"
+msgstr ""
+
+#: View/Posts/admin_edit.ctp:46
+msgid "Location"
+msgstr ""
+
+#: View/Posts/admin_edit.ctp:58
+msgid "Description"
+msgstr ""
+
+#: View/Users/login.ctp:5
+msgid "One Day, One Picture - Login"
+msgstr ""
+
+#: Model/Album.php:validation for field title
+msgid "rule2"
+msgstr ""
+
+#: Model/Album.php:validation for field title
+msgid "rule3"
+msgstr ""
+

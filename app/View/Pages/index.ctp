@@ -46,7 +46,7 @@
                 <p>
                     <?php echo __('Unfortunately there is nothing to see here.'); ?>
                     <?php if(null == AuthComponent::user('id')): ?>
-                        <?php echo __('You might want to ').'<strong>'.$this->Html->link(__('login'), array('controller' => 'users', 'action' => 'login'), array('style' => 'color: #31708F;')).'</strong> ?'; ?>
+                        <?php echo $this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login'), array('style' => 'color: #31708F;')).'</strong> ?'; ?>
                     <?php endif; ?>
                 </p>
             </div>
