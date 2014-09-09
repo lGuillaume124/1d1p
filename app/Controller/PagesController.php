@@ -15,7 +15,7 @@ class PagesController extends AppController {
         $this->loadModel('Comment');
         $album = null;
         $albums = array();
-        $title = 'One, One Picture';
+        $title = 'One Day, One Picture';
 
         if(!isset($this->request->query['a']) || empty($this->request->query['a']) || $this->request->query['a'] == 'latest'){
             $album = $this->Album->find('first', array(
