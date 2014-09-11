@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-09-09 20:30+0200\n"
+"POT-Creation-Date: 2014-09-11 20:41+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: Controller/AlbumsController.php:12
-msgid "New album successfully created!"
+msgid "New album successfully created."
 msgstr ""
 
 #: Controller/AlbumsController.php:14
@@ -23,11 +23,11 @@ msgid "Unable to create album."
 msgstr ""
 
 #: Controller/AlbumsController.php:26;32
-msgid "Invalid album ID"
+msgid "Invalid album ID."
 msgstr ""
 
 #: Controller/AlbumsController.php:39
-msgid "Your album has been successfully renamed."
+msgid "Album successfully renamed."
 msgstr ""
 
 #: Controller/AlbumsController.php:41
@@ -40,7 +40,7 @@ msgid "Album "
 msgstr ""
 
 #: Controller/AlbumsController.php:61
-msgid "Unable to delete this album"
+msgid "Unable to delete this album."
 msgstr ""
 
 #: Controller/CommentsController.php:31
@@ -56,11 +56,11 @@ msgid "Unable to validate this comment."
 msgstr ""
 
 #: Controller/CommentsController.php:58
-msgid "This comment is already approved!"
+msgid "This comment has already been approved."
 msgstr ""
 
 #: Controller/CommentsController.php:67;77
-msgid "Invalid Post ID"
+msgid "Invalid Post ID."
 msgstr ""
 
 #: Controller/CommentsController.php:95
@@ -72,7 +72,7 @@ msgid "Unable to unapproved this comment."
 msgstr ""
 
 #: Controller/CommentsController.php:119
-msgid "This comment is already unapproved!"
+msgid "This comment has already been unapproved."
 msgstr ""
 
 #: Controller/PagesController.php:78
@@ -137,7 +137,7 @@ msgid "Manage comments - "
 msgstr ""
 
 #: View/Comments/admin_manage.ctp:10
-msgid "Unfortunately there is no comments for this post."
+msgid "No comments for this post."
 msgstr ""
 
 #: View/Comments/admin_manage.ctp:19;48
@@ -145,10 +145,14 @@ msgid "Author:"
 msgstr ""
 
 #: View/Comments/admin_manage.ctp:19;48
-msgid "Submitted on "
+msgid "Submitted on"
 msgstr ""
 
-#: View/Comments/admin_manage.ctp:26;34;55;63
+#: View/Comments/admin_manage.ctp:26;34
+msgid "Are you sure?"
+msgstr ""
+
+#: View/Comments/admin_manage.ctp:55;63
 msgid "Are you sure? "
 msgstr ""
 
@@ -158,12 +162,6 @@ msgstr ""
 
 #: View/Layouts/admin.ctp:53
 msgid "Logout"
-msgstr ""
-
-#: View/Layouts/default.ctp:25
-#: View/Pages/index.ctp:68;69
-#: View/Users/login.ctp:17
-msgid "Login"
 msgstr ""
 
 #: View/Pages/admin_index.ctp:9
@@ -176,7 +174,7 @@ msgid "Welcome "
 msgstr ""
 
 #: View/Pages/admin_index.ctp:19
-msgid "Unfortunately you do not have any albums yet."
+msgid "You have not yet created albums."
 msgstr ""
 
 #: View/Pages/admin_index.ctp:20
@@ -219,12 +217,11 @@ msgid "Want to share some photos?"
 msgstr ""
 
 #: View/Pages/admin_index.ctp:86
-msgid "You currently have "
+msgid "You currently have"
 msgstr ""
 
 #: View/Pages/admin_index.ctp:111
-#: View/Pages/index.ctp:58
-msgid "Created on "
+msgid "Created on"
 msgstr ""
 
 #: View/Pages/admin_index.ctp:122
@@ -282,15 +279,16 @@ msgid "Welcome !"
 msgstr ""
 
 #: View/Pages/index.ctp:47
-msgid "Unfortunately there is nothing to see here."
+msgid "Nothing to see here."
 msgstr ""
 
-#: View/Pages/index.ctp:49
-msgid "You might want to "
+#: View/Pages/index.ctp:49;68;69
+#: View/Users/login.ctp:17
+msgid "Login"
 msgstr ""
 
-#: View/Pages/index.ctp:49
-msgid "login"
+#: View/Pages/index.ctp:58
+msgid "Created on"
 msgstr ""
 
 #: View/Pages/index.ctp:117;118
@@ -301,8 +299,12 @@ msgstr ""
 msgid "Full size"
 msgstr ""
 
+#: View/Pages/index.ctp:154
+msgid "Add comment"
+msgstr ""
+
 #: View/Pages/index.ctp:168
-msgid "Add a comment for: "
+msgid "Add a comment for:"
 msgstr ""
 
 #: View/Pages/index.ctp:174
@@ -324,15 +326,15 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: View/Posts/admin_add.ctp:16
-msgid "Add a photo in : "
+msgid "Add a photo in:"
 msgstr ""
 
 #: View/Posts/admin_add.ctp:23
-msgid "Upload your photo"
+msgid "Upload your photo."
 msgstr ""
 
 #: View/Posts/admin_add.ctp:41
-msgid "Add a short description"
+msgid "Add a short description."
 msgstr ""
 
 #: View/Posts/admin_add.ctp:47

@@ -10,14 +10,14 @@
         })
     });
 </script>
-<?= $this->end(); ?>
+<?php echo $this->end(); ?>
 
 <div class="col-xs-12" style="margin-top: 10px;">
     <?php if(empty($album)): ?>
         <div class="alert alert-info">
-            <h4><?= __('Welcome ').AuthComponent::user('username').'!'; ?></h4>
-            <p><?= __('Unfortunately you do not have any albums yet.'); ?></p>
-            <p><?= $this->Html->link(__('Add Your First Album'), '#', array('class' => 'btn btn-primary', 'data-toggle' => 'modal', 'data-target' => '#newAlbumModal')); ?></p>
+            <h4><?php echo __('Welcome ').AuthComponent::user('username').'.'; ?></h4>
+            <p><?php echo __('You have not yet created albums.'); ?></p>
+            <p><?php echo $this->Html->link(__('Add Your First Album'), '#', array('class' => 'btn btn-primary', 'data-toggle' => 'modal', 'data-target' => '#newAlbumModal')); ?></p>
         </div>
     <?php endif; ?>
 
@@ -25,21 +25,21 @@
     <div class="modal fade" id="newAlbumModal" tabindex="-1" role="dialog" aria-labelledby="newAlbumModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <?= $this->Form->create('Album', array('action' => 'add')); ?>
+                <?php echo $this->Form->create('Album', array('action' => 'add')); ?>
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?= __('Close'); ?></span></button>
-                    <h4 class="modal-title"><?= __('New Album'); ?></h4>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?php echo __('Close'); ?></span></button>
+                    <h4 class="modal-title"><?php echo __('New Album'); ?></h4>
                 </div>
                 <div class="modal-body">
-                    <?= $this->Form->input('title', array(
+                    <?php echo $this->Form->input('title', array(
                         'div' => array('class' => 'form-group input-group'),
                         'before' => '<span class="input-group-addon"><i class="glyphicon glyphicon-folder-open"></i></span>',
                         'placeholder' => __('Album title'))); ?>
                 </div>
                 <div class="modal-footer">
-                    <?= $this->Form->submit(__('Create'), array('class' => 'btn btn-success')); ?>
+                    <?php echo $this->Form->submit(__('Create'), array('class' => 'btn btn-success')); ?>
                 </div>
-                <?= $this->Form->end(); ?>
+                <?php echo $this->Form->end(); ?>
             </div>
         </div>
     </div>
@@ -48,25 +48,25 @@
 <!-- Albums edition form -->
 <?php if(!empty($album)): ?>
 
-    <div class="modal fade" id="<?= 'eModal'.$album['Album']['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?= 'eModal'.$v['Album']['id'].'label'; ?>" aria-hidden="true">
+    <div class="modal fade" id="<?php echo 'eModal'.$album['Album']['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo 'eModal'.$v['Album']['id'].'label'; ?>" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <?= $this->Form->create('Album', array('controller' => 'albums', 'action' => 'edit/'.$album['Album']['id'])); ?>
-                <?= $this->Form->input('id', array('type' => 'hidden', 'value' => $album['Album']['id'])); ?>
+                <?php echo $this->Form->create('Album', array('controller' => 'albums', 'action' => 'edit/'.$album['Album']['id'])); ?>
+                <?php echo $this->Form->input('id', array('type' => 'hidden', 'value' => $album['Album']['id'])); ?>
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?= __('Close'); ?></span></button>
-                    <h4 class="modal-title"><?= __('Rename'); ?></h4>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?php echo __('Close'); ?></span></button>
+                    <h4 class="modal-title"><?php echo __('Rename'); ?></h4>
                 </div>
                 <div class="modal-body">
-                    <?= $this->Form->input('title', array(
+                    <?php echo $this->Form->input('title', array(
                         'div' => array('class' => 'form-group input-group'),
                         'before' => '<span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>',
                         'placeholder' => __('Album title'))); ?>
                 </div>
                 <div class="modal-footer">
-                    <?= $this->Form->submit(__('Save'), array('class' => 'btn btn-success')); ?>
+                    <?php echo $this->Form->submit(__('Save'), array('class' => 'btn btn-success')); ?>
                 </div>
-                <?= $this->Form->end(); ?>
+                <?php echo $this->Form->end(); ?>
             </div>
         </div>
     </div>
@@ -78,17 +78,17 @@
     <div class="col-xs-12">
         <div class="panel panel-primary">
             <div class="panel-heading lg-panel-heading">
-                <strong><?= __('Hi ').AuthComponent::user('username').'!'.' '.__('Want to share some photos?'); ?></strong>
-                <?= $this->Html->link(__('New Album'), '#', array('class' => 'btn btn-success pull-right', 'data-toggle' => 'modal', 'data-target' => '#newAlbumModal')); ?>
+                <strong><?php echo __('Hi ').AuthComponent::user('username').'!'.' '.__('Want to share some photos?'); ?></strong>
+                <?php echo $this->Html->link(__('New Album'), '#', array('class' => 'btn btn-success pull-right', 'data-toggle' => 'modal', 'data-target' => '#newAlbumModal')); ?>
             </div>
             <div class="panel-body text-left">
                 <p>
-                    <?php echo __('You currently have '); ?>
+                    <?php echo __('You currently have').' '; ?>
                     <span class="label label-default">
-                        <?= __n("%s post", "%s posts", $stats['pcount'], $stats['pcount']); ?>
+                        <?php echo __n("%s post", "%s posts", $stats['pcount'], $stats['pcount']); ?>
                     </span>&nbsp;in&nbsp;
                     <span class="label label-default">
-                        <?= __n("%s album", "%s albums", $stats['acount'], $stats['acount']); ?>
+                        <?php echo __n("%s album", "%s albums", $stats['acount'], $stats['acount']); ?>
                     </span>
                 </p>
 
@@ -107,12 +107,12 @@
 
         <div class="col-xs-9">
             <h3>
-                <?= $album['Album']['title']; ?>
-                <small><?= __('Created on ').$this->Time->format($album['Album']['created'], '%d/%m/%Y'); ?></small>
+                <?php echo $album['Album']['title']; ?>
+                <small><?php echo __('Created on').' '.$this->Time->format($album['Album']['created'], '%d/%m/%Y'); ?></small>
             </h3>
         </div>
         <div class="col-xs-3 text-right album-controls">
-            <?= $this->Html->link(
+            <?php echo $this->Html->link(
                 '<i class="glyphicon glyphicon-picture"></i>',
                 array('controller' => 'posts', 'action' => 'add', '?' => array('a' => $album['Album']['id'])),
                 array(
@@ -122,7 +122,7 @@
                     'title' => __('Add Photo'),
                     'escape' => false)
             ); ?>
-            <?= $this->Html->link(
+            <?php echo $this->Html->link(
                 '<i class="glyphicon glyphicon-edit"></i>',
                 '#',
                 array(
@@ -134,7 +134,7 @@
                     'escape' => false
                 )
             ); ?>
-            <?= $this->Form->postLink(
+            <?php echo $this->Form->postLink(
                 '<i class="glyphicon glyphicon-trash"></i>',
                 array('controller' => 'albums', 'action' => 'delete', $album['Album']['id']),
                 array(
@@ -153,22 +153,22 @@
             <?php foreach($album['Post'] as $post): ?>
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="thumbnail post-thumbnail">
-                        <?= $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 510)); ?>
+                        <?php echo $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 510)); ?>
                         <div class="caption">
                             <h4>
-                                <?= $post['title']; ?><br />
-                                <small><?= $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M').' '.$post['post_dt_offset']; ?></small>
+                                <?php echo $post['title']; ?><br />
+                                <small><?php echo $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M').' '.$post['post_dt_offset']; ?></small>
                             </h4>
                             <p>
-                                <?= $post['content']; ?>
+                                <?php echo $post['content']; ?>
                             </p>
                         </div>
-                        <?= $this->Html->link(
+                        <?php echo $this->Html->link(
                             '<i class="glyphicon glyphicon-edit"></i>',
                             array('controller' => 'posts', 'action' => 'edit', $post['id']),
                             array('class' => 'btn btn-sm btn-primary btn-mgmt btn-post-edit', 'escape' => false)
                         ); ?>
-                        <?= $this->Form->postLink(
+                        <?php echo $this->Form->postLink(
                             '<i class="glyphicon glyphicon-trash"></i>',
                             array('controller' => 'posts', 'action' => 'delete', $post['id']),
                             array('class' => 'btn btn-sm btn-danger btn-mgmt btn-post-delete', 'escape' => false),
@@ -196,7 +196,7 @@
                     $clear = 'visible-lg visible-md';
                 }
                 if($clear !== false){
-                    echo '<div class="clearfix <?= $clear;?>" data-scroll-content="true"></div>';
+                    echo '<div class="clearfix <?php echo $clear;?>" data-scroll-content="true"></div>';
                 }
                 $i++;
                 ?>

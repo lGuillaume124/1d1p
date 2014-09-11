@@ -7,7 +7,7 @@
     <?php if(empty($unapproved_comments) && empty($approved_comments)){ ?>
 
         <div class="alert alert-info">
-            <p><?= __('Unfortunately there is no comments for this post.'); ?></p>
+            <p><?php echo __('No comments for this post.'); ?></p>
         </div>
 
     <?php }else{ ?>
@@ -16,14 +16,14 @@
 
             <div class="panel panel-primary panel-comment">
                 <div class="panel-heading lg-panel-heading">
-                    <?php echo __('Author:').' '.$unapproved_comment['Comment']['author'].' - '.__('Submitted on ').$this->Time->format($unapproved_comment['Comment']['created'], '%d/%m/%Y'); ?>
+                    <?php echo __('Author:').' '.$unapproved_comment['Comment']['author'].' - '.__('Submitted on').' '.$this->Time->format($unapproved_comment['Comment']['created'], '%d/%m/%Y'); ?>
                     <?php echo $this->Form->postLink(
                         '<i class="glyphicon glyphicon-ok"></i>',
                         array('controller' => 'comments', 'action' => 'approve', $unapproved_comment['Comment']['id']),
                         array(
                             'class' => 'btn btn-sm btn-success btn-mgmt btn-comment-approve',
                             'escape' => false),
-                        __('Are you sure? ')
+                        __('Are you sure?')
                     ); ?>
                     <?php echo $this->Form->postLink(
                         '<i class="glyphicon glyphicon-remove"></i>',
@@ -31,7 +31,7 @@
                         array(
                             'class' => 'btn btn-sm btn-danger btn-mgmt btn-comment-remove',
                             'escape' => false),
-                        __('Are you sure? ')
+                        __('Are you sure?')
                     ); ?>
                 </div>
                 <div class="panel-body">
@@ -45,7 +45,7 @@
 
             <div class="panel panel-default panel-comment">
                 <div class="panel-heading lg-panel-heading">
-                    <?php echo __('Author:').' '.$approved_comment['Comment']['author'].' - '.__('Submitted on ').$this->Time->format($approved_comment['Comment']['created'], '%d/%m/%Y'); ?>
+                    <?php echo __('Author:').' '.$approved_comment['Comment']['author'].' - '.__('Submitted on').' '.$this->Time->format($approved_comment['Comment']['created'], '%d/%m/%Y'); ?>
                     <?php echo $this->Form->postLink(
                         '<i class="glyphicon glyphicon-ban-circle"></i>',
                         array('controller' => 'comments', 'action' => 'unapprove', $approved_comment['Comment']['id']),

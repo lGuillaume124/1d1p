@@ -55,7 +55,7 @@ class CommentsController extends AppController {
                    $this->Session->setFlash(__('Unable to validate this comment.'), 'flash_error');
                 }
             }else{
-                $this->Session->setFlash(__('This comment is already approved!'), 'flash_info');
+                $this->Session->setFlash(__('This comment has already been approved.'), 'flash_info');
             }
         }
 
@@ -64,7 +64,7 @@ class CommentsController extends AppController {
 
     public function admin_manage($id){
         if(!$id){
-            throw new NotFoundException(__('Invalid Post ID'));
+            throw new NotFoundException(__('Invalid Post ID.'));
         }
 
         $unapproved_comments = array();
@@ -74,7 +74,7 @@ class CommentsController extends AppController {
         $post = $this->Post->findById($id);
 
         if(!$post){
-            $this->Session->setFlash(__('Invalid Post ID'), 'flash_error');
+            $this->Session->setFlash(__('Invalid Post ID.'), 'flash_error');
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
         }
 
@@ -116,7 +116,7 @@ class CommentsController extends AppController {
                     $this->Session->setFlash(__('Unable to unapproved this comment.'), 'flash_error');
                 }
             }else{
-                $this->Session->setFlash(__('This comment is already unapproved!'), 'flash_info');
+                $this->Session->setFlash(__('This comment has already been unapproved.'), 'flash_info');
             }
         }
 
