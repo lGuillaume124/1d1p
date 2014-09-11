@@ -62,6 +62,22 @@ class CommentsController extends AppController {
         $this->redirect(array('controller' => 'comments', 'action' => 'manage', $comment['Comment']['post_id']));
     }
 
+    public function admin_delete($id){
+        if($this->request->is('get')){
+            throw new MethodNotAllowedException();
+        }
+
+        $post = $this->Comment->findById($id);
+
+        if($this->Comment->delete($id)){
+            $this->Session->setFlash(__('Comment '.$id.' ('.$post['Post']['title'].') has been successfully deleted!'), 'flash_success');
+        }else{
+            $this->Session->setFlash(__('Unable to delete this comment'), 'flash_error');
+        }
+
+        $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
+    }
+
     public function admin_manage($id){
         if(!$id){
             throw new NotFoundException(__('Invalid Post ID.'));

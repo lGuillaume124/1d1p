@@ -12,11 +12,11 @@ class Album extends AppModel {
 
     public $validate = array(
         'title' => array(
-            'rule2' => array(
+            'ruleNotEmpty' => array(
                 'rule' => 'notEmpty',
                 'required' => true
             ),
-            'rule3' => array(
+            'ruleIsUnique' => array(
                 'rule' => 'isUnique',
                 'required' => true
             )

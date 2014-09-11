@@ -68,7 +68,7 @@
         </div>
     <?php } ?>
 
-    <?php echo $this->Html->script(array('jquery-2.1.0.min', 'bootstrap.min', 'leaflet', 'lazyload.min')) ?>
+    <?php echo $this->Html->script(array('jquery-2.1.0.min', 'bootstrap.min', 'leaflet')) ?>
     <?php echo $this->fetch('script'); ?>
 </body>
 </html>

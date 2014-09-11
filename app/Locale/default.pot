@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-09-11 20:41+0200\n"
+"POT-Creation-Date: 2014-09-11 21:26+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -47,7 +47,7 @@ msgstr ""
 msgid "Your comment is now awaiting for approval. Thank you!"
 msgstr ""
 
-#: Controller/CommentsController.php:49;110
+#: Controller/CommentsController.php:49;126
 msgid "Invalid Comment ID"
 msgstr ""
 
@@ -59,19 +59,27 @@ msgstr ""
 msgid "This comment has already been approved."
 msgstr ""
 
-#: Controller/CommentsController.php:67;77
+#: Controller/CommentsController.php:73
+msgid "Comment "
+msgstr ""
+
+#: Controller/CommentsController.php:75
+msgid "Unable to delete this comment"
+msgstr ""
+
+#: Controller/CommentsController.php:83;93
 msgid "Invalid Post ID."
 msgstr ""
 
-#: Controller/CommentsController.php:95
+#: Controller/CommentsController.php:111
 msgid "Manage comments"
 msgstr ""
 
-#: Controller/CommentsController.php:116
+#: Controller/CommentsController.php:132
 msgid "Unable to unapproved this comment."
 msgstr ""
 
-#: Controller/CommentsController.php:119
+#: Controller/CommentsController.php:135
 msgid "This comment has already been unapproved."
 msgstr ""
 
@@ -221,6 +229,7 @@ msgid "You currently have"
 msgstr ""
 
 #: View/Pages/admin_index.ctp:111
+#: View/Pages/index.ctp:58
 msgid "Created on"
 msgstr ""
 
@@ -285,10 +294,6 @@ msgstr ""
 #: View/Pages/index.ctp:49;68;69
 #: View/Users/login.ctp:17
 msgid "Login"
-msgstr ""
-
-#: View/Pages/index.ctp:58
-msgid "Created on"
 msgstr ""
 
 #: View/Pages/index.ctp:117;118
@@ -384,10 +389,15 @@ msgid "One Day, One Picture - Login"
 msgstr ""
 
 #: Model/Album.php:validation for field title
-msgid "rule2"
+#: Model/Comment.php:validation for field post_id;validation for field album_id
+msgid "ruleNotEmpty"
 msgstr ""
 
 #: Model/Album.php:validation for field title
-msgid "rule3"
+msgid "ruleIsUnique"
+msgstr ""
+
+#: Model/Comment.php:validation for field post_id;validation for field album_id
+msgid "ruleIsNumeric"
 msgstr ""
 

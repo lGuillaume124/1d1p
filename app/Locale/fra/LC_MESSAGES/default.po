@@ -4,16 +4,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: One Day, One Picture\n"
-"POT-Creation-Date: 2014-09-11 20:41+0200\n"
-"PO-Revision-Date: 2014-09-11 21:03+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2014-09-11 21:26+0200\n"
+"PO-Revision-Date: 2014-09-11 21:28+0100\n"
+"Last-Translator: Guillaume <admin@guillaume-leduc.fr>\n"
 "Language-Team:  <admin@guillaume-leduc.fr>\n"
+"Language: Français\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 1.5.4\n"
-"Language: Français\n"
 
 #: Controller/AlbumsController.php:12
 msgid "New album successfully created."
@@ -49,7 +49,7 @@ msgstr ""
 "Votre commentaire est en attente de validation, merci de votre "
 "participation !"
 
-#: Controller/CommentsController.php:49;110
+#: Controller/CommentsController.php:49;126
 msgid "Invalid Comment ID"
 msgstr "Identifiant de commentaire invalide."
 
@@ -61,19 +61,27 @@ msgstr "Impossible de valider ce commentaire."
 msgid "This comment has already been approved."
 msgstr "Ce commentaire a déjà été approuvé."
 
-#: Controller/CommentsController.php:67;77
+#: Controller/CommentsController.php:73
+msgid "Comment "
+msgstr "Commentaire"
+
+#: Controller/CommentsController.php:75
+msgid "Unable to delete this comment"
+msgstr "Impossible de supprimer ce commentaire."
+
+#: Controller/CommentsController.php:83;93
 msgid "Invalid Post ID."
 msgstr "Identifiant de billet invalide."
 
-#: Controller/CommentsController.php:95
+#: Controller/CommentsController.php:111
 msgid "Manage comments"
 msgstr "Gérer les commentaires"
 
-#: Controller/CommentsController.php:116
+#: Controller/CommentsController.php:132
 msgid "Unable to unapproved this comment."
 msgstr "Impossible de désapprouver ce commentaire."
 
-#: Controller/CommentsController.php:119
+#: Controller/CommentsController.php:135
 msgid "This comment has already been unapproved."
 msgstr "Ce commentaire est déja désapprouvé."
 
@@ -218,8 +226,8 @@ msgstr "Envie de partager quelques photos ?"
 msgid "You currently have"
 msgstr "Vous avez actuellement"
 
-#: View/Pages/admin_index.ctp:111
-msgid "Created on "
+#: View/Pages/admin_index.ctp:111 View/Pages/index.ctp:58
+msgid "Created on"
 msgstr "Créé le"
 
 #: View/Pages/admin_index.ctp:122
@@ -281,16 +289,13 @@ msgid "Welcome !"
 msgstr "Bienvenue !"
 
 #: View/Pages/index.ctp:47
-msgid "Unfortunately there is nothing to see here."
+#, fuzzy
+msgid "Nothing to see here."
 msgstr "Rien à voir par ici."
 
 #: View/Pages/index.ctp:49;68;69 View/Users/login.ctp:17
 msgid "Login"
 msgstr "Connexion"
-
-#: View/Pages/index.ctp:58
-msgid "Created on"
-msgstr "Créé le"
 
 #: View/Pages/index.ctp:117;118
 msgid "Show"
@@ -305,7 +310,8 @@ msgid "Add comment"
 msgstr "Ajouter un commentaire"
 
 #: View/Pages/index.ctp:168
-msgid "Add a comment for: "
+#, fuzzy
+msgid "Add a comment for:"
 msgstr "Ajouter un commentaire à :"
 
 #: View/Pages/index.ctp:174
@@ -378,10 +384,18 @@ msgstr "Description"
 msgid "One Day, One Picture - Login"
 msgstr "One Day, One Picture - Connexion"
 
-#: Model/Album.php:validation for field title
-msgid "rule2"
+#: Model/Album.php:validation for field title Model/Comment.php:validation
+#: post_id;validation album_id
+msgid "ruleNotEmpty"
 msgstr ""
 
 #: Model/Album.php:validation for field title
-msgid "rule3"
+msgid "ruleIsUnique"
 msgstr ""
+
+#: Model/Comment.php:validation for field post_id;validation album_id
+msgid "ruleIsNumeric"
+msgstr ""
+
+#~ msgid "Created on "
+#~ msgstr "Créé le"
