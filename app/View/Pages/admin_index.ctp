@@ -1,13 +1,24 @@
 <?php echo $this->Html->css('jquery.fs.selecter', array('inline' => false)); ?>
 <?php echo $this->start('script'); ?>
-<?php echo $this->Html->script(array('jquery.fs.selecter')); ?>
+<?php echo $this->Html->script(array('jquery.fs.selecter', 'masonry.pkgd.min')); ?>
 <script type="text/javascript">
     $(function(){
         $('.admin-tooltip').tooltip();
         $('#album-selecter').selecter({
             links: true,
             label: "<?php echo __('Select another album'); ?>"
-        })
+        });
+
+        // Masonry
+        $(window).load(function () {
+            var container = $('#msnry-grid');
+
+            container.masonry({
+                gutter: 10,
+                itemSelector: '.msnry-item',
+                columnWidth: '.msnry-item'
+            });
+        });
     });
 </script>
 <?php echo $this->end(); ?>
@@ -148,59 +159,53 @@
         </div>
         <div class="clearfix"></div>
         <hr style="margin-top: 0"/>
-        <?php if(!empty($album['Post'])): ?>
-            <?php $i = 1; ?>
-            <?php foreach($album['Post'] as $post): ?>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="thumbnail post-thumbnail">
-                        <?php echo $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 510)); ?>
-                        <div class="caption">
-                            <h4>
-                                <?php echo $post['title']; ?><br />
-                                <small><?php echo $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M').' '.$post['post_dt_offset']; ?></small>
-                            </h4>
-                            <p>
-                                <?php echo $post['content']; ?>
-                            </p>
-                        </div>
-                        <?php echo $this->Html->link(
-                            '<i class="glyphicon glyphicon-edit"></i>',
-                            array('controller' => 'posts', 'action' => 'edit', $post['id']),
-                            array('class' => 'btn btn-sm btn-primary btn-mgmt btn-post-edit', 'escape' => false)
-                        ); ?>
-                        <?php echo $this->Form->postLink(
-                            '<i class="glyphicon glyphicon-trash"></i>',
-                            array('controller' => 'posts', 'action' => 'delete', $post['id']),
-                            array('class' => 'btn btn-sm btn-danger btn-mgmt btn-post-delete', 'escape' => false),
-                            __('Are you sure ?')
-                        ); ?>
 
-                        <?php if($post['unapproved_comments'] > 0){
-                            echo $this->Html->link(
-                                $post['unapproved_comments'].' <i class="glyphicon glyphicon-comment"></i>',
-                                array('controller' => 'comments', 'action' => 'manage', $post['id']),
-                                array('class' => 'btn btn-sm btn-warning btn-mgmt btn-new-comments', 'escape' => false)
-                            );
-                        }elseif($post['unapproved_comments'] == 0 && $post['approved_comments'] > 0){
-                            echo $this->Html->link(
-                                '<i class="glyphicon glyphicon-comment"></i>',
-                                array('controller' => 'comments', 'action' => 'manage', $post['id']),
-                                array('class' => 'btn btn-sm btn-info btn-mgmt btn-post-comments', 'escape' => false)
-                            );
-                        }  ?>
-                    </div>
+        <?php if(!empty($album['Post'])): ?>
+            <div id="msnry-grid-container">
+                <div id="msnry-grid">
+                    <?php foreach($album['Post'] as $post): ?>
+                        <div class="msnry-item">
+                            <div class="thumbnail post-thumbnail">
+                                <?php echo $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 510)); ?>
+                                <div class="caption">
+                                    <h4>
+                                        <?php echo $post['title']; ?><br />
+                                        <small><?php echo $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M').' '.$post['post_dt_offset']; ?></small>
+                                    </h4>
+                                    <p>
+                                        <?php echo $post['content']; ?>
+                                    </p>
+                                </div>
+                                <?php echo $this->Html->link(
+                                    '<i class="glyphicon glyphicon-edit"></i>',
+                                    array('controller' => 'posts', 'action' => 'edit', $post['id']),
+                                    array('class' => 'btn btn-sm btn-primary btn-mgmt btn-post-edit', 'escape' => false)
+                                ); ?>
+                                <?php echo $this->Form->postLink(
+                                    '<i class="glyphicon glyphicon-trash"></i>',
+                                    array('controller' => 'posts', 'action' => 'delete', $post['id']),
+                                    array('class' => 'btn btn-sm btn-danger btn-mgmt btn-post-delete', 'escape' => false),
+                                    __('Are you sure ?')
+                                ); ?>
+
+                                <?php if($post['unapproved_comments'] > 0){
+                                    echo $this->Html->link(
+                                        $post['unapproved_comments'].' <i class="glyphicon glyphicon-comment"></i>',
+                                        array('controller' => 'comments', 'action' => 'manage', $post['id']),
+                                        array('class' => 'btn btn-sm btn-warning btn-mgmt btn-new-comments', 'escape' => false)
+                                    );
+                                }elseif($post['unapproved_comments'] == 0 && $post['approved_comments'] > 0){
+                                    echo $this->Html->link(
+                                        '<i class="glyphicon glyphicon-comment"></i>',
+                                        array('controller' => 'comments', 'action' => 'manage', $post['id']),
+                                        array('class' => 'btn btn-sm btn-info btn-mgmt btn-post-comments', 'escape' => false)
+                                    );
+                                }  ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-                <?php
-                $clear = false;
-                if($i%4 == 0){
-                    $clear = 'visible-lg visible-md';
-                }
-                if($clear !== false){
-                    echo '<div class="clearfix <?php echo $clear;?>" data-scroll-content="true"></div>';
-                }
-                $i++;
-                ?>
-            <?php endforeach; ?>
+            </div>
         <?php endif; ?>
     </div>
 

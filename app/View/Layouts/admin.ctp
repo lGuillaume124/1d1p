@@ -13,7 +13,9 @@
 		echo $this->Html->script('lazyload.min');
     ?>
     <script type="text/javascript">
-	    var lazy = lazyload();
+	    var lazy = lazyload({
+            offset: 3400
+        });
 	</script>
 </head>
 <body>
