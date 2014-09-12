@@ -11,6 +11,7 @@ class ImageComponent extends Component{
 
         $dimensions = getimagesize($img);
         $ratio		= $dimensions[0] / $dimensions[1];
+        $exif       = exif_read_data($img);
 
         if($width == 0 && $height == 0){$width = $dimensions[0];$height = $dimensions[1];}
         elseif($height == 0){$height = round($width / $ratio);}
@@ -37,23 +38,37 @@ class ImageComponent extends Component{
 
         if(self::$useGD){
             $pattern = imagecreatetruecolor($width, $height);
-            $type = mime_content_type($img);
-            switch (substr($type, 6)) {
-                case 'jpeg':
+            $type = exif_imagetype($img);
+            switch ($type) {
+                case IMAGETYPE_JPEG:
                     $image = imagecreatefromjpeg($img);
                     break;
-                case 'gif':
+                case IMAGETYPE_GIF:
                     $image = imagecreatefromgif($img);
                     break;
-                case 'png':
+                case IMAGETYPE_PNG:
                     $image = imagecreatefrompng($img);
                     break;
             }
             imagecopyresampled($pattern, $image, -$decalX, -$decalY, 0, 0, $dimX, $dimY, $dimensions[0], $dimensions[1]);
             imagedestroy($image);
             imageinterlace($pattern, true);
+            
+            if($exif && isset($exif['Orientation'])){
+                switch($exif['Orientation']){
+                    case 3:
+                        $pattern = imagerotate($pattern, 180, null);
+                        break;
+                    case 6:
+                        $pattern = imagerotate($pattern, -90, null);
+                        break;
+                    case 8:
+                        $pattern = imagerotate($pattern, 90, null);
+                        break;
+                }
+            }
+            
             imagejpeg($pattern, $to, self::$quality);
-
             return TRUE;
 
         }else{
