@@ -303,7 +303,7 @@ msgstr "Afficher"
 
 #: View/Pages/index.ctp:143
 msgid "Full size"
-msgstr "Taille original"
+msgstr "Agrandir"
 
 #: View/Pages/index.ctp:154
 msgid "Add comment"
