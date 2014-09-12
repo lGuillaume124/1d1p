@@ -144,7 +144,7 @@ class CommentsController extends AppController {
         $this->Comment->recursive = -1;
         $comments = $this->Comment->find('all', array(
             'conditions' => array('Comment.post_id' => $id, 'Comment.approved' => true),
-            'order' => array('Comment.created' => 'DESC')
+            'order' => array('Comment.created' => 'ASC')
         ));
 
         $this->set('comments', $comments);
