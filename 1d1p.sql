@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 30 Août 2014 à 11:01
+-- Généré le: Jeu 11 Septembre 2014 à 21:50
 -- Version du serveur: 5.5.37-MariaDB-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.3
 
@@ -31,7 +31,24 @@ CREATE TABLE IF NOT EXISTS `albums` (
   `title` varchar(100) NOT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `comments`
+--
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `author` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `created` datetime NOT NULL,
+  `approved` tinyint(1) NOT NULL DEFAULT '0',
+  `post_id` int(11) NOT NULL,
+  `album_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
 
 -- --------------------------------------------------------
 
@@ -52,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `itinerary` tinyint(1) NOT NULL,
   `album_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
 
 -- --------------------------------------------------------
 
@@ -66,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(120) NOT NULL,
   `created` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
