@@ -34,7 +34,8 @@
     <div class="default-block timeline" id="timeline">
         <script>
             var lazy = lazyload({
-                container: document.getElementById('timeline')
+                container: document.getElementById('timeline'),
+                offset: 750
             });
         </script>
 

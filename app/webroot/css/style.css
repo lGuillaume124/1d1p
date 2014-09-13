@@ -200,3 +200,28 @@ hr {
     display: none;
     transition: all .5 linear;
 }
+
+/* Masonry */
+#msnry-grid {
+    margin: 30px auto 0;
+}
+
+.msnry-item {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    #msnry-grid-container > #msnry-grid .msnry-item { width: 100%; }
+}
+
+@media (min-width: 768px) {
+    #msnry-grid-container > #msnry-grid .msnry-item { width: 48%; }
+}
+
+@media (min-width: 992px) {
+    #msnry-grid-container > #msnry-grid .msnry-item { width: 23.5%; }
+}
+
+@media (min-width: 1200px) {
+    #msnry-grid-container > #msnry-grid .msnry-item { width: 24%; }
+}
