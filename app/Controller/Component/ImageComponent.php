@@ -12,6 +12,23 @@ class ImageComponent extends Component{
         $dimensions = getimagesize($img);
         $ratio		= $dimensions[0] / $dimensions[1];
         $exif       = exif_read_data($img);
+        $rotation   = 0;
+
+        if(isset($exif['Orientation'])){
+            switch($exif['Orientation']){
+                case 3:
+                    $rotation = 180;
+                    break;
+                case 6:
+                    $rotation = -90;
+                    list($width, $height) = array($height, $width);
+                    break;
+                case 8:
+                    list($width, $height) = array($height, $width);
+                    $rotation = 90;
+                    break;
+            }
+        }
 
         if($width == 0 && $height == 0){$width = $dimensions[0];$height = $dimensions[1];}
         elseif($height == 0){$height = round($width / $ratio);}
@@ -54,18 +71,8 @@ class ImageComponent extends Component{
             imagedestroy($image);
             imageinterlace($pattern, true);
             
-            if($exif && isset($exif['Orientation'])){
-                switch($exif['Orientation']){
-                    case 3:
-                        $pattern = imagerotate($pattern, 180, null);
-                        break;
-                    case 6:
-                        $pattern = imagerotate($pattern, -90, null);
-                        break;
-                    case 8:
-                        $pattern = imagerotate($pattern, 90, null);
-                        break;
-                }
+            if($rotation != 0){
+                $pattern = imagerotate($pattern, $rotation, null);
             }
             
             imagejpeg($pattern, $to, self::$quality);
