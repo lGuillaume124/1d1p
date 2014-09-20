@@ -26,7 +26,7 @@
 <div class="col-xs-12" style="margin-top: 10px;">
     <?php if(empty($album)): ?>
         <div class="alert alert-info">
-            <h4><?php echo __('Welcome ').AuthComponent::user('username').'.'; ?></h4>
+            <h4><?php echo __('Welcome').' '.AuthComponent::user('username').'.'; ?></h4>
             <p><?php echo __('You have not yet created albums.'); ?></p>
             <p><?php echo $this->Html->link(__('Add Your First Album'), '#', array('class' => 'btn btn-primary', 'data-toggle' => 'modal', 'data-target' => '#newAlbumModal')); ?></p>
         </div>
