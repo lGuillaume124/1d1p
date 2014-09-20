@@ -26,7 +26,7 @@ $(document).ready(function(){
         document.getElementById(posts[i].id).id = i.toString();
         latLngs[i] = new L.latLng(posts[i].lat, posts[i].lng);
         bounds.extend(latLngs[i]);
-        markers[i] = L.marker(latLngs[i], {title: posts[i].title}).addTo(map).bindPopup(posts[i].title);
+        markers[i] = L.marker(latLngs[i], {title: posts[i].title, riseOnHover: true}).addTo(map).bindPopup(posts[i].title);
     }
 
     // Génération de l'itinéraire
