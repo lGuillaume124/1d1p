@@ -14,7 +14,7 @@
     ?>
     <script type="text/javascript">
 	    var lazy = lazyload({
-            offset: 3400
+            offset: 1500
         });
 	</script>
 </head>
