@@ -93,7 +93,11 @@
                     <!-- Timeline -->
                     <div class="jumbotron">
                         <div class="jumbotron-photo">
-                            <?php echo $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 540)); ?>
+                            <?php echo $this->Html->link(
+                                $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 540)),
+                                '#lazy-carousel-modal',
+                                array('data-toggle' => 'modal', 'data-target' => '#lazy-carousel-modal', 'escape' => false)
+                            ); ?>
                         </div>
                         <div class="jumbotron-contents">
                             <h5>
@@ -153,7 +157,7 @@
                     <div class="well comments-well" id="<?php echo 'comments-container-'.$post['id']; ?>">
                         <div class="add-comment-block">
                             <a href="<?php echo '#comModal'.$post['id']; ?>" data-toggle="modal"><?php echo __('Add comment'); ?></a>
-                            <?php echo $this->Html->image('loader.gif', array('class' => 'pull-right comments-loader', 'id' => 'comments-loader-'.$post['id'])); ?>
+                            <?php echo $this->Html->image('loader_32.gif', array('class' => 'pull-right comments-loader', 'id' => 'comments-loader-'.$post['id'])); ?>
                         </div>
 
                     </div>
@@ -190,6 +194,62 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
+            </div>
+
+            <!-- Carousel Modal-->
+            <div class="modal fade" id="lazy-carousel-modal" tabindex="-1" role="dialog" aria-labelledby="carouselModal" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?php echo __('Close'); ?></span></button>
+                            <h4 class="modal-title" id="carouselModal"><?php echo $album['Album']['title']; ?></h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <div id="carousel-loader">
+                                <h4><?php echo __('Loading images please wait...'); ?></h4>
+                                <?php echo $this->Html->image('loader_128.gif', array('class' => 'center-block')); ?>
+                            </div>
+
+                            <!-- Carousel -->
+                            <div id="lazy-carousel" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <?php $slides = 0; ?>
+                                    <?php foreach($album['Post'] as $post){ ?>
+                                        <?php if($slides == 0){ ?>
+                                            <div class="item active">
+                                                <img item-src="<?php echo $this->Image->thumbPath(DS.'img'.DS.'photos'.DS.$post['picture'], 900); ?>" />
+                                                <div class="carousel-caption">
+                                                    <h4><?php echo $post['title']; ?></h4>
+                                                </div>
+                                            </div>
+                                        <?php }else{ ?>
+                                            <div class="item">
+                                                <img item-src="<?php echo $this->Image->thumbPath(DS.'img'.DS.'photos'.DS.$post['picture'], 900); ?>" />
+                                                <div class="carousel-caption">
+                                                    <h4><?php echo $post['title']; ?></h4>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                        <?php $slides++; ?>
+                                    <?php } ?>
+                                </div>
+
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#lazy-carousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <a class="right carousel-control" href="#lazy-carousel" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo __('Close'); ?></button>
+                        </div>
+                    </div>
+                </div>
             </div>
         <?php } ?>
     </div>

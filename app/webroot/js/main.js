@@ -77,4 +77,29 @@ $(document).ready(function(){
            $('#comments-loader-' + post_id).hide();
         });
     });
+
+    // Carousel
+    $('#lazy-carousel-modal').on('show.bs.modal', function(e){
+        var carousel = $(this).find('.carousel').hide();
+        var deferreds = [];
+        var imgs = $('.carousel', this).find('img');
+
+        imgs.each(function(){
+            var self = $(this);
+            var datasrc = self.attr('item-src');
+
+            if(datasrc) {
+                var d = $.Deferred();
+                self.one('load', d.resolve)
+                    .attr("src", datasrc)
+                    .attr('item-src', '');
+                deferreds.push(d.promise());
+            }
+        });
+
+        $.when.apply($, deferreds).done(function(){
+            $('#carousel-loader').hide();
+            carousel.fadeIn(1000);
+        });
+    });
 });
