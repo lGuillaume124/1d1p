@@ -93,12 +93,16 @@
                     <!-- Timeline -->
                     <div class="jumbotron">
                         <div class="jumbotron-photo">
+                            <?php echo $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 540)); ?>
+                        </div>
+                        <!--
+                        <div class="jumbotron-photo">
                             <?php echo $this->Html->link(
                                 $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 540)),
                                 '#lazy-carousel-modal',
                                 array('data-toggle' => 'modal', 'data-target' => '#lazy-carousel-modal', 'escape' => false)
                             ); ?>
-                        </div>
+                        </div>-->
                         <div class="jumbotron-contents">
                             <h5>
                                 <?php echo $post['title']; ?><br />
