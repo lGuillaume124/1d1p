@@ -118,6 +118,9 @@ hr {
 .post-thumbnail {
     position: relative;
     overflow: hidden;
+    display: inline-block;
+    margin: .25rem;
+    width: 100%;
 }
 
 .post-thumbnail:hover .btn-post-delete {
@@ -201,27 +204,34 @@ hr {
     transition: all .5 linear;
 }
 
-/* Masonry */
-#msnry-grid {
-    margin: 30px auto 0;
-}
-
-.msnry-item {
-    width: 100%;
-}
-
 @media (max-width: 768px) {
-    #msnry-grid-container > #msnry-grid .msnry-item { width: 100%; }
+    .admin-row {
+        -moz-columns: 1;
+        -webkit-columns: 1;
+        columns: 1;
+    }
 }
 
 @media (min-width: 768px) {
-    #msnry-grid-container > #msnry-grid .msnry-item { width: 48%; }
+    .admin-row {
+        -moz-columns: 2;
+        -webkit-columns: 2;
+        columns: 2;
+    }
 }
 
 @media (min-width: 992px) {
-    #msnry-grid-container > #msnry-grid .msnry-item { width: 23.5%; }
+    .admin-row {
+        -moz-columns: 3;
+        -webkit-columns: 3;
+        columns: 3;
+    }
 }
 
 @media (min-width: 1200px) {
-    #msnry-grid-container > #msnry-grid .msnry-item { width: 24%; }
+    .admin-row {
+        -moz-columns: 4;
+        -webkit-columns: 4;
+        columns: 4;
+    }
 }

@@ -150,8 +150,8 @@
         <hr style="margin-top: 0"/>
 
         <?php if(!empty($album['Post'])): ?>
-            <?php foreach($album['Post'] as $post): ?>
-                <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="admin-row">
+                <?php foreach($album['Post'] as $post): ?>
                     <div class="thumbnail post-thumbnail">
                         <?php echo $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 510)); ?>
                         <div class="caption">
@@ -189,8 +189,8 @@
                             );
                         }  ?>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
         <?php endif; ?>
     </div>
 
