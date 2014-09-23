@@ -10,11 +10,12 @@
         echo $this->Html->css(array('bootstrap.min', 'bootflat.min', 'style', 'leaflet', 'blue'));
         echo $this->fetch('meta');
         echo $this->fetch('css');
-		echo $this->Html->script('lazyload.min');
+		echo $this->Html->script(array('jquery-2.1.0.min', 'lazyload.min'));
     ?>
     <script type="text/javascript">
-	    var lazy = lazyload({
-            offset: 1500
+	    var window_height = $(window).height();
+        var lazy = lazyload({
+            offset: window_height
         });
 	</script>
 </head>

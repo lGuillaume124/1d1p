@@ -1,6 +1,6 @@
 <?php echo $this->Html->css('jquery.fs.selecter', array('inline' => false)); ?>
 <?php echo $this->start('script'); ?>
-<?php echo $this->Html->script(array('jquery.fs.selecter')); ?>
+<?php echo $this->Html->script(array('jquery.fs.selecter', 'salvattore.min.js')); ?>
 <script type="text/javascript">
     $(function(){
         $('.admin-tooltip').tooltip();
@@ -78,7 +78,7 @@
     <div class="col-xs-12">
         <div class="panel panel-primary">
             <div class="panel-heading lg-panel-heading">
-                <strong><?php echo __('Hi ').AuthComponent::user('username').'!'.' '.__('Want to share some photos?'); ?></strong>
+                <strong><?php echo __('Hi ').' '.AuthComponent::user('username').' !'.' '.__('Want to share some photos?'); ?></strong>
                 <?php echo $this->Html->link(__('New Album'), '#', array('class' => 'btn btn-success pull-right', 'data-toggle' => 'modal', 'data-target' => '#newAlbumModal')); ?>
             </div>
             <div class="panel-body text-left">
@@ -150,8 +150,9 @@
         <hr style="margin-top: 0"/>
 
         <?php if(!empty($album['Post'])): ?>
-            <div class="admin-row">
+            <div id="grid" data-columns>
                 <?php foreach($album['Post'] as $post): ?>
+
                     <div class="thumbnail post-thumbnail">
                         <?php echo $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 510)); ?>
                         <div class="caption">
@@ -190,7 +191,7 @@
                         }  ?>
                     </div>
                 <?php endforeach; ?>
-            </div>
+
         <?php endif; ?>
     </div>
 

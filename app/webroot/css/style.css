@@ -199,39 +199,47 @@ hr {
     transition: min-height .5s ease;
 }
 
+.thumbnail-container {
+    width: 25%;
+}
+
 #upload-progress {
     display: none;
     transition: all .5 linear;
 }
 
-@media (max-width: 768px) {
-    .admin-row {
-        -moz-columns: 1;
-        -webkit-columns: 1;
-        columns: 1;
-    }
+.column {
+    float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.size-1of4 {
+    width: 25%;
+}
+
+.size-1of2 {
+    width: 50%;
+}
+
+.size-1of3 {
+    width: 33.333%;
 }
 
 @media (min-width: 768px) {
-    .admin-row {
-        -moz-columns: 2;
-        -webkit-columns: 2;
-        columns: 2;
+    #grid[data-columns]::before {
+        content: '2 .column.size-1of2';
     }
 }
 
 @media (min-width: 992px) {
-    .admin-row {
-        -moz-columns: 3;
-        -webkit-columns: 3;
-        columns: 3;
+    #grid[data-columns]::before {
+        content: '3 .column.size-1of3';
     }
 }
 
 @media (min-width: 1200px) {
-    .admin-row {
-        -moz-columns: 4;
-        -webkit-columns: 4;
-        columns: 4;
+    #grid[data-columns]::before {
+        content: '4 .column.size-1of4';
     }
 }
