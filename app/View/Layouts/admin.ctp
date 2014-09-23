@@ -13,6 +13,7 @@
 		echo $this->Html->script(array('jquery-2.1.0.min', 'lazyload.min'));
     ?>
     <script type="text/javascript">
+        var baseurl = "<?php echo $this->request->base; ?>"
 	    var window_height = $(window).height();
         var lazy = lazyload({
             offset: window_height
@@ -71,7 +72,7 @@
         </div>
     <?php } ?>
 
-    <?php echo $this->Html->script(array('jquery-2.1.0.min', 'bootstrap.min', 'leaflet')) ?>
+    <?php echo $this->Html->script(array('bootstrap.min', 'leaflet')) ?>
     <?php echo $this->fetch('script'); ?>
 </body>
 </html>
