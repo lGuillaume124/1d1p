@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-09-20 14:53+0200\n"
+"POT-Creation-Date: 2014-09-26 19:22+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -88,7 +88,7 @@ msgid "Generate Hash"
 msgstr ""
 
 #: Controller/PagesController.php:143
-#: View/Layouts/admin.ctp:39
+#: View/Layouts/admin.ctp:41
 msgid "Dashboard"
 msgstr ""
 
@@ -149,14 +149,17 @@ msgid "No comments for this post."
 msgstr ""
 
 #: View/Comments/admin_manage.ctp:19;48
+#: View/Comments/admin_unread.ctp:19
 msgid "Author:"
 msgstr ""
 
 #: View/Comments/admin_manage.ctp:19;48
+#: View/Comments/admin_unread.ctp:19
 msgid "Submitted on"
 msgstr ""
 
 #: View/Comments/admin_manage.ctp:26;34
+#: View/Comments/admin_unread.ctp:26;34
 msgid "Are you sure?"
 msgstr ""
 
@@ -164,11 +167,23 @@ msgstr ""
 msgid "Are you sure? "
 msgstr ""
 
-#: View/Layouts/admin.ctp:45
+#: View/Comments/admin_unread.ctp:3
+msgid "Manage comments unread comments"
+msgstr ""
+
+#: View/Comments/admin_unread.ctp:10
+msgid "All comments has been moderated."
+msgstr ""
+
+#: View/Layouts/admin.ctp:47
 msgid "Map"
 msgstr ""
 
-#: View/Layouts/admin.ctp:55
+#: View/Layouts/admin.ctp:54
+msgid "Comments"
+msgstr ""
+
+#: View/Layouts/admin.ctp:66
 msgid "Logout"
 msgstr ""
 
@@ -177,85 +192,85 @@ msgstr ""
 msgid "Select another album"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:29
+#: View/Pages/admin_index.ctp:18
 msgid "Welcome"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:30
+#: View/Pages/admin_index.ctp:19
 msgid "You have not yet created albums."
 msgstr ""
 
-#: View/Pages/admin_index.ctp:31
+#: View/Pages/admin_index.ctp:20
 msgid "Add Your First Album"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:41;68
-#: View/Pages/index.ctp:172;204;249
+#: View/Pages/admin_index.ctp:30;57
+#: View/Pages/index.ctp:176;208;253
 msgid "Close"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:42;93
+#: View/Pages/admin_index.ctp:31;82
 msgid "New Album"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:48;75
+#: View/Pages/admin_index.ctp:37;64
 msgid "Album title"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:51
+#: View/Pages/admin_index.ctp:40
 msgid "Create"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:69;144
+#: View/Pages/admin_index.ctp:58;133
 msgid "Rename"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:78
+#: View/Pages/admin_index.ctp:67
 #: View/Posts/admin_add.ctp:87
 #: View/Posts/admin_edit.ctp:104
 msgid "Save"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:92
+#: View/Pages/admin_index.ctp:81
 msgid "Hi "
 msgstr ""
 
-#: View/Pages/admin_index.ctp:92
+#: View/Pages/admin_index.ctp:81
 msgid "Want to share some photos?"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:97
+#: View/Pages/admin_index.ctp:86
 msgid "You currently have"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:122
+#: View/Pages/admin_index.ctp:111
 #: View/Pages/index.ctp:59
 msgid "Created on"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:133
+#: View/Pages/admin_index.ctp:122
 msgid "Add Photo"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:155
+#: View/Pages/admin_index.ctp:144
 msgid "Delete"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:157
+#: View/Pages/admin_index.ctp:146
 msgid "Are you sure? All your photos in this album will be removed."
 msgstr ""
 
-#: View/Pages/admin_index.ctp:188
+#: View/Pages/admin_index.ctp:176
 msgid "Are you sure ?"
 msgstr ""
 
-#: View/Pages/admin_index.ctp:99
+#: View/Pages/admin_index.ctp:88
 msgid "%s post"
 msgid_plural "%s posts"
 msgstr[0] ""
 msgstr[1] ""
 
-#: View/Pages/admin_index.ctp:102
+#: View/Pages/admin_index.ctp:91
 msgid "%s album"
 msgid_plural "%s albums"
 msgstr[0] ""
@@ -296,35 +311,35 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: View/Pages/index.ctp:122;123
+#: View/Pages/index.ctp:126;127
 msgid "Show"
 msgstr ""
 
-#: View/Pages/index.ctp:148
+#: View/Pages/index.ctp:152
 msgid "Full size"
 msgstr ""
 
-#: View/Pages/index.ctp:159
+#: View/Pages/index.ctp:163
 msgid "Add comment"
 msgstr ""
 
-#: View/Pages/index.ctp:173
+#: View/Pages/index.ctp:177
 msgid "Add a comment for:"
 msgstr ""
 
-#: View/Pages/index.ctp:179
+#: View/Pages/index.ctp:183
 msgid "Your name"
 msgstr ""
 
-#: View/Pages/index.ctp:185
+#: View/Pages/index.ctp:189
 msgid "Here your comment"
 msgstr ""
 
-#: View/Pages/index.ctp:190
+#: View/Pages/index.ctp:194
 msgid "Send "
 msgstr ""
 
-#: View/Pages/index.ctp:210
+#: View/Pages/index.ctp:214
 msgid "Loading images please wait..."
 msgstr ""
 
