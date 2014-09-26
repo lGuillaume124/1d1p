@@ -55,8 +55,19 @@ class AppController extends Controller {
     function beforeFilter() {
         if(isset($this->params['prefix']) && $this->params['prefix'] == 'admin'){
             $this->layout = 'admin';
-        }elseif(null !== AuthComponent::user()){
+        }
+
+        if(null !== AuthComponent::user()){
             $this->layout = 'admin';
+
+            $this->loadModel('Comment');
+            $unread_comments = $this->Comment->find('count', array(
+               'conditions' => array('approved' => false)
+            ));
+
+            if(isset($unread_comments) && $unread_comments > 0){
+                $this->set('unread_comments', $unread_comments);
+            }
         }
     }
 }

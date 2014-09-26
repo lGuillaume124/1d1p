@@ -48,6 +48,15 @@
                             array('controller' => 'pages', 'action' => 'index', 'home', 'admin' => false)
                         ); ?>
                     </li>
+                    <?php if(isset($unread_comments) && $unread_comments > 0): ?>
+                    <li>
+                        <?php echo $this->Html->link(
+                            __('Comments').' (<strong>'.$unread_comments.'</strong>)',
+                            array('controller' => 'comments', 'action' => 'unread', 'admin' => true),
+                            array('escape' => false)
+                        ); ?>
+                    </li>
+                    <?php endif; ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>

@@ -59,7 +59,7 @@ class CommentsController extends AppController {
             }
         }
 
-        $this->redirect(array('controller' => 'comments', 'action' => 'manage', $comment['Comment']['post_id']));
+        $this->redirect($this->referer());
     }
 
     public function admin_delete($id){
@@ -137,6 +137,14 @@ class CommentsController extends AppController {
         }
 
         $this->redirect(array('controller' => 'comments', 'action' => 'manage', $comment['Comment']['post_id']));
+    }
+
+    public function admin_unread(){
+        $comments = $this->Comment->find('all', array(
+            'conditions' => array('approved' => false)
+        ));
+
+        $this->set('unapproved_comments', $comments);
     }
 
     public function post($id = null){
