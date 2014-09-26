@@ -20,8 +20,8 @@
                         <?= __('Credentials successfully generated!'); ?>
                     </div>
                     <div class="panel-body credentials-panel">
-                        <?= __('Username'); ?> : <?= $user['username']; ?><br />
-                        <?= __('Password'); ?> : <?= $user['password']; ?>
+                        <?= __('Username'); ?> : <code><?= $user['username']; ?></code><br />
+                        <?= __('Password'); ?> : <code><?= $user['password']; ?></code><br />
                     </div>
                 </div>
             </div>
