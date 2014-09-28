@@ -1,0 +1,245 @@
+@font-face{
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Regular-webfont.woff') format('woff');
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #F1F2F6;
+}
+
+hr {
+    border-color: #434A54 -moz-use-text-color -moz-use-text-color;
+}
+
+.nav-default{
+    margin-bottom: 0;
+    z-index: 15;
+    border-radius: 0;
+}
+
+.h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small, h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+    color: #777777;
+}
+
+.jumbotron .jumbotron-contents {
+    padding: 10px;
+}
+
+.flash-default {
+    margin-top: 20px;
+    z-index: 50
+}
+
+.selecter .selecter-selected:after {
+    border: none;
+}
+
+.main-wrap {
+    margin: 0;
+    position: relative;
+    height: 100%;
+    /*height: calc(100% - 52px);*/
+}
+
+.default-block {
+    position: absolute;
+    top: 0;
+    height: 100%;
+}
+
+.map {
+    left: 0;
+    width: 70%;
+    z-index: 0;
+}
+
+.timeline {
+    box-shadow: -1px 0 3px 1px #333 ;
+    overflow-y: scroll;
+    padding: 15px 8px;
+    right: 0;
+    width: 30%;
+}
+
+.timeline-pic {
+    margin-bottom: 15px;
+    display: block;
+    border-radius: 3px;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.timeline-icon {
+    margin-left: 10px;
+}
+
+.timeline-icon a {
+    color: #434A54;
+}
+
+.show-comments {
+    cursor: pointer;
+}
+
+.credentials-panel {
+    word-break: break-all;
+}
+
+.add-comment-block {
+    line-height: 32px;
+}
+
+.comments-loader {
+    display: none;
+}
+
+.comments-well {
+    display: none;
+    font-size: 13px;
+}
+
+.comments-well h5 {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.comments-well hr {
+    border-color: #DFE0E4 -moz-use-text-color -moz-use-text-color;
+    margin: 10px 0;
+}
+
+.album-controls {
+    margin-top: 30px;
+}
+
+.post-thumbnail {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin: .25rem;
+    width: 100%;
+}
+
+.post-thumbnail:hover .btn-post-delete {
+    right: 10px;
+}
+
+.post-thumbnail:hover .btn-post-edit {
+    top: 10px;
+}
+
+.post-thumbnail:hover .btn-post-comments {
+    left: 10px;
+}
+
+.btn-mgmt {
+    display: block;
+    position: absolute;
+    transition: all .5s ease 0s;
+}
+
+.btn-post-delete {
+    top: 10px;
+    right: -35px;
+}
+
+.btn-post-edit {
+    top: -35px;
+    right: 52px;
+}
+
+.btn-new-comments {
+    top: 10px;
+    left: 10px;
+}
+
+.btn-post-comments {
+    top: 10px;
+    left: -35px;
+}
+
+.panel-comment {
+    overflow: hidden;
+}
+
+.panel-comment:hover .btn-comment-remove {
+    top: 10px;
+    right: 10px;
+}
+
+.panel-comment:hover .btn-comment-approve {
+    top: 10px;
+    right: 54px;
+}
+
+.btn-comment-approve {
+    top: -31px;
+    right: 54px;
+}
+
+.btn-comment-remove {
+    top: 10px;
+    right: -35px;
+}
+
+.lg-panel-heading {
+    position: relative;
+    line-height: 29px;
+}
+
+#map {
+    min-height: 345px;
+    /*min-height: 305px;*/
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    padding-top: 6px;
+    transition: min-height .5s ease;
+}
+
+.thumbnail-container {
+    width: 25%;
+}
+
+#upload-progress {
+    display: none;
+    transition: all .5 linear;
+}
+
+.column {
+    float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.size-1of4 {
+    width: 25%;
+}
+
+.size-1of2 {
+    width: 50%;
+}
+
+.size-1of3 {
+    width: 33.333%;
+}
+
+@media (min-width: 768px) {
+    #grid[data-columns]::before {
+        content: '2 .column.size-1of2';
+    }
+}
+
+@media (min-width: 992px) {
+    #grid[data-columns]::before {
+        content: '3 .column.size-1of3';
+    }
+}
+
+@media (min-width: 1200px) {
+    #grid[data-columns]::before {
+        content: '4 .column.size-1of4';
+    }
+}
