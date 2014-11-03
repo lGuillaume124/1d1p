@@ -126,7 +126,7 @@ class PagesController extends AppController {
                 $album['Post'][$kp]['approved_comments'] = $approved_comments;
 
                 if(strlen($post['content']) > 61){
-                    $album['Post'][$kp]['content'] = substr($post['content'], 0, 60).'...';
+                    $album['Post'][$kp]['content'] = substr(strip_tags($post['content']), 0, 60).'...';
                 }
             }
         }else{
