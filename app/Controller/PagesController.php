@@ -11,6 +11,10 @@ class PagesController extends AppController {
     }
 
 	public function index(){
+
+        // Force default layout
+        $this->layout = 'default';
+
         $this->loadModel('Album');
         $this->loadModel('Comment');
         $album = null;

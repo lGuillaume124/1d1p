@@ -39,14 +39,46 @@
         <?php echo $this->Session->flash(); ?>
 
         <?php if(empty($album)){ ?>
-            <div class="alert alert-info">
-                <h4><?php echo __('Welcome !'); ?></h4>
-                <p><?php
-                    echo __('Nothing to see here.');
-                    if(null == AuthComponent::user('id')){
-                        echo ' <strong>'.$this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login'), array('style' => 'color: #31708F;')).'</strong>.';
-                    }
-                ?></p>
+            <?php if(null == AuthComponent::user('id')){ ?>
+                <div class="alert alert-info">
+                    <h4><?php echo __('Welcome !'); ?></h4>
+                    <p>
+                        <?php echo __('No albums yet.').' <strong>'.$this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login'), array('style' => 'color: #31708F;')).'</strong>.'; ?>
+                    </p>
+                </div>
+            <?php }else{ ?>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                    <?php
+                    echo '<strong>'.__('No albums yet.').'</strong> '.__('You can create from the dashboard.');
+                    echo $this->Html->link(
+                        '<i class="glyphicon glyphicon-log-out"></i>',
+                        array('controller' => 'users', 'action' => 'logout'),
+                        array(
+                            'class' => 'timeline-tooltip pull-right',
+                            'style' => 'color: #FFFFFF; margin-left: 15px;',
+                            'data-toggle' => 'tooltip',
+                            'data-placement' => 'bottom',
+                            'data-original-title' => __('Logout'),
+                            'title' => __('Logout'),
+                            'escape' => false
+                        )
+                    );
+                    echo $this->Html->link(
+                        '<i class="glyphicon glyphicon-home"></i>',
+                        array('controller' => 'pages', 'action' => 'index', 'admin' => true),
+                        array(
+                            'class' => 'timeline-tooltip pull-right',
+                            'style' => 'color: #FFFFFF;',
+                            'data-toggle' => 'tooltip',
+                            'data-placement' => 'bottom',
+                            'data-original-title' => __('Dashboard'),
+                            'title' => __('Dashboard'),
+                            'escape' => false
+                        )
+                    );
+                }?>
+                </div>
             </div>
         <?php }else{ ?>
             <div class="col-xs-12">
@@ -63,8 +95,35 @@
                                     'style' => 'color: #FFFFFF;',
                                     'data-toggle' => 'tooltip',
                                     'data-placement' => 'bottom',
-                                    'data-original-title' => __('Login'),
-                                    'title' => __('Login'),
+                                    'data-original-title' => __('Sign In'),
+                                    'title' => __('Sign In'),
+                                    'escape' => false
+                                )
+                            );
+                        }else{
+                            echo $this->Html->link(
+                                '<i class="glyphicon glyphicon-log-out"></i>',
+                                array('controller' => 'users', 'action' => 'logout'),
+                                array(
+                                    'class' => 'timeline-tooltip pull-right',
+                                    'style' => 'color: #FFFFFF; margin-left: 15px;',
+                                    'data-toggle' => 'tooltip',
+                                    'data-placement' => 'bottom',
+                                    'data-original-title' => __('Logout'),
+                                    'title' => __('Logout'),
+                                    'escape' => false
+                                )
+                            );
+                            echo $this->Html->link(
+                                '<i class="glyphicon glyphicon-home"></i>',
+                                array('controller' => 'pages', 'action' => 'index', 'admin' => true),
+                                array(
+                                    'class' => 'timeline-tooltip pull-right',
+                                    'style' => 'color: #FFFFFF;',
+                                    'data-toggle' => 'tooltip',
+                                    'data-placement' => 'bottom',
+                                    'data-original-title' => __('Dashboard'),
+                                    'title' => __('Dashboard'),
                                     'escape' => false
                                 )
                             );

@@ -13,11 +13,7 @@
     ?>
 </head>
 <body>
-    <?php if(isset($this->request->params['pass'][0]) && $this->request->params['pass'][0] == 'home') { ?>
-        <nav class="navbar navbar-inverse navbar-default nav-default" role="navigation">
-    <?php }else{ ?>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <?php }  ?>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
                 <?php echo $this->Html->link(
