@@ -10,15 +10,7 @@
         echo $this->Html->css(array('bootstrap.min', 'bootflat.min', 'style', 'leaflet', 'blue'));
         echo $this->fetch('meta');
         echo $this->fetch('css');
-		echo $this->Html->script(array('jquery-2.1.0.min', 'lazyload.min'));
     ?>
-    <script type="text/javascript">
-        var baseurl = "<?php echo $this->request->base; ?>"
-	    var window_height = $(window).height();
-        var lazy = lazyload({
-            offset: window_height
-        });
-	</script>
 </head>
 <body>
     <?php if(isset($this->request->params['pass'][0]) && $this->request->params['pass'][0] == 'home') { ?>
@@ -81,7 +73,23 @@
         </div>
     <?php } ?>
 
-    <?php echo $this->Html->script(array('bootstrap.min', 'leaflet')) ?>
+    <?php echo $this->Html->script(array('jquery-2.1.0.min', 'bootstrap.min', 'blazy.min', 'leaflet')) ?>
+            <script type="text/javascript">
+                var baseurl = "<?php echo $this->request->base; ?>"
+
+                $(document).ready(function(){
+                    var bLazy = new Blazy({
+                        selector: 'img',
+                        offset: 250,
+                        success: function(element){
+                            setTimeout(function(){
+                                var parent = element.parentNode;
+                                parent.className = parent.className.replace('img-loading','');
+                            }, 200);
+                        }
+                    });
+                });
+            </script>
     <?php echo $this->fetch('script'); ?>
 </body>
 </html>

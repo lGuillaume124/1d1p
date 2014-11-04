@@ -243,3 +243,21 @@ hr {
         content: '4 .column.size-1of4';
     }
 }
+
+/** Lazyload **/
+.b-lazy {
+-webkit-transition: opacity 500ms ease-in-out;
+   -moz-transition: opacity 500ms ease-in-out;
+     -o-transition: opacity 500ms ease-in-out;
+        transition: opacity 500ms ease-in-out;
+         max-width: 100%;
+           opacity: 0;
+}
+
+.b-lazy.b-loaded {
+    opacity: 1;
+}
+
+.img-loading {
+    background: url('../img/loader_32.gif') no-repeat scroll center center #FFF;
+}

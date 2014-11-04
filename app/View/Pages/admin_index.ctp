@@ -48,7 +48,7 @@
 <!-- Albums edition form -->
 <?php if(!empty($album)): ?>
 
-    <div class="modal fade" id="<?php echo 'eModal'.$album['Album']['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo 'eModal'.$v['Album']['id'].'label'; ?>" aria-hidden="true">
+    <div class="modal fade" id="<?php echo 'eModal'.$album['Album']['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo 'eModal'.$album['Album']['id'].'label'; ?>" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <?php echo $this->Form->create('Album', array('controller' => 'albums', 'action' => 'edit/'.$album['Album']['id'])); ?>
@@ -153,8 +153,8 @@
             <div id="grid" data-columns>
                 <?php foreach($album['Post'] as $post): ?>
 
-                    <div class="thumbnail post-thumbnail">
-                        <?php echo $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 510)); ?>
+                    <div class="thumbnail post-thumbnail img-loading">
+                        <?php echo $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 510), array('class' => 'b-lazy')); ?>
                         <div class="caption">
                             <h4>
                                 <?php echo $post['title']; ?><br />
@@ -191,7 +191,7 @@
                         }  ?>
                     </div>
                 <?php endforeach; ?>
-
+            </div>
         <?php endif; ?>
     </div>
 

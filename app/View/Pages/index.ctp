@@ -1,3 +1,8 @@
+<?php
+/**
+ * http://dinbror.dk/blazy/
+ */
+?>
 <?php echo $this->Html->css('jquery.fs.selecter', 'stylesheet', array('inline' => false)); ?>
 <?php echo $this->start('script'); ?>
 <?php echo $this->Html->script(array('jquery.fs.selecter', 'main')); ?>
@@ -15,9 +20,8 @@
             $photos = substr($photos, 0, -2);
         }
     ?>
-    var posts = [<?php echo $photos; ?>];
 
-    // Animations de l'interface
+    var posts = [<?php echo $photos; ?>];
     $('.timeline-tooltip').tooltip();
     $("#aSelecter").selecter({
         links: true,
@@ -32,13 +36,6 @@
 
     <!-- Timeline -->
     <div class="default-block timeline" id="timeline">
-        <script>
-            var lazy = lazyload({
-                container: document.getElementById('timeline'),
-                offset: 750
-            });
-        </script>
-
         <?php echo $this->Session->flash(); ?>
 
         <?php if(empty($album)){ ?>
@@ -92,8 +89,8 @@
                 <?php foreach($album['Post'] as $post): ?>
                     <!-- Timeline -->
                     <div class="jumbotron">
-                        <div class="jumbotron-photo">
-                            <?php echo $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 540)); ?>
+                        <div class="jumbotron-photo img-loading">
+                            <?php echo $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 540), array('class' => 'b-lazy')); ?>
                         </div>
                         <!--
                         <div class="jumbotron-photo">
