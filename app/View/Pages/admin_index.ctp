@@ -25,7 +25,7 @@
     <div class="modal fade" id="newAlbumModal" tabindex="-1" role="dialog" aria-labelledby="newAlbumModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <?php echo $this->Form->create('Album', array('action' => 'add')); ?>
+                <?php echo $this->Form->create('Album', array('url' => array('controller' => 'albums', 'action' => 'add'))); ?>
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?php echo __('Close'); ?></span></button>
                     <h4 class="modal-title"><?php echo __('New Album'); ?></h4>
@@ -51,7 +51,7 @@
     <div class="modal fade" id="<?php echo 'eModal'.$album['Album']['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo 'eModal'.$v['Album']['id'].'label'; ?>" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <?php echo $this->Form->create('Album', array('controller' => 'albums', 'action' => 'edit/'.$album['Album']['id'])); ?>
+                <?php echo $this->Form->create('Album', array('url' => array('controller' => 'albums', 'action' => 'edit/'.$album['Album']['id']))); ?>
                 <?php echo $this->Form->input('id', array('type' => 'hidden', 'value' => $album['Album']['id'])); ?>
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?php echo __('Close'); ?></span></button>

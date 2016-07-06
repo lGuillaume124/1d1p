@@ -170,7 +170,7 @@
                     <div class="modal fade" id="<?php echo 'comModal'.$post['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo 'comModal'.$post['id']; ?>" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <?php echo $this->Form->create('Comment', array('action' => 'add')); ?>
+                                <?php echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'add'))); ?>
                                 <?php echo $this->Form->input('post_id', array('type' => 'hidden', 'value' => $post['id'])); ?>
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?php echo __('Close'); ?></span></button>

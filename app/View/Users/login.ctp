@@ -5,7 +5,7 @@
                 <?php echo __('One Day, One Picture - Login'); ?>
             </div>
             <div class="panel-body text-left">
-                <?php echo $this->Form->create('User', array('action' => 'login')); ?>
+                <?php echo $this->Form->create('User'); ?>
                 <?php echo $this->Form->input('username', array(
                     'div' => array('class' => 'form-group input-group'),
                     'before' => '<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>',

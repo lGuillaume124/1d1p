@@ -28,7 +28,7 @@ class CommentsController extends AppController {
             $this->request->data['Comment']['album_id'] = $album_id['Post']['album_id'];
 
             if($this->Comment->save($this->request->data)){
-                $this->Session->setFlash(__('Your comment is now awaiting for approval. Thank you!'), 'flash_success');
+                $this->Flash->success(__('Your comment is now awaiting for approval. Thank you!'));
                 $this->redirect(array('controller' => 'pages', 'action' => 'index', 'home'));
             }
         }
@@ -46,16 +46,16 @@ class CommentsController extends AppController {
         ));
 
         if(!$comment || empty($comment)){
-            $this->Session->setFlash(__('Invalid Comment ID'), 'flash_error');
+            $this->Flash->error(__('Invalid Comment ID'));
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
         }else{
             if($comment['Comment']['approved'] == false){
                 $this->Comment->id = $id;
                 if(!$this->Comment->saveField('approved', true)){
-                   $this->Session->setFlash(__('Unable to validate this comment.'), 'flash_error');
+                   $this->Flash->error(__('Unable to validate this comment.'));
                 }
             }else{
-                $this->Session->setFlash(__('This comment has already been approved.'), 'flash_info');
+                $this->Flash->info(__('This comment has already been approved.'));
             }
         }
 
@@ -70,9 +70,9 @@ class CommentsController extends AppController {
         $post = $this->Comment->findById($id);
 
         if($this->Comment->delete($id)){
-            $this->Session->setFlash(__('Comment '.$id.' ('.$post['Post']['title'].') has been successfully deleted!'), 'flash_success');
+            $this->Flash->success(__('Comment '.$id.' ('.$post['Post']['title'].') has been successfully deleted!'));
         }else{
-            $this->Session->setFlash(__('Unable to delete this comment'), 'flash_error');
+            $this->Flash->error(__('Unable to delete this comment'));
         }
 
         $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
@@ -90,7 +90,7 @@ class CommentsController extends AppController {
         $post = $this->Post->findById($id);
 
         if(!$post){
-            $this->Session->setFlash(__('Invalid Post ID.'), 'flash_error');
+            $this->Flash->error(__('Invalid Post ID.'));
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
         }
 
@@ -123,16 +123,16 @@ class CommentsController extends AppController {
         ));
 
         if(!$comment || empty($comment)){
-            $this->Session->setFlash(__('Invalid Comment ID'), 'flash_error');
+            $this->Flash->error(__('Invalid Comment ID'));
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
         }else{
             if($comment['Comment']['approved'] == true){
                 $this->Comment->id = $id;
                 if(!$this->Comment->saveField('approved', false)){
-                    $this->Session->setFlash(__('Unable to unapproved this comment.'), 'flash_error');
+                    $this->Flash->error(__('Unable to unapproved this comment.'));
                 }
             }else{
-                $this->Session->setFlash(__('This comment has already been unapproved.'), 'flash_info');
+                $this->Flash->info(__('This comment has already been unapproved.'));
             }
         }
 

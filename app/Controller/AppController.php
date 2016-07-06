@@ -49,7 +49,8 @@ class AppController extends Controller {
                 'admin' => false
             ),
             'logoutRedirect'    => array('controller' => 'pages', 'action' => 'index', 'home')
-        )
+        ),
+        'Flash'
     );
 
     function beforeFilter() {

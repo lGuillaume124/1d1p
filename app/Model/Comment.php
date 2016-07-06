@@ -6,8 +6,8 @@ class Comment extends AppModel {
     public $name = 'Comment';
 
     public $validate = array(
-        'author'    => 'notEmpty',
-        'content'   => 'notEmpty',
+        'author'    => 'notBlank',
+        'content'   => 'notBlank',
         'approved'  => 'boolean',
         'post_id'   => array(
             'ruleNotEmpty'  => array(
@@ -21,7 +21,7 @@ class Comment extends AppModel {
         ),
         'album_id'   => array(
             'ruleNotEmpty'  => array(
-                'rule' => 'notEmpty',
+                'rule' => 'notBlank',
                 'required' => true
             ),
             'ruleIsNumeric' => array(

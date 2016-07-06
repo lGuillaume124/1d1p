@@ -9,9 +9,9 @@ class AlbumsController extends AppController{
             $this->Album->create();
 
             if($this->Album->save($this->request->data)){
-                $this->Session->setFlash(__('New album successfully created.'), 'flash_success');
+                $this->Flash->success(__('New album successfully created.'));
             }else{
-                $this->Session->setFlash(__('Unable to create album.'), 'flash_error');
+                $this->Flash->error(__('Unable to create album.'));
             }
 
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
@@ -36,9 +36,9 @@ class AlbumsController extends AppController{
             $this->Album->id = $id;
 
             if($this->Album->save($this->request->data)){
-                $this->Session->setFlash(__('Album successfully renamed.'), 'flash_success');
+                $this->Flash->success(__('Album successfully renamed.'));
             }else{
-                $this->Session->setFlash(__('Unable to save your post.'), 'flash_error');
+                $this->FLash->error(__('Unable to save your post.'));
             }
 
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
@@ -56,9 +56,9 @@ class AlbumsController extends AppController{
         $album = $this->Album->findById($id);
 
         if($this->Album->delete($id, $cascade = true)){
-            $this->Session->setFlash(__('Album '.$id.' ('.$album['Album']['title'].') successfully deleted.'), 'flash_success');
+            $this->Flash->success(__('Album '.$id.' ('.$album['Album']['title'].') successfully deleted.'));
         }else{
-            $this->Session->setFlash(__('Unable to delete this album.'), 'flash_error');
+            $this->Flash->error(__('Unable to delete this album.'));
         }
 
         $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));

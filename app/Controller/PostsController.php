@@ -8,9 +8,9 @@ class PostsController extends AppController {
         if($this->request->is('post')){
             $this->Post->create();
             if($this->Post->save($this->request->data)){
-                $this->Session->setFlash(__('Your post has been successfully created!'), 'flash_success');
+                $this->Flash->success(__('Your post has been successfully created!'));
             }else{
-                $this->Session->setFlash(__('Unable to save your post.'), 'flash_error');
+                $this->Flash->error(__('Unable to save your post.'));
             }
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
         }
@@ -26,12 +26,12 @@ class PostsController extends AppController {
 		}
 
 		if(!isset($this->request->query['a']) || !preg_match('/\d+/', $this->request->query['a'])){
-            $this->Session->setFlash(__('Undefined album'), 'flash_error');
+            $this->Flash->error(__('Undefined album'));
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
         }
 
         if(empty($album)){
-            $this->Session->setFlash(__('Undefined album'), 'flash_error');
+            $this->Flash->error(__('Undefined album'));
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
         }else{
             $this->set(array('title_for_layout' => __('Add a new post').' - One Day, One Picture', 'album' => $album));
@@ -46,9 +46,9 @@ class PostsController extends AppController {
         $post = $this->Post->findById($id);
 
         if($this->Post->delete($id)){
-            $this->Session->setFlash(__('Post '.$id.' ('.$post['Post']['title'].') has been successfully deleted!'), 'flash_success');
+            $this->Flash->success(__('Post '.$id.' ('.$post['Post']['title'].') has been successfully deleted!'));
         }else{
-            $this->Session->setFlash(__('Unable to delete this post'), 'flash_error');
+            $this->Flash->error(__('Unable to delete this post'));
         }
 
         $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
@@ -69,9 +69,9 @@ class PostsController extends AppController {
             $this->Post->id = $id;
 
             if($this->Post->save($this->request->data)){
-                $this->Session->setFlash(__('Your post has been successfully updated.'), 'flash_success');
+                $this->Flash->success(__('Your post has been successfully updated.'));
             }else{
-                $this->Session->setFlash(__('Unable to save your post.'), 'flash_error');
+                $this->Flash->error(__('Unable to save your post.'));
             }
 
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));

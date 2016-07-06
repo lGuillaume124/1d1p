@@ -9,7 +9,7 @@ class UsersController extends AppController {
             if($this->Auth->login()){
                 $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
             }else{
-                $this->Session->setFlash(__('Wrong credentials.'), 'flash_error');
+                $this->Flash->error(__('Wrong credentials.'));
             }
         }
     }

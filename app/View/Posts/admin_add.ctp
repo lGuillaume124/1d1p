@@ -15,7 +15,7 @@
 <div class="col-xs-12">
     <h3><?php echo __('Add a photo in:').' '.$album['Album']['title']; ?></h3>
     <hr />
-    <?php echo $this->Form->create('Post', array('action' => 'add', 'enctype' => 'multipart/form-data', 'id' => 'AddPostForm')); ?>
+    <?php echo $this->Form->create('Post', array('url' => array('controller' => 'posts', 'action' => 'add'), 'enctype' => 'multipart/form-data', 'id' => 'AddPostForm')); ?>
     <?php echo $this->Form->input('album_id', array('type' => 'hidden', 'value' => $album['Album']['id'])); ?>
     <div class="col-xs-12 col-md-6">
         <div class="panel panel-primary">

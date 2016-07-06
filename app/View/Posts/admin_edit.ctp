@@ -39,7 +39,7 @@
 <div class="col-xs-12">
     <h3><?php echo __('Edit a photo'); ?></h3>
     <hr />
-    <?php echo $this->Form->create('Post', array('action' => 'edit')); ?>
+    <?php echo $this->Form->create('Post', array('url' => array('controller' => 'posts', 'action' => 'edit'))); ?>
     <div class="col-xs-12 col-md-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
