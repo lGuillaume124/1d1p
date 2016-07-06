@@ -7,7 +7,7 @@ class PagesController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('index', 'hash');
+        $this->Auth->allow('index');
     }
 
 	public function index() {
@@ -62,21 +62,6 @@ class PagesController extends AppController {
 
         $this->set(array('title_for_layout' => $title, 'albums' => $albums, 'album' => $album));
 	}
-
-    public function hash() {
-        if ($this->request->is('post')) {
-            $user['username'] = $this->request->data['Page']['username'];
-
-            if (isset($this->request->data['Page']['password'])) {
-                App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
-                $passwordHasher = new BlowfishPasswordHasher();
-                $user['password'] = $passwordHasher->hash($this->request->data['Page']['password']);
-            }
-
-            $this->set('user', $user);
-        }
-        $this->set(array('title_for_layout' => __('Generate Hash').' - One Day, One Picture'));
-    }
 
     public function admin_index() {
         $this->loadModel('Album');

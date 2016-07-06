@@ -57,6 +57,12 @@
                         ); ?>
                     </li>
                     <?php endif; ?>
+                    <li>
+                        <?php echo $this->Html->link(
+                            __('Users'),
+                            array('controller' => 'users', 'action' => 'index', 'admin' => true)
+                        ); ?>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>

@@ -4,9 +4,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: One Day, One Picture\n"
-"POT-Creation-Date: 2014-09-26 19:22+0200\n"
-"PO-Revision-Date: 2014-09-26 19:23+0100\n"
-"Last-Translator: Guillaume <admin@guillaume-leduc.fr>\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2016-07-06 22:18+0100\n"
+"Last-Translator: Guillaume Leduc <hey@sonerezh.bzh>\n"
 "Language-Team:  <admin@guillaume-leduc.fr>\n"
 "Language: FR\n"
 "MIME-Version: 1.0\n"
@@ -83,11 +83,7 @@ msgstr "Impossible de désapprouver ce commentaire."
 msgid "This comment has already been unapproved."
 msgstr "Ce commentaire a déjà été désapprouvé."
 
-#: Controller/PagesController.php:78
-msgid "Generate Hash"
-msgstr "Générer un hash"
-
-#: Controller/PagesController.php:143 View/Layouts/admin.ctp:41
+#: Controller/PagesController.php:128 View/Layouts/admin.ctp:41
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
@@ -135,9 +131,70 @@ msgstr "Impossible d'analyser cette image."
 msgid "Unable to upload your photo."
 msgstr "Impossible d'envoyer cette photo."
 
-#: Controller/UsersController.php:12
-msgid "Wrong credentials."
-msgstr "Identifiants invalides."
+#: Controller/UsersController.php:25;51;77
+msgid "This user does not exist."
+msgstr "Cet utilisateur n'existe pas."
+
+#: Controller/UsersController.php:32
+msgid "User disabled."
+msgstr "Utilisateur désactivé."
+
+#: Controller/UsersController.php:34
+msgid "Unable to disable this user."
+msgstr "Impossible de supprimer cet utilisateur."
+
+#: Controller/UsersController.php:37
+msgid "This user is already disabled."
+msgstr "Cet utilisateur est déjà désactivé."
+
+#: Controller/UsersController.php:58
+msgid "User enabled."
+msgstr "Utilisateur activé."
+
+#: Controller/UsersController.php:60
+msgid "Unable to enable this user."
+msgstr "Impossible d'activer cet utilisateur."
+
+#: Controller/UsersController.php:63
+msgid "This user is already enabled."
+msgstr "Cet utilisateur est déjà activé."
+
+#: Controller/UsersController.php:82
+msgid "User removed."
+msgstr "Utilisateur supprimé."
+
+#: Controller/UsersController.php:84
+msgid "Unable to remove this user"
+msgstr "Impossible de supprimer cet utilisateur."
+
+#: Controller/UsersController.php:101
+msgid ""
+"Your inscription has been recorded and will be validated by an admin soon."
+msgstr ""
+"Votre inscription a été enregistrée et sera bientôt validée par un "
+"administrateur."
+
+#: Controller/UsersController.php:103
+msgid ""
+"As you are the first user here, your account has been automatically "
+"activated."
+msgstr ""
+"Comme vous êtes le premier utilisateur ici, votre compte a été "
+"automatiquement activé."
+
+#: Controller/UsersController.php:108
+msgid ""
+"An error occurred during the user creation. Be sure you did not miss "
+"anything or your password is 12 characters long."
+msgstr ""
+"Une erreur est arrivée pendant la création de l'utilisateur. Soyez sûr(e) de "
+"ne rien oublier, ou que votre mot de passe fasse au moins 12 caractères."
+
+#: Controller/UsersController.php:118
+msgid "Wrong credentials. Or may be your account is not enabled yet."
+msgstr ""
+"Identifiants incorrects. Ou peut-être que votre compte n'a pas encore été "
+"activé."
 
 #: View/Comments/admin_manage.ctp:3
 msgid "Manage comments - "
@@ -156,6 +213,7 @@ msgid "Submitted on"
 msgstr "Créé le"
 
 #: View/Comments/admin_manage.ctp:26;34 View/Comments/admin_unread.ctp:26;34
+#: View/Users/admin_index.ctp:38;45;53
 msgid "Are you sure?"
 msgstr "Êtes-vous certain de vouloir faire cela ?"
 
@@ -179,7 +237,11 @@ msgstr "Carte"
 msgid "Comments"
 msgstr "Commentaires"
 
-#: View/Layouts/admin.ctp:66
+#: View/Layouts/admin.ctp:62
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: View/Layouts/admin.ctp:72
 msgid "Logout"
 msgstr "Déconnexion"
 
@@ -260,40 +322,14 @@ msgstr "Êtes-vous certain de vouloir faire cela ?"
 #: View/Pages/admin_index.ctp:88
 msgid "%s post"
 msgid_plural "%s posts"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s billet"
+msgstr[1] "%s billets"
 
 #: View/Pages/admin_index.ctp:91
 msgid "%s album"
 msgid_plural "%s albums"
-msgstr[0] ""
-msgstr[1] ""
-
-#: View/Pages/hash.ctp:3;12
-msgid "Generate credentials"
-msgstr "Générer des identifiants"
-
-#: View/Pages/hash.ctp:6
-msgid ""
-"This page allows you to generate credentials for new users. Then you need to "
-"manually copy these credentials into your MySQL database."
-msgstr ""
-"Cette page vous permet de générer des identifiants pour les nouveaux "
-"utilisateurs. Une fois le couple identifiant / mot de passe générés, vous "
-"devez l'enregistrer manuellement dans la base de données MySQL de "
-"l'application."
-
-#: View/Pages/hash.ctp:10;23 View/Users/login.ctp:12
-msgid "Username"
-msgstr "Nom d'utilisateur"
-
-#: View/Pages/hash.ctp:11;24 View/Users/login.ctp:16
-msgid "Password"
-msgstr "Mot de passe"
-
-#: View/Pages/hash.ctp:20
-msgid "Credentials successfully generated!"
-msgstr "Identifiants générés avec succès !"
+msgstr[0] "%s album"
+msgstr[1] "%s albums"
 
 #: View/Pages/index.ctp:46
 msgid "Welcome !"
@@ -303,7 +339,7 @@ msgstr "Bienvenue !"
 msgid "Nothing to see here."
 msgstr "Rien à voir par ici."
 
-#: View/Pages/index.ctp:50;69;70 View/Users/login.ctp:17
+#: View/Pages/index.ctp:50;69;70 View/Users/login.ctp:27
 msgid "Login"
 msgstr "Connexion"
 
@@ -342,8 +378,8 @@ msgstr "Chargement des images, merci de patienter..."
 #: View/Pages/index.ctp:59
 msgid "%s photo"
 msgid_plural "%s photos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s photo"
+msgstr[1] "%s photos"
 
 #: View/Posts/admin_add.ctp:16
 msgid "Add a photo in:"
@@ -393,9 +429,54 @@ msgstr "Lieu de prise de vue"
 msgid "Description"
 msgstr "Description"
 
+#: View/Users/admin_index.ctp:3
+msgid "Users management"
+msgstr "Gestion des utilisateurs"
+
+#: View/Users/admin_index.ctp:13 View/Users/login.ctp:13
+#: View/Users/signin.ctp:13
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: View/Users/admin_index.ctp:14
+msgid "Status"
+msgstr "État"
+
+#: View/Users/admin_index.ctp:15
+msgid "Management"
+msgstr "Gestion"
+
+#: View/Users/admin_index.ctp:27
+msgid "Active"
+msgstr "Activé"
+
+#: View/Users/admin_index.ctp:29
+msgid "Inactive"
+msgstr "Désactivé"
+
+#: View/Users/admin_index.ctp:65
+msgid "You are the only one here, no users to manage."
+msgstr "Vous êtes seul(e) ici, aucun utilisateur à gérer."
+
 #: View/Users/login.ctp:5
 msgid "One Day, One Picture - Login"
 msgstr "One Day, One PIcture - Connexion"
+
+#: View/Users/login.ctp:18 View/Users/signin.ctp:18
+msgid "Password"
+msgstr "Mot de passe"
+
+#: View/Users/login.ctp:20
+msgid "Need an account?"
+msgstr "Besoin d'un compte ?"
+
+#: View/Users/signin.ctp:5
+msgid "One Day, One Picture - Registration"
+msgstr "One Day, One PIcture - Enregistrement"
+
+#: View/Users/signin.ctp:29
+msgid "Register"
+msgstr "Enregistrement"
 
 #: Model/Album.php:validation for field title Model/Comment.php:validation
 #: post_id;validation album_id
@@ -409,3 +490,36 @@ msgstr ""
 #: Model/Comment.php:validation for field post_id;validation album_id
 msgid "ruleIsNumeric"
 msgstr ""
+
+#: Model/User.php:validation for field username
+msgid "Username already used"
+msgstr "Nom d'utilisateur déjà utilisé"
+
+#: Model/User.php:validation for field username
+msgid "The username cannot be empty"
+msgstr "Le nom d'utilisateur ne peut pas être vide"
+
+#: Model/User.php:validation for field password
+msgid "Your password must be at least 12 characters long"
+msgstr "Votre mot de passe doit faire au moins 12 caractères"
+
+#~ msgid "Generate Hash"
+#~ msgstr "Générer un hash"
+
+#~ msgid "Wrong credentials."
+#~ msgstr "Identifiants invalides."
+
+#~ msgid "Generate credentials"
+#~ msgstr "Générer des identifiants"
+
+#~ msgid ""
+#~ "This page allows you to generate credentials for new users. Then you need "
+#~ "to manually copy these credentials into your MySQL database."
+#~ msgstr ""
+#~ "Cette page vous permet de générer des identifiants pour les nouveaux "
+#~ "utilisateurs. Une fois le couple identifiant / mot de passe générés, vous "
+#~ "devez l'enregistrer manuellement dans la base de données MySQL de "
+#~ "l'application."
+
+#~ msgid "Credentials successfully generated!"
+#~ msgstr "Identifiants générés avec succès !"

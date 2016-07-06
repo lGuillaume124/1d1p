@@ -5,7 +5,6 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-09-26 19:22+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -83,11 +82,7 @@ msgstr ""
 msgid "This comment has already been unapproved."
 msgstr ""
 
-#: Controller/PagesController.php:78
-msgid "Generate Hash"
-msgstr ""
-
-#: Controller/PagesController.php:143
+#: Controller/PagesController.php:128
 #: View/Layouts/admin.ctp:41
 msgid "Dashboard"
 msgstr ""
@@ -136,8 +131,56 @@ msgstr ""
 msgid "Unable to upload your photo."
 msgstr ""
 
-#: Controller/UsersController.php:12
-msgid "Wrong credentials."
+#: Controller/UsersController.php:25;51;77
+msgid "This user does not exist."
+msgstr ""
+
+#: Controller/UsersController.php:32
+msgid "User disabled."
+msgstr ""
+
+#: Controller/UsersController.php:34
+msgid "Unable to disable this user."
+msgstr ""
+
+#: Controller/UsersController.php:37
+msgid "This user is already disabled."
+msgstr ""
+
+#: Controller/UsersController.php:58
+msgid "User enabled."
+msgstr ""
+
+#: Controller/UsersController.php:60
+msgid "Unable to enable this user."
+msgstr ""
+
+#: Controller/UsersController.php:63
+msgid "This user is already enabled."
+msgstr ""
+
+#: Controller/UsersController.php:82
+msgid "User removed."
+msgstr ""
+
+#: Controller/UsersController.php:84
+msgid "Unable to remove this user"
+msgstr ""
+
+#: Controller/UsersController.php:101
+msgid "Your inscription has been recorded and will be validated by an admin soon."
+msgstr ""
+
+#: Controller/UsersController.php:103
+msgid "As you are the first user here, your account has been automatically activated."
+msgstr ""
+
+#: Controller/UsersController.php:108
+msgid "An error occurred during the user creation. Be sure you did not miss anything or your password is 12 characters long."
+msgstr ""
+
+#: Controller/UsersController.php:118
+msgid "Wrong credentials. Or may be your account is not enabled yet."
 msgstr ""
 
 #: View/Comments/admin_manage.ctp:3
@@ -160,6 +203,7 @@ msgstr ""
 
 #: View/Comments/admin_manage.ctp:26;34
 #: View/Comments/admin_unread.ctp:26;34
+#: View/Users/admin_index.ctp:38;45;53
 msgid "Are you sure?"
 msgstr ""
 
@@ -183,7 +227,11 @@ msgstr ""
 msgid "Comments"
 msgstr ""
 
-#: View/Layouts/admin.ctp:66
+#: View/Layouts/admin.ctp:62
+msgid "Users"
+msgstr ""
+
+#: View/Layouts/admin.ctp:72
 msgid "Logout"
 msgstr ""
 
@@ -276,28 +324,6 @@ msgid_plural "%s albums"
 msgstr[0] ""
 msgstr[1] ""
 
-#: View/Pages/hash.ctp:3;12
-msgid "Generate credentials"
-msgstr ""
-
-#: View/Pages/hash.ctp:6
-msgid "This page allows you to generate credentials for new users. Then you need to manually copy these credentials into your MySQL database."
-msgstr ""
-
-#: View/Pages/hash.ctp:10;23
-#: View/Users/login.ctp:12
-msgid "Username"
-msgstr ""
-
-#: View/Pages/hash.ctp:11;24
-#: View/Users/login.ctp:16
-msgid "Password"
-msgstr ""
-
-#: View/Pages/hash.ctp:20
-msgid "Credentials successfully generated!"
-msgstr ""
-
 #: View/Pages/index.ctp:46
 msgid "Welcome !"
 msgstr ""
@@ -307,7 +333,7 @@ msgid "Nothing to see here."
 msgstr ""
 
 #: View/Pages/index.ctp:50;69;70
-#: View/Users/login.ctp:17
+#: View/Users/login.ctp:27
 msgid "Login"
 msgstr ""
 
@@ -403,8 +429,55 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
+#: View/Users/admin_index.ctp:3
+msgid "Users management"
+msgstr ""
+
+#: View/Users/admin_index.ctp:13
+#: View/Users/login.ctp:13
+#: View/Users/signin.ctp:13
+msgid "Username"
+msgstr ""
+
+#: View/Users/admin_index.ctp:14
+msgid "Status"
+msgstr ""
+
+#: View/Users/admin_index.ctp:15
+msgid "Management"
+msgstr ""
+
+#: View/Users/admin_index.ctp:27
+msgid "Active"
+msgstr ""
+
+#: View/Users/admin_index.ctp:29
+msgid "Inactive"
+msgstr ""
+
+#: View/Users/admin_index.ctp:65
+msgid "You are the only one here, no users to manage."
+msgstr ""
+
 #: View/Users/login.ctp:5
 msgid "One Day, One Picture - Login"
+msgstr ""
+
+#: View/Users/login.ctp:18
+#: View/Users/signin.ctp:18
+msgid "Password"
+msgstr ""
+
+#: View/Users/login.ctp:20
+msgid "Need an account?"
+msgstr ""
+
+#: View/Users/signin.ctp:5
+msgid "One Day, One Picture - Registration"
+msgstr ""
+
+#: View/Users/signin.ctp:29
+msgid "Register"
 msgstr ""
 
 #: Model/Album.php:validation for field title
@@ -418,5 +491,17 @@ msgstr ""
 
 #: Model/Comment.php:validation for field post_id;validation for field album_id
 msgid "ruleIsNumeric"
+msgstr ""
+
+#: Model/User.php:validation for field username
+msgid "Username already used"
+msgstr ""
+
+#: Model/User.php:validation for field username
+msgid "The username cannot be empty"
+msgstr ""
+
+#: Model/User.php:validation for field password
+msgid "Your password must be at least 12 characters long"
 msgstr ""
 

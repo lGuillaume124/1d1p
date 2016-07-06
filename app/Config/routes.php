@@ -35,6 +35,7 @@
     Router::connect('/dashboard/delete/*', array('controller' => 'posts', 'action' => 'delete', 'admin' => true));
     Router::connect('/dashboard/logout', array('controller' => 'users', 'action' => 'logout', 'admin' => false));
     Router::connect('/login', array('controller' => 'users', 'action' => 'login', 'admin' => false));
+    Router::connect('/signin', array('controller' => 'users', 'action' => 'signin', 'admin' => false));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

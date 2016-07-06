@@ -10,7 +10,8 @@ class BootstrapFormHelper extends FormHelper{
             'inputDefaults' => array(
                 'div' => array('class' => 'form-group'),
                 'label' => false,
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'error' => false
             )
         );
 

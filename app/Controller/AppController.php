@@ -20,6 +20,7 @@
  */
 
 App::uses('Controller', 'Controller');
+App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 /**
  * Application Controller
@@ -42,7 +43,11 @@ class AppController extends Controller {
         'Image',
         'Auth' => array(
             'authenticate' => array(
-                'Form' => array('passwordHasher' => 'Blowfish')),
+                'Form' => array(
+                    'passwordHasher' => 'Blowfish',
+                    'scope' => array('is_active' => true)
+                    )
+            ),
             'loginAction' => array(
                 'controller' => 'users',
                 'action' => 'login',
