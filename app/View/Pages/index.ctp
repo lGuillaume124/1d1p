@@ -8,7 +8,7 @@
             foreach($album['Post'] as $p){
                 if($p['itinerary']){
                     $photos .= '{id: "postMarker'.$p['id'].'", lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "'.$p['title'].'", itinerary: true}, ';
-                }else{
+                } else {
                     $photos .= '{id: "postMarker'.$p['id'].'", lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "'.$p['title'].'"}, ';
                 }
             }
@@ -41,7 +41,7 @@
 
         <?php echo $this->Session->flash(); ?>
 
-        <?php if(empty($album)){ ?>
+        <?php if (empty($album)): ?>
             <div class="alert alert-info">
                 <h4><?php echo __('Welcome !'); ?></h4>
                 <p><?php
@@ -51,13 +51,13 @@
                     }
                 ?></p>
             </div>
-        <?php }else{ ?>
+        <?php else: ?>
             <div class="col-xs-12">
                 <!-- Albums selecter -->
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <?php echo $album['Album']['title'].' ('.__n("%s photo", "%s photos", count($album['Post']), count($album['Post'])).') - '.__('Created on').' '.$this->Time->format($album['Album']['created'], '%d/%m/%Y'); ?>
-                        <?php if(null == AuthComponent::user('id')){
+                        <?php if (null == AuthComponent::user('id')) {
                             echo $this->Html->link(
                                 '<i class="glyphicon glyphicon-log-in"></i>',
                                 array('controller' => 'users', 'action' => 'login'),
@@ -74,7 +74,7 @@
                         }
                         ?>
                     </div>
-                    <?php if(count($albums) >= 1): ?>
+                    <?php if (count($albums) >= 1): ?>
                         <div class="panel-body">
                             <div class="col-xs-12">
                                 <?php echo $this->Form->create(); ?>
@@ -89,7 +89,7 @@
                     <?php endif; ?>
                 </div>
 
-                <?php foreach($album['Post'] as $post): ?>
+                <?php foreach ($album['Post'] as $post): ?>
                     <!-- Timeline -->
                     <div class="jumbotron">
                         <div class="jumbotron-photo">
@@ -110,7 +110,7 @@
                             </h5>
                             <p><?php echo $post['content']; ?></p>
                             <span class="timeline-icon show-comments" post-id="<?php echo $post['id']; ?>" comments-counter="<?php echo $post['comments_counter']; ?>" style="margin-left: 0;">
-                                <?php if(isset($post['comments_counter'])){
+                                <?php if (isset($post['comments_counter'])) {
                                     echo $post['comments_counter'];
                                 } ?>
                                 <i class="glyphicon glyphicon-comment"></i>
@@ -219,24 +219,24 @@
                             <div id="lazy-carousel" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <?php $slides = 0; ?>
-                                    <?php foreach($album['Post'] as $post){ ?>
-                                        <?php if($slides == 0){ ?>
+                                    <?php foreach ($album['Post'] as $post): ?>
+                                        <?php if ($slides == 0): ?>
                                             <div class="item active">
                                                 <img item-src="<?php echo $this->Image->thumbPath(DS.'img'.DS.'photos'.DS.$post['picture'], 900); ?>" />
                                                 <div class="carousel-caption">
                                                     <h4><?php echo $post['title']; ?></h4>
                                                 </div>
                                             </div>
-                                        <?php }else{ ?>
+                                        <?php else: ?>
                                             <div class="item">
                                                 <img item-src="<?php echo $this->Image->thumbPath(DS.'img'.DS.'photos'.DS.$post['picture'], 900); ?>" />
                                                 <div class="carousel-caption">
                                                     <h4><?php echo $post['title']; ?></h4>
                                                 </div>
                                             </div>
-                                        <?php } ?>
+                                        <?php endif; ?>
                                         <?php $slides++; ?>
-                                    <?php } ?>
+                                    <?php endforeach; ?>
                                 </div>
 
                                 <!-- Controls -->
@@ -255,6 +255,6 @@
                     </div>
                 </div>
             </div>
-        <?php } ?>
+        <?php endif; ?>
     </div>
 </div>

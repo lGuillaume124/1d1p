@@ -4,15 +4,15 @@
     </h3>
     <hr />
 
-    <?php if(empty($unapproved_comments)){ ?>
+    <?php if (empty($unapproved_comments)): ?>
 
         <div class="alert alert-info">
             <p><?php echo __('All comments has been moderated.'); ?></p>
         </div>
 
-    <?php }else{ ?>
+    <?php else: ?>
 
-        <?php foreach($unapproved_comments as $unapproved_comment){ ?>
+        <?php foreach($unapproved_comments as $unapproved_comment): ?>
 
             <div class="panel panel-primary panel-comment">
                 <div class="panel-heading lg-panel-heading">
@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-        <?php } ?>
+        <?php endforeach; ?>
 
-    <?php } ?>
+    <?php endif; ?>
 </div>

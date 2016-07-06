@@ -4,15 +4,15 @@
     </h3>
     <hr />
 
-    <?php if(empty($unapproved_comments) && empty($approved_comments)){ ?>
+    <?php if (empty($unapproved_comments) && empty($approved_comments)): ?>
 
         <div class="alert alert-info">
             <p><?php echo __('No comments for this post.'); ?></p>
         </div>
 
-    <?php }else{ ?>
+    <?php else: ?>
 
-        <?php foreach($unapproved_comments as $unapproved_comment){ ?>
+        <?php foreach($unapproved_comments as $unapproved_comment): ?>
 
             <div class="panel panel-primary panel-comment">
                 <div class="panel-heading lg-panel-heading">
@@ -39,9 +39,9 @@
                 </div>
             </div>
 
-        <?php } ?>
+        <?php endforeach; ?>
 
-        <?php foreach($approved_comments as $approved_comment){ ?>
+        <?php foreach($approved_comments as $approved_comment): ?>
 
             <div class="panel panel-default panel-comment">
                 <div class="panel-heading lg-panel-heading">
@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-        <?php } ?>
+        <?php endforeach; ?>
 
-    <?php } ?>
+    <?php endif; ?>
 </div>

@@ -13,7 +13,7 @@
 <?php echo $this->end(); ?>
 
 <div class="col-xs-12" style="margin-top: 10px;">
-    <?php if(empty($album)): ?>
+    <?php if (empty($album)): ?>
         <div class="alert alert-info">
             <h4><?php echo __('Welcome').' '.AuthComponent::user('username').'.'; ?></h4>
             <p><?php echo __('You have not yet created albums.'); ?></p>
@@ -46,7 +46,7 @@
 </div>
 
 <!-- Albums edition form -->
-<?php if(!empty($album)): ?>
+<?php if (!empty($album)): ?>
 
     <div class="modal fade" id="<?php echo 'eModal'.$album['Album']['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo 'eModal'.$v['Album']['id'].'label'; ?>" aria-hidden="true">
         <div class="modal-dialog">
@@ -73,7 +73,7 @@
 
 <?php endif; ?>
 
-<?php if(!empty($album)): ?>
+<?php if (!empty($album)): ?>
 
     <div class="col-xs-12">
         <div class="panel panel-primary">
@@ -149,9 +149,9 @@
         <div class="clearfix"></div>
         <hr style="margin-top: 0"/>
 
-        <?php if(!empty($album['Post'])): ?>
+        <?php if (!empty($album['Post'])): ?>
             <div id="grid" data-columns>
-                <?php foreach($album['Post'] as $post): ?>
+                <?php foreach ($album['Post'] as $post): ?>
 
                     <div class="thumbnail post-thumbnail">
                         <?php echo $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 510)); ?>
@@ -176,13 +176,13 @@
                             __('Are you sure ?')
                         ); ?>
 
-                        <?php if($post['unapproved_comments'] > 0){
+                        <?php if ($post['unapproved_comments'] > 0) {
                             echo $this->Html->link(
                                 $post['unapproved_comments'].' <i class="glyphicon glyphicon-comment"></i>',
                                 array('controller' => 'comments', 'action' => 'manage', $post['id']),
                                 array('class' => 'btn btn-sm btn-warning btn-mgmt btn-new-comments', 'escape' => false)
                             );
-                        }elseif($post['unapproved_comments'] == 0 && $post['approved_comments'] > 0){
+                        } elseif ($post['unapproved_comments'] == 0 && $post['approved_comments'] > 0) {
                             echo $this->Html->link(
                                 '<i class="glyphicon glyphicon-comment"></i>',
                                 array('controller' => 'comments', 'action' => 'manage', $post['id']),

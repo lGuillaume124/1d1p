@@ -21,11 +21,11 @@
 	</script>
 </head>
 <body>
-    <?php if(isset($this->request->params['pass'][0]) && $this->request->params['pass'][0] == 'home') { ?>
+    <?php if (isset($this->request->params['pass'][0]) && $this->request->params['pass'][0] == 'home'): ?>
         <nav class="navbar navbar-inverse navbar-default nav-default" role="navigation">
-    <?php }else{ ?>
+    <?php else: ?>
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <?php }  ?>
+    <?php endif;  ?>
         <div class="container-fluid">
             <div class="navbar-header">
                 <?php echo $this->Html->link(
@@ -70,9 +70,9 @@
         </div>
     </nav>
 
-    <?php if(isset($this->request->params['pass'][0]) && $this->request->params['pass'][0] == 'home'){
+    <?php if (isset($this->request->params['pass'][0]) && $this->request->params['pass'][0] == 'home') {
         echo $this->fetch('content');
-    }else{ ?>
+    } else { ?>
         <div class="container" style="margin-top: 60px;">
             <div class="col-xs-12" style="margin-top: 10px">
                 <?php echo $this->Session->flash(); ?>

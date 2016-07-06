@@ -13,7 +13,7 @@
                 <?= $this->Form->end(); ?>
             </div>
 
-            <?php if(isset($user)): ?>
+            <?php if (isset($user)): ?>
             <div class="col-xs-12 col-sm-8 col-sm-offset-2" style="margin-top: 20px;">
                 <div class="panel panel-success">
                     <div class="panel-heading">

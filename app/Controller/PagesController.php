@@ -5,29 +5,29 @@ App::uses('AppController', 'Controller');
 class PagesController extends AppController {
     public $uses = array('');
 
-    public function beforeFilter(){
+    public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('index', 'hash');
     }
 
-	public function index(){
+	public function index() {
         $this->loadModel('Album');
         $this->loadModel('Comment');
         $album = null;
         $albums = array();
         $title = 'One Day, One Picture';
 
-        if(!isset($this->request->query['a']) || empty($this->request->query['a']) || $this->request->query['a'] == 'latest'){
+        if (!isset($this->request->query['a']) || empty($this->request->query['a']) || $this->request->query['a'] == 'latest') {
             $album = $this->Album->find('first', array(
                 'order' => 'Album.created DESC'
             ));
         }
 
-        if(isset($this->request->query['a']) && preg_match('/\d+/', $this->request->query['a'])){
+        if (isset($this->request->query['a']) && preg_match('/\d+/', $this->request->query['a'])) {
             $album = $this->Album->findById($this->request->query['a']);
         }
 
-        if(!empty($album)){
+        if (!empty($album)) {
             $albums_list = $this->Album->find('all', array(
                 'recursive' => false,
                 'conditions' => array('Album.id !=' => $album['Album']['id'])
@@ -39,11 +39,11 @@ class PagesController extends AppController {
                 'recursive' => -1
             ));
 
-            foreach($album['Post'] as $kp => $post){
+            foreach ($album['Post'] as $kp => $post) {
                 $comments_counter = 0;
 
-                foreach($comments as $kc => $comment){
-                    if($comment['Comment']['post_id'] == $post['id']){
+                foreach ($comments as $kc => $comment) {
+                    if ($comment['Comment']['post_id'] == $post['id']) {
                         $comments_counter++;
                     }
                 }
@@ -52,22 +52,22 @@ class PagesController extends AppController {
             }
 
             $title = $album['Album']['title'].' - One Day, One Picture';
-        }else{
+        } else {
             $albums_list = array();
         }
 
-        foreach($albums_list as $v){
+        foreach ($albums_list as $v) {
             $albums[$this->request->here.'?a='.$v['Album']['id']] = $v['Album']['title'];
         }
 
         $this->set(array('title_for_layout' => $title, 'albums' => $albums, 'album' => $album));
 	}
 
-    public function hash(){
-        if($this->request->is('post')){
+    public function hash() {
+        if ($this->request->is('post')) {
             $user['username'] = $this->request->data['Page']['username'];
 
-            if(isset($this->request->data['Page']['password'])){
+            if (isset($this->request->data['Page']['password'])) {
                 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
                 $passwordHasher = new BlowfishPasswordHasher();
                 $user['password'] = $passwordHasher->hash($this->request->data['Page']['password']);
@@ -78,7 +78,7 @@ class PagesController extends AppController {
         $this->set(array('title_for_layout' => __('Generate Hash').' - One Day, One Picture'));
     }
 
-    public function admin_index(){
+    public function admin_index() {
         $this->loadModel('Album');
         $this->loadModel('Post');
         $this->loadModel('Comment');
@@ -86,17 +86,17 @@ class PagesController extends AppController {
         $album = null;
         $albums = array();
 
-        if(!isset($this->request->query['a']) || empty($this->request->query['a']) || $this->request->query['a'] == 'latest'){
+        if (!isset($this->request->query['a']) || empty($this->request->query['a']) || $this->request->query['a'] == 'latest') {
             $album = $this->Album->find('first', array(
                 'order' => 'Album.created DESC'
             ));
         }
 
-        if(isset($this->request->query['a']) && preg_match('/\d+/', $this->request->query['a'])){
+        if (isset($this->request->query['a']) && preg_match('/\d+/', $this->request->query['a'])) {
             $album = $this->Album->findById($this->request->query['a']);
         }
 
-        if(!empty($album)){
+        if (!empty($album)) {
             $albums_list = $this->Album->find('all', array(
                 'recursive' => false,
                 'conditions' => array('Album.id !=' => $album['Album']['id'])
@@ -108,15 +108,15 @@ class PagesController extends AppController {
                 'recursive' => -1
             ));
 
-            foreach($album['Post'] as $kp => $post){
+            foreach ($album['Post'] as $kp => $post) {
                 $unapproved_comments = 0;
                 $approved_comments = 0;
 
-                foreach($comments as $kc => $comment){
-                    if($comment['Comment']['post_id'] == $post['id']){
-                        if($comment['Comment']['approved'] == true){
+                foreach ($comments as $kc => $comment) {
+                    if ($comment['Comment']['post_id'] == $post['id']) {
+                        if ($comment['Comment']['approved'] == true) {
                             $approved_comments++;
-                        }else{
+                        } else {
                             $unapproved_comments++;
                         }
                     }
@@ -125,15 +125,15 @@ class PagesController extends AppController {
                 $album['Post'][$kp]['unapproved_comments'] = $unapproved_comments;
                 $album['Post'][$kp]['approved_comments'] = $approved_comments;
 
-                if(strlen($post['content']) > 61){
+                if (strlen($post['content']) > 61) {
                     $album['Post'][$kp]['content'] = substr($post['content'], 0, 60).'...';
                 }
             }
-        }else{
+        } else {
             $albums_list = array();
         }
 
-        foreach($albums_list as $v){
+        foreach ($albums_list as $v) {
             $albums[$this->request->here.'?a='.$v['Album']['id']] = $v['Album']['title'];
         }
 
