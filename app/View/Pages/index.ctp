@@ -4,14 +4,22 @@
 <script type="text/javascript">
     <?php
         $photos = '';
-        if(!empty($album['Post'])){
-            foreach($album['Post'] as $p){
-                if($p['itinerary']){
+        if (!empty($album['Post'])) {
+
+            foreach ($album['Post'] as $p) {
+
+                if ($p['itinerary']) {
+
                     $photos .= '{id: "postMarker'.$p['id'].'", lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "'.$p['title'].'", itinerary: true}, ';
+
                 } else {
+
                     $photos .= '{id: "postMarker'.$p['id'].'", lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "'.$p['title'].'"}, ';
+
                 }
+
             }
+
             $photos = substr($photos, 0, -2);
         }
     ?>
@@ -90,6 +98,7 @@
                 </div>
 
                 <?php foreach ($album['Post'] as $post): ?>
+                    <?php $comments_count = count($post['Comment']); ?>
                     <!-- Timeline -->
                     <div class="jumbotron">
                         <div class="jumbotron-photo">
@@ -109,9 +118,9 @@
                                 <small><?php echo $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M').' '.$post['post_dt_offset']; ?></small>
                             </h5>
                             <p><?php echo $post['content']; ?></p>
-                            <span class="timeline-icon show-comments" post-id="<?php echo $post['id']; ?>" comments-counter="<?php echo $post['comments_counter']; ?>" style="margin-left: 0;">
-                                <?php if (isset($post['comments_counter'])) {
-                                    echo $post['comments_counter'];
+                            <span class="timeline-icon show-comments" post-id="<?php echo $post['id']; ?>" comments-counter="<?php echo $comments_count; ?>" style="margin-left: 0;">
+                                <?php if ($comments_count > 0) {
+                                    echo $comments_count;
                                 } ?>
                                 <i class="glyphicon glyphicon-comment"></i>
                             </span>

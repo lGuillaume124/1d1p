@@ -48,10 +48,10 @@
 <!-- Albums edition form -->
 <?php if (!empty($album)): ?>
 
-    <div class="modal fade" id="<?php echo 'eModal'.$album['Album']['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo 'eModal'.$v['Album']['id'].'label'; ?>" aria-hidden="true">
+    <div class="modal fade" id="<?php echo 'eModal' . $album['Album']['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo 'eModal' . $album['Album']['id'] . 'label'; ?>" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <?php echo $this->Form->create('Album', array('url' => array('controller' => 'albums', 'action' => 'edit/'.$album['Album']['id']))); ?>
+                <?php echo $this->Form->create('Album', array('url' => array('controller' => 'albums', 'action' => 'edit', $album['Album']['id']))); ?>
                 <?php echo $this->Form->input('id', array('type' => 'hidden', 'value' => $album['Album']['id'])); ?>
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?php echo __('Close'); ?></span></button>
@@ -75,6 +75,8 @@
 
 <?php if (!empty($album)): ?>
 
+    <?php $posts_count = count($album['Post']); ?>
+
     <div class="col-xs-12">
         <div class="panel panel-primary">
             <div class="panel-heading lg-panel-heading">
@@ -83,17 +85,10 @@
             </div>
             <div class="panel-body text-left">
                 <p>
-                    <?php echo __('You currently have').' '; ?>
-                    <span class="label label-default">
-                        <?php echo __n("%s post", "%s posts", $stats['pcount'], $stats['pcount']); ?>
-                    </span>&nbsp;in&nbsp;
-                    <span class="label label-default">
-                        <?php echo __n("%s album", "%s albums", $stats['acount'], $stats['acount']); ?>
-                    </span>
+                    <?php echo __('You currently have ') . __n("%s post", "%s posts", $posts_count, $posts_count) . __(' in this album.'); ?>
                 </p>
 
-
-                <?php if(count($albums) >= 1){
+                <?php if (count($albums) >= 1) {
                     echo $this->Form->input('fields', array(
                         'id' => 'album-selecter',
                         'label' => false,
@@ -153,6 +148,21 @@
             <div id="grid" data-columns>
                 <?php foreach ($album['Post'] as $post): ?>
 
+                    <?php $approved_count = 0; ?>
+                    <?php $unapproved_count = 0; ?>
+
+                    <?php if (!empty($post['Comment'])) {
+                        foreach ($post['Comment'] as $comment) {
+
+                            if ($comment['approved']) {
+                                $approved_count++;
+                            } else {
+                                $unapproved_count ++;
+                            }
+
+                        }
+                    } ?>
+
                     <div class="thumbnail post-thumbnail">
                         <?php echo $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 510)); ?>
                         <div class="caption">
@@ -176,13 +186,13 @@
                             __('Are you sure ?')
                         ); ?>
 
-                        <?php if ($post['unapproved_comments'] > 0) {
+                        <?php if ($unapproved_count > 0) {
                             echo $this->Html->link(
-                                $post['unapproved_comments'].' <i class="glyphicon glyphicon-comment"></i>',
+                                $unapproved_count . ' <i class="glyphicon glyphicon-comment"></i>',
                                 array('controller' => 'comments', 'action' => 'manage', $post['id']),
                                 array('class' => 'btn btn-sm btn-warning btn-mgmt btn-new-comments', 'escape' => false)
                             );
-                        } elseif ($post['unapproved_comments'] == 0 && $post['approved_comments'] > 0) {
+                        } elseif ($unapproved_count == 0 && $approved_count > 0) {
                             echo $this->Html->link(
                                 '<i class="glyphicon glyphicon-comment"></i>',
                                 array('controller' => 'comments', 'action' => 'manage', $post['id']),
@@ -192,6 +202,10 @@
                     </div>
                 <?php endforeach; ?>
 
+        <?php else: ?>
+            <div class="alert alert-info">
+                <?php echo __('There is no posts in this album yet.'); ?>
+            </div>
         <?php endif; ?>
     </div>
 
