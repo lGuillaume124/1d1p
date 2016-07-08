@@ -10,32 +10,28 @@ class CommentsController extends AppController {
     }
 
     public function add() {
-        if ($this->request->is('get')) {
+
+        if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
 
-        $this->loadModel('Post');
-
         if ($this->request->is('post')) {
+
             $this->Comment->create();
 
-            $album_id = $this->Post->find('first', array(
-                'fields' => 'Post.album_id',
-                'conditions' => array('Post.id' => $this->request->data['Comment']['post_id']),
-                'recursive' => false
-            ));
-
-            $this->request->data['Comment']['album_id'] = $album_id['Post']['album_id'];
-
             if ($this->Comment->save($this->request->data)) {
+
                 $this->Flash->success(__('Your comment is now awaiting for approval. Thank you!'));
                 $this->redirect(array('controller' => 'pages', 'action' => 'index', 'home'));
+
             }
+
         }
     }
 
     public function admin_approve($id) {
-        if ($this->request->is('get')) {
+
+        if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
 
@@ -45,17 +41,24 @@ class CommentsController extends AppController {
             'conditions' => array('Comment.id' => $id)
         ));
 
-        if (!$comment || empty($comment)) {
+        if (empty($comment)) {
+
             $this->Flash->error(__('Invalid Comment ID'));
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
+
         } else {
+
             if ($comment['Comment']['approved'] == false) {
+
                 $this->Comment->id = $id;
                 if (!$this->Comment->saveField('approved', true)) {
                    $this->Flash->error(__('Unable to validate this comment.'));
                 }
+
             } else {
+
                 $this->Flash->info(__('This comment has already been approved.'));
+
             }
         }
 
@@ -63,56 +66,49 @@ class CommentsController extends AppController {
     }
 
     public function admin_delete($id) {
-        if ($this->request->is('get')) {
+
+        if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
 
-        $post = $this->Comment->findById($id);
-
         if ($this->Comment->delete($id)) {
-            $this->Flash->success(__('Comment '.$id.' ('.$post['Post']['title'].') has been successfully deleted!'));
+
+            $this->Flash->success(__('Comment %s successfully deleted.', h($id)));
+
         } else {
+
             $this->Flash->error(__('Unable to delete this comment'));
+
         }
 
         $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
     }
 
     public function admin_manage($id) {
+
         if (!$id) {
             throw new NotFoundException(__('Invalid Post ID.'));
         }
 
-        $unapproved_comments = array();
-        $approved_comments = array();
-
+        $title_for_layout = __('Comments management');
         $this->loadModel('Post');
-        $post = $this->Post->findById($id);
-
-        if (!$post) {
-            $this->Flash->error(__('Invalid Post ID.'));
-            $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
-        }
 
         $comments = $this->Comment->find('all', array(
-            'recursive' => -1,
-            'conditions' => array('Comment.post_id' => $id),
-            'order' => 'Comment.created DESC'
+            'conditions' => array('Comment.post_id' => $id)
         ));
 
-        foreach ($comments as $k => $comment) {
-            if ($comment['Comment']['approved'] == false) {
-                $unapproved_comments[] = $comment;
-            } else {
-                $approved_comments[] = $comment;
-            }
-        }
+        $post = $this->Post->find('first', array(
+            'fields' => 'Post.title',
+            'conditions' => array('Post.id' => $id)
+        ));
 
-        $this->set(array('title_for_layout' => __('Manage comments').' - One Day, One Picture', 'unapproved_comments' => $unapproved_comments, 'approved_comments' => $approved_comments, 'post' => $post));
+        $this->set(compact('title_for_layout', 'comments', 'post'));
+
     }
 
     public function admin_unapprove($id) {
-        if ($this->request->is('get')) {
+
+        if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
 
@@ -122,17 +118,26 @@ class CommentsController extends AppController {
             'conditions' => array('Comment.id' => $id)
         ));
 
-        if (!$comment || empty($comment)) {
+        if (empty($comment)) {
+
             $this->Flash->error(__('Invalid Comment ID'));
             $this->redirect(array('controller' => 'pages', 'action' => 'index', 'admin' => true));
+
         } else {
+
             if ($comment['Comment']['approved'] == true) {
+
                 $this->Comment->id = $id;
                 if (!$this->Comment->saveField('approved', false)) {
+
                     $this->Flash->error(__('Unable to unapproved this comment.'));
+
                 }
+
             } else {
+
                 $this->Flash->info(__('This comment has already been unapproved.'));
+
             }
         }
 
@@ -140,21 +145,23 @@ class CommentsController extends AppController {
     }
 
     public function admin_unread() {
+
         $comments = $this->Comment->find('all', array(
             'conditions' => array('approved' => false)
         ));
 
-        $this->set('unapproved_comments', $comments);
+        $this->set(compact('comments'));
     }
 
     public function post($id = null) {
+
         $this->layout = 'ajax';
-        $this->Comment->recursive = -1;
         $comments = $this->Comment->find('all', array(
+            'recursive' => -1,
             'conditions' => array('Comment.post_id' => $id, 'Comment.approved' => true),
             'order' => array('Comment.created' => 'ASC')
         ));
 
-        $this->set('comments', $comments);
+        $this->set(compact('comments'));
     }
 }

@@ -10,17 +10,7 @@ class Comment extends AppModel {
         'content'   => 'notBlank',
         'approved'  => 'boolean',
         'post_id'   => array(
-            'ruleNotEmpty'  => array(
-                'rule' => 'notEmpty',
-                'required' => true
-            ),
-            'ruleIsNumeric' => array(
-                'rule' => 'numeric',
-                'required' => true
-            )
-        ),
-        'album_id'   => array(
-            'ruleNotEmpty'  => array(
+            'ruleNotBlank'  => array(
                 'rule' => 'notBlank',
                 'required' => true
             ),

@@ -4,7 +4,7 @@
     </h3>
     <hr />
 
-    <?php if (empty($unapproved_comments)): ?>
+    <?php if (empty($comments)): ?>
 
         <div class="alert alert-info">
             <p><?php echo __('All comments has been moderated.'); ?></p>
@@ -12,14 +12,14 @@
 
     <?php else: ?>
 
-        <?php foreach($unapproved_comments as $unapproved_comment): ?>
+        <?php foreach ($comments as $comment): ?>
 
             <div class="panel panel-primary panel-comment">
                 <div class="panel-heading lg-panel-heading">
-                    <?php echo __('Author:').' '.$unapproved_comment['Comment']['author'].' - '.__('Submitted on').' '.$this->Time->format($unapproved_comment['Comment']['created'], '%d/%m/%Y'); ?>
+                    <?php echo __('Author: %s - Submitted on %s', h($comment['Comment']['author']), h($this->Time->format($comment['Comment']['created'], '%d/%m/%Y'))); ?>
                     <?php echo $this->Form->postLink(
                         '<i class="glyphicon glyphicon-ok"></i>',
-                        array('controller' => 'comments', 'action' => 'approve', $unapproved_comment['Comment']['id']),
+                        array('controller' => 'comments', 'action' => 'approve', $comment['Comment']['id']),
                         array(
                             'class' => 'btn btn-sm btn-success btn-mgmt btn-comment-approve',
                             'escape' => false),
@@ -27,7 +27,7 @@
                     ); ?>
                     <?php echo $this->Form->postLink(
                         '<i class="glyphicon glyphicon-remove"></i>',
-                        array('controller' => 'comments', 'action' => 'delete', $unapproved_comment['Comment']['id']),
+                        array('controller' => 'comments', 'action' => 'delete', $comment['Comment']['id']),
                         array(
                             'class' => 'btn btn-sm btn-danger btn-mgmt btn-comment-remove',
                             'escape' => false),
@@ -35,7 +35,7 @@
                     ); ?>
                 </div>
                 <div class="panel-body">
-                    <?php echo $unapproved_comment['Comment']['content']; ?>
+                    <?php echo $comment['Comment']['content']; ?>
                 </div>
             </div>
 
