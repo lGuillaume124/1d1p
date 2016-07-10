@@ -1,6 +1,6 @@
 <?php echo $this->Html->css('jquery.fs.selecter', array('inline' => false)); ?>
 <?php echo $this->start('script'); ?>
-<?php echo $this->Html->script(array('jquery.fs.selecter', 'salvattore.min.js')); ?>
+<?php echo $this->Html->script(array('jquery.fs.selecter')); ?>
 <script type="text/javascript">
     $(function(){
         $('.admin-tooltip').tooltip();
@@ -145,7 +145,7 @@
         <hr style="margin-top: 0"/>
 
         <?php if (!empty($album['Post'])): ?>
-            <div id="grid" data-columns>
+            <div class="grid">
                 <?php foreach ($album['Post'] as $post): ?>
 
                     <?php $approved_count = 0; ?>
@@ -165,15 +165,8 @@
 
                     <div class="thumbnail post-thumbnail">
                         <?php echo $this->Image->lazyload($this->Image->thumbPath('photos'.DS.$post['picture'], 510)); ?>
-                        <div class="caption">
-                            <h4>
-                                <?php echo $post['title']; ?><br />
-                                <small><?php echo $this->Time->format($post['post_dt'], '%d/%m/%Y - %H:%M').' '.$post['post_dt_offset']; ?></small>
-                            </h4>
-                            <p>
-                                <?php echo $post['content']; ?>
-                            </p>
-                        </div>
+
+                        <span class="label label-default btn-mgmt btn-post-title"><?php echo $post['title']; ?></span>
                         <?php echo $this->Html->link(
                             '<i class="glyphicon glyphicon-edit"></i>',
                             array('controller' => 'posts', 'action' => 'edit', $post['id']),

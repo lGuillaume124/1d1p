@@ -135,6 +135,10 @@ hr {
     left: 10px;
 }
 
+.post-thumbnail:hover .btn-post-title {
+    bottom: 10px;
+}
+
 .btn-mgmt {
     display: block;
     position: absolute;
@@ -159,6 +163,11 @@ hr {
 .btn-post-comments {
     top: 10px;
     left: -35px;
+}
+
+.btn-post-title {
+    left: 10px;
+    bottom: -35px;
 }
 
 .panel-comment {
@@ -214,32 +223,35 @@ hr {
     padding-right: 5px;
 }
 
-.size-1of4 {
-    width: 25%;
-}
-
-.size-1of2 {
-    width: 50%;
-}
-
-.size-1of3 {
-    width: 33.333%;
-}
-
 @media (min-width: 768px) {
-    #grid[data-columns]::before {
-        content: '2 .column.size-1of2';
+    .grid {
+        -moz-column-count: 1;
+        -moz-column-gap: 1em;
+        -webkit-column-count: 1;
+        -webkit-column-gap: 1em;
+        column-count: 1;
+        column-gap: 1em;
     }
 }
 
 @media (min-width: 992px) {
-    #grid[data-columns]::before {
-        content: '3 .column.size-1of3';
+    .grid {
+        -moz-column-count: 2;
+        -moz-column-gap: 1em;
+        -webkit-column-count: 2;
+        -webkit-column-gap: 1em;
+        column-count: 2;
+        column-gap: 1em;
     }
 }
 
 @media (min-width: 1200px) {
-    #grid[data-columns]::before {
-        content: '4 .column.size-1of4';
+    .grid {
+        -moz-column-count: 3;
+        -moz-column-gap: 1em;
+        -webkit-column-count: 3;
+        -webkit-column-gap: 1em;
+        column-count: 3;
+        column-gap: 1em;
     }
 }
