@@ -21,7 +21,8 @@ class PagesController extends AppController {
         if (empty($this->request->query['a']) || $this->request->query['a'] == 'latest') {
 
             $album = $this->Album->find('first', array(
-                'recursive' => 2
+                'recursive' => 2,
+                'order' => 'Album.created DESC'
             ));
 
         } elseif (is_numeric($this->request->query['a'])) {
@@ -73,7 +74,8 @@ class PagesController extends AppController {
         if (empty($this->request->query['a']) || $this->request->query['a'] == 'latest') {
 
             $album = $this->Album->find('first', array(
-                'recursive' => 2
+                'recursive' => 2,
+                'order' => 'Album.created DESC'
             ));
 
         } elseif (is_numeric($this->request->query['a'])) {
