@@ -85,12 +85,20 @@ class PostsController extends AppController {
     }
 
     public function upload() {
+
+        if (!$this->request->is('post')) {
+            throw new MethodNotAllowedException;
+        }
+
         $this->layout = 'ajax';
         $this->render(false);
 
         if ($this->request->is('POST')) {
+
             if (!empty($this->request->data['Post']['file'])) {
+
                 if (!$this->request->data['Post']['file']['error']) {
+
                     $extension = pathinfo($this->request->data['Post']['file']['name'], PATHINFO_EXTENSION);
 
                     if (!in_array($extension, array('jpg', 'jpeg', 'JPG', 'JPEG'))) {
@@ -106,16 +114,23 @@ class PostsController extends AppController {
                     $filename = md5(microtime()).'.jpg';
 
                     if (@move_uploaded_file($this->request->data['Post']['file']['tmp_name'], IMAGES.'photos'.DS.$filename)) {
+
                         if (@exif_read_data(IMAGES.'photos'.DS.$filename)) {
+
                             App::uses('CakeTime', 'Utility');
                             $exif = exif_read_data(IMAGES.'photos'.DS.$filename);
                             $coordinates = $this->_getCoordinates($exif);
                             $datetime_original = (isset($exif['DateTimeOriginal'])) ? CakeTime::nice($exif['DateTimeOriginal']) : CakeTime::nice();
+
                             echo json_encode(array(
                                 'coordinates' => $coordinates,
                                 'photo' => $filename,
-                                'datetime_original' => $datetime_original));
+                                'datetime_original' => $datetime_original,
+                                'original_name' => $this->request->data['Post']['file']['name']
+                            ));
+
                             return;
+
                         } else {
                             echo json_encode(array('error' => __('Unable to analyze your photo.')));
                             return;
