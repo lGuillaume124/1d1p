@@ -10,7 +10,7 @@
         echo $this->Html->css(array('bootstrap.min', 'bootflat.min', 'style', 'leaflet', 'blue'));
         echo $this->fetch('meta');
         echo $this->fetch('css');
-		echo $this->Html->script(array('jquery-2.1.0.min', 'lazyload.min'));
+		echo $this->Html->script(array('jquery-2.2.4.min', 'lazyload.min'));
     ?>
     <script type="text/javascript">
         var baseurl = "<?php echo $this->request->base; ?>"

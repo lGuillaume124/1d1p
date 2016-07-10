@@ -36,7 +36,7 @@ $(document).ready(function(){
     map.fitBounds(bounds);
 
     // Print marker (on the map) on icon-marker click
-    $('.icon-marker').click(function(){
+    $('.icon-marker').on('click', function(){
         markers[this.id].openPopup();
     });
 

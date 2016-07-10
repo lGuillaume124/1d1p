@@ -2,7 +2,7 @@ var marker = null;
 
 $(document).ready(function() {
 
-    $('#PostFile').change(function() {
+    $('#PostFile').on('change', function() {
 
         $('#map').css('min-height', '305px');
         $('#upload-progress').fadeIn(500);
@@ -67,13 +67,13 @@ $(document).ready(function() {
                 $('#PostPicture').val(response.photo);
 
                 // Mise à jour de la carte si mise à jour des champs GPS
-                $('#latitude').blur(function() {
+                $('#latitude').on('blur', function() {
                     coordinates = L.latLng($('#latitude').val(), $('#longitude').val());
                     marker.setLatLng(coordinates);
                     map.setView(coordinates);
                 });
 
-                $('#longitude').blur(function() {
+                $('#longitude').on('blur', function() {
                     coordinates = L.latLng($('#latitude').val(), $('#longitude').val());
                     marker.setLatLng(coordinates);
                     map.setView(coordinates);
