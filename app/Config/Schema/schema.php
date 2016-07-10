@@ -43,6 +43,7 @@ class AppSchema extends CakeSchema {
 		'latitude' => array('type' => 'float', 'null' => false, 'default' => null, 'unsigned' => false),
 		'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'itinerary' => array('type' => 'boolean', 'null' => false, 'default' => null),
+		'original_name' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'album_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'index'),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
