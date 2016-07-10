@@ -34,12 +34,14 @@ class PagesController extends AppController {
 
         $albums_list = $this->Album->find('all', array(
             'recursive' => 0,
-            'fields' => 'Album.title'
+            'fields' => 'Album.title, Album.created',
+            'order' => 'Album.created'
         ));
 
         foreach ($albums_list as $value) {
 
-            $albums[$this->request->here . '?a=' . $value['Album']['id']] = $value['Album']['title'];
+            $album_year = date("Y", strtotime($value['Album']['created']));
+            $albums[$album_year][$this->request->here . '?a=' . $value['Album']['id']] = $value['Album']['title'];
 
         }
 
@@ -85,12 +87,14 @@ class PagesController extends AppController {
 
         $albums_list = $this->Album->find('all', array(
             'recursive' => 0,
-            'fields' => 'Album.title'
+            'fields' => 'Album.title, Album.created',
+            'order' => 'Album.created'
         ));
 
         foreach ($albums_list as $value) {
 
-            $albums[$this->request->here . '?a=' . $value['Album']['id']] = $value['Album']['title'];
+            $album_year = date("Y", strtotime($value['Album']['created']));
+            $albums[$album_year][$this->request->here . '?a=' . $value['Album']['id']] = $value['Album']['title'];
 
         }
 
