@@ -46,13 +46,17 @@ class PagesController extends AppController {
 
         }
 
-        foreach ($album['Post'] as $k1 => $post) {
+        if (!empty($album['Post'])) {
 
-            foreach ($post['Comment'] as $k2 => $comment) {
+            foreach ($album['Post'] as $k1 => $post) {
 
-                if (!$comment['approved']) {
-                    # Remove unapproved comments
-                    unset($album['Post'][$k1]['Comment'][$k2]);
+                foreach ($post['Comment'] as $k2 => $comment) {
+
+                    if (!$comment['approved']) {
+                        # Remove unapproved comments
+                        unset($album['Post'][$k1]['Comment'][$k2]);
+
+                    }
 
                 }
 

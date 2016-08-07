@@ -118,7 +118,7 @@ class PostsController extends AppController {
                         if (@exif_read_data(IMAGES.'photos'.DS.$filename)) {
 
                             App::uses('CakeTime', 'Utility');
-                            $exif = exif_read_data(IMAGES.'photos'.DS.$filename);
+                            $exif = @exif_read_data(IMAGES.'photos'.DS.$filename);
                             $coordinates = $this->_getCoordinates($exif);
                             $datetime_original = (isset($exif['DateTimeOriginal'])) ? CakeTime::nice($exif['DateTimeOriginal']) : CakeTime::nice();
 
