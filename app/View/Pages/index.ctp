@@ -10,11 +10,11 @@
 
                 if ($p['itinerary']) {
 
-                    $photos .= '{id: "postMarker'.$p['id'].'", lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "'.$p['title'].'", itinerary: true}, ';
+                    $photos .= '{id: "postMarker' . h($p['id']) . '", lat: ' . h($p['latitude']) . ', lng: ' . h($p['longitude']) . ', title: "' . h($p['title']) . '", itinerary: true}, ';
 
                 } else {
 
-                    $photos .= '{id: "postMarker'.$p['id'].'", lat: '.$p['latitude'].', lng: '.$p['longitude'].', title: "'.$p['title'].'"}, ';
+                    $photos .= '{id: "postMarker' . h($p['id']) . '", lat: ' . h($p['latitude']) . ', lng: ' . h($p['longitude']) . ', title: "' .h($p['title']) . '"}, ';
 
                 }
 
