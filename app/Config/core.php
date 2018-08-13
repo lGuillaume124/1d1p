@@ -31,11 +31,8 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	if (getenv('CAKEPHP_DEBUG')) {
-		Configure::write('debug', 2);
-	} else {
-		Configure::write('debug', 0);
-	}
+    $debug = getenv('CAKE_DEBUG') ? 2 : 0;
+	Configure::write('debug', $debug);
 
 /**
  * Configure the Error handler used to handle errors for your application. By default
